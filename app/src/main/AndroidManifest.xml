@@ -25,7 +25,7 @@
             android:name=".ViewRecipeActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.is.hi.hbv601g.recipeforandroid.MainActivity"
+            android:name="com.example.recipeforandroid.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
