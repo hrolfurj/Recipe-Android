@@ -22,7 +22,7 @@
             android:name=".NewRecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".ViewRecipe"
+            android:name=".ViewRecipeActivity"
             android:exported="false" />
         <activity
             android:name="com.example.is.hi.hbv601g.recipeforandroid.MainActivity"
