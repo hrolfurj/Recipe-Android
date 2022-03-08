@@ -3,18 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< Updated upstream
         <entry key="..\:/Users/Ramon/Documents/Github/Recipe-Android/app/src/main/res/layout/activity_edit.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/Ramon/Documents/Github/Recipe-Android/app/src/main/res/layout/activity_login.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/Ramon/Documents/Github/Recipe-Android/app/src/main/res/layout/activity_main.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/Ramon/Documents/Github/Recipe-Android/app/src/main/res/layout/activity_new_recipe.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/Ramon/Documents/Github/Recipe-Android/app/src/main/res/layout/activity_register.xml" value="0.16983695652173914" />
         <entry key="..\:/Users/Ramon/Documents/Github/Recipe-Android/app/src/main/res/layout/activity_view_recipe.xml" value="0.16983695652173914" />
-=======
-        <entry key="..\:/Skoli/Hugb2/Recipe-Android/app/src/main/res/layout/activity_edit.xml" value="0.1466565349544073" />
-        <entry key="..\:/Skoli/Hugb2/Recipe-Android/app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="..\:/tolvunarfraedi-HJ/hbv601g/Recipe-Android/app/src/main/res/layout/activity_main.xml" value="0.15760869565217392" />
->>>>>>> Stashed changes
       </map>
     </option>
   </component>
