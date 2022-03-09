@@ -19,6 +19,8 @@ public class LoginActivity extends AppCompatActivity {
 
         TextView username = (TextView) findViewById(R.id.username);
         TextView password = (TextView) findViewById(R.id.password);
+        TextView signup = (TextView) findViewById(R.id.login_hyperlink_text);
+
 
         MaterialButton login_button = (MaterialButton) findViewById(R.id.login_button);
 

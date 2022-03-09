@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1"
+    android:background="@drawable/background2"
     tools:context=".RegisterActivity">
 
     <TextView
@@ -35,8 +35,8 @@
         android:drawablePadding="20dp"
         android:hint="Username"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/black" />
+        android:textColor="@color/black"
+        android:textColorHint="#48000000" />
 
     <EditText
         android:id="@+id/password"
@@ -53,8 +53,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/black" />
+        android:textColor="@color/black"
+        android:textColorHint="#48000000" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/register_button"
@@ -66,7 +66,20 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#47AB11"
         android:text="Sign up" />
+
+    <TextView
+        android:id="@+id/login_hyperlink_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Already registered?"
+        android:textColor="@color/black" />
 
 </RelativeLayout>
