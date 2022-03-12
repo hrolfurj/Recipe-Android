@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
         TextView username = (TextView) findViewById(R.id.username);
         TextView password = (TextView) findViewById(R.id.password);
-        TextView signup = (TextView) findViewById(R.id.login_hyperlink_text);
+        TextView signup = (TextView) findViewById(R.id.register_hyperlink_text);
 
 
         MaterialButton login_button = (MaterialButton) findViewById(R.id.login_button);
@@ -35,8 +35,14 @@ public class LoginActivity extends AppCompatActivity {
                 } else
                     //incorrect
                     Toast.makeText(LoginActivity.this, R.string.login_failed_toast, Toast.LENGTH_SHORT).show();
+            }
+        });
 
-
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -70,14 +70,15 @@
 
     <TextView
         android:id="@+id/register_hyperlink_text"
-        android:layout_width="wrap_content"
+        android:layout_width="47dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_button"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:autoLink="web"
+        android:linksClickable="true"
         android:text="@string/signup_textview"
         android:textColor="@color/black" />
 
