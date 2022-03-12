@@ -16,7 +16,7 @@
         android:layout_marginEnd="130dp"
         android:layout_marginBottom="130dp"
         android:gravity="center"
-        android:text="Log in"
+        android:text="@string/login_textview"
         android:textColor="@color/black"
         android:textSize="40dp"
         android:textStyle="bold" />
@@ -70,7 +70,7 @@
 
     <TextView
         android:id="@+id/register_hyperlink_text"
-        android:layout_width="47dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_button"
         android:layout_centerHorizontal="true"

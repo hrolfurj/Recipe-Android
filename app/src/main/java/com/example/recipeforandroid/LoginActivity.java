@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
         TextView username = (TextView) findViewById(R.id.username);
         TextView password = (TextView) findViewById(R.id.password);
-        TextView signup = (TextView) findViewById(R.id.register_hyperlink_text);
+        TextView register = (TextView) findViewById(R.id.register_hyperlink_text);
 
 
         MaterialButton login_button = (MaterialButton) findViewById(R.id.login_button);
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        signup.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
