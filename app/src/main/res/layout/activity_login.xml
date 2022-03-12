@@ -66,7 +66,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="#47AB11"
-        android:text="Login" />
+        android:text="@string/login_button"/>
 
     <TextView
         android:id="@+id/register_hyperlink_text"
@@ -78,7 +78,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Sign up here"
+        android:text="@string/signup_textview"
         android:textColor="@color/black" />
 
 </RelativeLayout>
