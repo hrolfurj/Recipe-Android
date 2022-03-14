@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecipeForAndroid">
         <activity
-            android:name=".MainActivity"
+            android:name=".RecipeListActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
