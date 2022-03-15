@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">RecipeForAndroid</string>
+    <string name="welcome_text">Welcome!</string>
+    <string name="main_text">Recipe</string>
     <string name="login_failed_toast">LOGIN FAILED!</string>
     <string name="login_button">LOGIN</string>
     <string name="register_button">SIGN UP</string>
+    <string name="add_recipe_button">ADD RECIPE</string>
     <string name="signup_textview">Sign up here</string>
     <string name="register_textview">Register</string>
     <string name="login_textview">Log in</string>
