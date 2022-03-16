@@ -38,8 +38,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
                     //correct
-                    goToRecipeList();
                     sp.edit().putBoolean("logged", true).apply();
+                    goToRecipeList();
+
                 } else
                     //incorrect
                     Toast.makeText(LoginActivity.this, R.string.login_failed_toast, Toast.LENGTH_SHORT).show();
