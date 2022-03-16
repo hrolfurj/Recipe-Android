@@ -52,6 +52,14 @@
         android:backgroundTint="#47AB11"
         android:text="@string/add_recipe_button" />
 
+    <Button
+        android:id="@+id/Logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_recipe_button"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#47AB11"
+        android:text="Logout" />
 
 
 </RelativeLayout>
