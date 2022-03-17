@@ -18,18 +18,18 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        TextView username = (TextView) findViewById(R.id.username);
-        TextView password = (TextView) findViewById(R.id.password);
-        TextView register = (TextView) findViewById(R.id.register_hyperlink_text);
-
         sp = getSharedPreferences("login", MODE_PRIVATE);
-        MaterialButton login_button = (MaterialButton) findViewById(R.id.login_button);
 
         // Ef notandi er logged in er farið beint í RecipeList
         if(sp.getBoolean("logged", false)){
             goToRecipeList();
         }
+
+        TextView username = (TextView) findViewById(R.id.username);
+        TextView password = (TextView) findViewById(R.id.password);
+        TextView register = (TextView) findViewById(R.id.register_hyperlink_text);
+
+        MaterialButton login_button = (MaterialButton) findViewById(R.id.login_button);
 
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
      public  void  goToRecipeList() {
+         System.out.println("Here I am 333");
          Intent intent = new Intent(LoginActivity.this, RecipeListActivity.class);
          startActivity(intent);
      }
