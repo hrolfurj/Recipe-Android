@@ -59,7 +59,7 @@
         android:layout_below="@+id/add_recipe_button"
         android:layout_centerHorizontal="true"
         android:backgroundTint="#47AB11"
-        android:text="Logout" />
+        android:text="@string/logout_button" />
 
 
 </RelativeLayout>

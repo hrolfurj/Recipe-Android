@@ -14,7 +14,6 @@ import com.google.android.material.button.MaterialButton;
 public class LoginActivity extends AppCompatActivity {
 
     SharedPreferences sp;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +23,10 @@ public class LoginActivity extends AppCompatActivity {
         TextView password = (TextView) findViewById(R.id.password);
         TextView register = (TextView) findViewById(R.id.register_hyperlink_text);
 
-
+        sp = getSharedPreferences("login", MODE_PRIVATE);
         MaterialButton login_button = (MaterialButton) findViewById(R.id.login_button);
 
-        sp = getSharedPreferences("login", MODE_PRIVATE);
-
+        // Ef notandi er logged in er farið beint í RecipeList
         if(sp.getBoolean("logged", false)){
             goToRecipeList();
         }
@@ -39,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
                 if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
                     //correct
                     sp.edit().putBoolean("logged", true).apply();
+                    sp.edit().putString("user", username.getText().toString()).apply();
                     goToRecipeList();
-
                 } else
                     //incorrect
                     Toast.makeText(LoginActivity.this, R.string.login_failed_toast, Toast.LENGTH_SHORT).show();
