@@ -17,6 +17,7 @@ public class RecipeListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
         Button addRecipeButton = (Button) findViewById(R.id.add_recipe_button);
         Button logoutButton = (Button) findViewById(R.id.Logout_button);
