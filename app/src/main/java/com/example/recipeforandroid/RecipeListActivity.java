@@ -24,7 +24,7 @@ public class RecipeListActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
 
         TextView welcome = (TextView) findViewById(R.id.welcome_text);
-        welcome.setText("Welcome " +sp.getString("user", "null"));
+        welcome.setText("Welcome " +sp.getString("user", "null") + "!");
 
         addRecipeButton.setOnClickListener(new View.OnClickListener() {
             @Override
