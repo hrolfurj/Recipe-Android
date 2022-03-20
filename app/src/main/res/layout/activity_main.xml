@@ -15,6 +15,8 @@
         android:paddingTop="10dp"
         android:text="@string/welcome_text"
         android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -27,8 +29,8 @@
         android:layout_below="@id/welcome_text"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/main_text"
@@ -48,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="405dp"
+        android:layout_marginTop="500dp"
         android:backgroundTint="#47AB11"
         android:text="@string/add_recipe_button" />
 
@@ -56,8 +58,9 @@
         android:id="@+id/Logout_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_recipe_button"
+        android:layout_above="@+id/main_text"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
         android:backgroundTint="#47AB11"
         android:text="@string/logout_button" />
 
