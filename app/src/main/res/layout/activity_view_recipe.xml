@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="horizontal"
-    tools:context=".ViewRecipeActivity">
+    tools:context=".ViewRecipeActivity"
+    android:id="@+id/viewRecipe">
 
     <TextView
         android:id="@+id/view_Title"
@@ -68,7 +69,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/input_Description"
+        android:id="@+id/input_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view_Description"
@@ -85,7 +86,7 @@
         android:id="@+id/view_Image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/input_Description"
+        android:layout_below="@+id/input_description"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         tools:srcCompat="@tools:sample/avatars" />

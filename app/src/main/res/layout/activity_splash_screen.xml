@@ -4,28 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background2"
+    android:background="@color/white"
     tools:context=".SplashScreenActivity">
 
     <ImageView
         android:layout_width="400dp"
         android:layout_height="400dp"
+        android:background="@drawable/splash"
         android:layout_centerInParent="true">
 
     </ImageView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Online Recipe Book"
-        android:textColor="@color/black"
-        android:textSize="50dp"
-        android:textStyle="bold|italic"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="250dp"
-        android:layout_marginLeft="135dp">
-
-    </TextView>
 
 </RelativeLayout>
