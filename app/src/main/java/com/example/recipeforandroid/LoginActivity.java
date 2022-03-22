@@ -55,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
      public  void  goToRecipeList() {
-         System.out.println("Here I am 333");
          Intent intent = new Intent(LoginActivity.this, RecipeListActivity.class);
          startActivity(intent);
      }
