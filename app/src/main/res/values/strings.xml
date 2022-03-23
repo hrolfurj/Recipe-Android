@@ -11,4 +11,5 @@
     <string name="register_textview">Register</string>
     <string name="login_textview">Log in</string>
     <string name="register_hyperlink_textview">Already registered?</string>
+    <string name="password_hint">Password</string>
 </resources>

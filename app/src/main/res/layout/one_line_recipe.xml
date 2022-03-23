@@ -21,7 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/iv_recipePicture"
         app:layout_constraintTop_toTopOf="@+id/iv_recipePicture" />
 
@@ -29,7 +28,6 @@
         android:id="@+id/tv_recipe_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/iv_recipePicture"
         app:layout_constraintTop_toBottomOf="@+id/tv_recipe_name" />
 
