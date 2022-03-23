@@ -41,10 +41,14 @@
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recipe_list"
+        android:id="@+id/lv.recipeList"
         android:layout_width="388dp"
-        android:layout_height="136dp"
-        android:layout_below="@+id/main_text" />
+        android:layout_height="450dp"
+        android:layout_below="@+id/main_text"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="23dp" />
 
     <Button
         android:id="@+id/add_recipe_button"

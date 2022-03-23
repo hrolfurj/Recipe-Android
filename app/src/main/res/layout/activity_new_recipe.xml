@@ -62,13 +62,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view_Tag"
+        android:backgroundTint="@color/black"
         android:ems="10"
         android:hint="Tag"
-        android:backgroundTint="@color/black"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/input_Description"
+        android:id="@+id/input_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view_Description"
@@ -78,15 +78,15 @@
         android:backgroundTint="@color/white"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:lines="15"
+        android:lines="10"
         android:maxLines="100" />
 
     <ImageView
         android:id="@+id/view_Image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/input_description"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/input_Description"
         android:layout_marginTop="17dp"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -99,15 +99,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:backgroundTint="#2F000000"
-        android:textColor="@color/black"
-        android:text="Upload Image" />
+        android:text="Upload Image"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/save_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/upload_image_button"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="57dp"
         android:backgroundTint="#47AB11"
         android:text="Save" />
