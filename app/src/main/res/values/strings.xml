@@ -14,4 +14,6 @@
     <string name="login_textview">Log in</string>
     <string name="register_hyperlink_textview">Already registered?</string>
     <string name="password_hint">Password</string>
+    <string name="title">Title:</string>
+    <string name="tag">Tag:</string>
 </resources>
