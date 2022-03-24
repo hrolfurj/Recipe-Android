@@ -18,7 +18,7 @@
         android:gravity="center"
         android:text="@string/login_textview"
         android:textColor="@color/black"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <EditText
@@ -33,10 +33,12 @@
         android:background="#ffffff"
         android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
-        android:hint="Username"
+        android:hint="@string/username_login"
         android:padding="20dp"
         android:textColor="@color/black"
-        android:textColorHint="#48000000" />
+        android:textColorHint="#48000000"
+        tools:ignore="RtlHardcoded,TextFields"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/password"
@@ -50,11 +52,13 @@
         android:background="#ffffff"
         android:drawableLeft="@drawable/ic_baseline_info_24"
         android:drawablePadding="20dp"
-        android:hint="Password"
+        android:hint="@string/password_login"
         android:inputType="textPassword"
         android:padding="20dp"
         android:textColor="@color/black"
-        android:textColorHint="#48000000" />
+        android:textColorHint="#48000000"
+        android:importantForAutofill="no"
+        tools:ignore="RtlHardcoded" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_button"

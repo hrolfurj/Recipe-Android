@@ -34,4 +34,7 @@
     <string name="title_hint_view">Title</string>
     <string name="tag_hint_view">Tag</string>
     <string name="edit_recipe_view">Edit Recipe</string>
+    <string name="username_register">Username</string>
+    <string name="username_login">Username</string>
+    <string name="password_login">Password</string>
 </resources>
