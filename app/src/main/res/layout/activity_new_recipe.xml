@@ -68,18 +68,18 @@
 
     <EditText
         android:id="@+id/input_description"
-        android:layout_width="198dp"
-        android:layout_height="71dp"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
         android:layout_below="@+id/view_Description"
         android:layout_marginStart="-153dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="21dp"
         android:layout_toEndOf="@+id/view_Description"
         android:backgroundTint="@color/white"
         android:ems="10"
+        android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:lines="10"
-        android:maxLines="100"
-        android:importantForAutofill="no" />
+        android:maxLines="100" />
 
     <ImageView
         android:id="@+id/new_recipe_image"
@@ -88,7 +88,7 @@
         android:layout_below="@+id/input_description"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
-        tools:srcCompat="@tools:sample/avatars"/>
+        tools:srcCompat="@tools:sample/avatars" />
 
 
     <Button

@@ -8,106 +8,110 @@
     tools:context=".EditActivity">
 
     <TextView
-        android:id="@+id/view_Title"
+        android:id="@+id/view_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:text="Title"
+        android:text="@string/title_edit"
         android:textAlignment="viewStart"
         android:textColor="#4CAF50"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/view_Tag"
+        android:id="@+id/view_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view_Title"
-        android:layout_marginLeft="8dp"
+        android:layout_below="@id/view_title"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
-        android:layout_weight="1"
-        android:text="Tag"
+        android:text="@string/tag_edit"
         android:textAlignment="textStart"
         android:textColor="#4CAF50"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/view_Description"
+        android:id="@+id/view_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view_Tag"
-        android:layout_marginLeft="8dp"
+        android:layout_below="@id/view_tag"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
-        android:layout_weight="1"
-        android:text="Description"
+        android:text="@string/description_edit"
         android:textColor="#4CAF50"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/input_Title"
+        android:id="@+id/input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view_Title"
+        android:layout_below="@+id/view_title"
         android:layout_marginEnd="-368dp"
         android:backgroundTint="@color/black"
         android:ems="10"
-        android:hint="Title"
-        android:inputType="textPersonName" />
+        android:hint="@string/title_hint_edit"
+        android:inputType="textPersonName"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/input_Tag"
+        android:id="@+id/input_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view_Tag"
+        android:layout_below="@+id/view_tag"
         android:backgroundTint="@color/black"
         android:ems="10"
-        android:hint="Tag"
-        android:inputType="textPersonName" />
+        android:hint="@string/tag_hint_edit"
+        android:inputType="textPersonName"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/input_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view_Description"
+        android:layout_below="@+id/view_description"
         android:layout_marginStart="-153dp"
         android:layout_marginTop="21dp"
-        android:layout_toEndOf="@+id/view_Description"
+        android:layout_toEndOf="@+id/view_description"
         android:backgroundTint="@color/white"
         android:ems="10"
+        android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:lines="15"
         android:maxLines="100" />
 
     <ImageView
-        android:id="@+id/view_Image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/view_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/input_description"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/change_image_button"
-        android:layout_width="wrap_content"
+        android:layout_width="44dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view_Image"
+        android:layout_below="@+id/view_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#2F000000"
-        android:text="Change Image"
-        android:textColor="@color/black" />
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="@color/cardview_light_background"
+        android:drawableLeft="@drawable/ic_baseline_photo_camera_24"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        tools:ignore="RtlHardcoded" />
 
     <Button
-        android:id="@+id/save_Button"
-        android:layout_width="wrap_content"
+        android:id="@+id/save_button"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/change_image_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="4dp"
         android:backgroundTint="#47AB11"
-        android:text="Save" />
+        android:text="@string/save_edit" />
 
 </RelativeLayout>
