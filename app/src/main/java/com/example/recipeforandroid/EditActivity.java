@@ -16,7 +16,7 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
         getSupportActionBar().hide();
-        save_Button = findViewById (R. id.save_Button);
+        save_Button = findViewById (R. id.save_button);
 
         save_Button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -22,4 +22,16 @@
     <string name="input_title">Title</string>
     <string name="input_tag">Tag</string>
     <string name="todo_1">TODO</string>
+    <string name="title_edit">Title</string>
+    <string name="tag_edit">Tag</string>
+    <string name="description_edit">Description</string>
+    <string name="title_hint_edit">Title</string>
+    <string name="tag_hint_edit">Tag</string>
+    <string name="save_edit">Save</string>
+    <string name="title_view">Title</string>
+    <string name="tag_view">Tag</string>
+    <string name="description_view">Description</string>
+    <string name="title_hint_view">Title</string>
+    <string name="tag_hint_view">Tag</string>
+    <string name="edit_recipe_view">Edit Recipe</string>
 </resources>
