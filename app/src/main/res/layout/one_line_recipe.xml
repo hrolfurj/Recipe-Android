@@ -17,19 +17,43 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tv_recipe_name"
+        android:id="@+id/title_one_line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/title"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/iv_recipePicture"
-        app:layout_constraintTop_toTopOf="@+id/iv_recipePicture" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_recipe_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        tools:text = 'Name of recipe'
+        app:layout_constraintStart_toEndOf="@+id/iv_recipePicture"
+        app:layout_constraintTop_toBottomOf="@+id/title_one_line" />
+
+    <TextView
+        android:id="@+id/tag_one_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/tag"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/iv_recipePicture"
+        app:layout_constraintTop_toBottomOf="@+id/tv_recipe_name" />
 
     <TextView
         android:id="@+id/tv_recipe_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        tools:text = 'Tag'
         app:layout_constraintStart_toEndOf="@+id/iv_recipePicture"
-        app:layout_constraintTop_toBottomOf="@+id/tv_recipe_name" />
+        app:layout_constraintTop_toBottomOf="@+id/tag_one_line" />
 
     <View
         android:id="@+id/divider"
