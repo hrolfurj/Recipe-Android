@@ -16,4 +16,10 @@
     <string name="password_hint">Password</string>
     <string name="title">Title:</string>
     <string name="tag">Tag:</string>
+    <string name="add_title">Title</string>
+    <string name="add_tag">Tag</string>
+    <string name="add_description">Description</string>
+    <string name="input_title">Title</string>
+    <string name="input_tag">Tag</string>
+    <string name="todo_1">TODO</string>
 </resources>
