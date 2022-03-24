@@ -8,6 +8,7 @@
     <string name="register_button">SIGN UP</string>
     <string name="add_recipe_button">ADD RECIPE</string>
     <string name="upload_image_button">UPLOAD IMAGE</string>
+    <string name="save_recipe_button">SAVE</string>
     <string name="signup_textview">Sign up here</string>
     <string name="register_textview">Register</string>
     <string name="login_textview">Log in</string>

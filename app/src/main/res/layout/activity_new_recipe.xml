@@ -102,13 +102,13 @@
         android:textColor="@color/black" />
 
     <Button
-        android:id="@+id/save_Button"
+        android:id="@+id/save_recipe_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/upload_image_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="57dp"
         android:backgroundTint="#47AB11"
-        android:text="Save" />
+        android:text="@string/save_recipe_button"/>
 
 </RelativeLayout>

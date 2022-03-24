@@ -15,12 +15,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.InputStream;
 
 public class NewRecipeActivity extends AppCompatActivity {
-    Button save_Button;
+    Button saveButton;
     Button uploadButton;
     ImageView image;
 
@@ -29,7 +28,7 @@ public class NewRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_recipe);
         getSupportActionBar().hide();
-        save_Button = findViewById (R. id.save_Button);
+        saveButton = findViewById (R. id.save_recipe_button);
         uploadButton = findViewById(R.id.upload_image_button);
         image = findViewById(R.id.new_recipe_image);
 
@@ -52,7 +51,7 @@ public class NewRecipeActivity extends AppCompatActivity {
 
 
 
-        save_Button.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewRecipeActivity.this, RecipeListActivity.class);
@@ -75,8 +74,8 @@ public class NewRecipeActivity extends AppCompatActivity {
     }
 
     private boolean checkStoragePermission() {
-        boolean result2 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED;
-        return result2;
+        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED;
+        return result;
     }
 
     private boolean checkCameraPermission() {
