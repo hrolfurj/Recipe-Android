@@ -23,6 +23,10 @@ public class NewRecipeActivity extends AppCompatActivity {
     Button uploadButton;
     ImageView image;
 
+    /**
+     * TODO: Ótengt við gagnagrunn, work in progress.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,9 @@ public class NewRecipeActivity extends AppCompatActivity {
         uploadButton = findViewById(R.id.upload_image_button);
         image = findViewById(R.id.new_recipe_image);
 
+        /**
+         * Sér um að opna myndavél eða gallerí eftir því hvað notandinn velur.
+         */
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +90,14 @@ public class NewRecipeActivity extends AppCompatActivity {
         boolean result2 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED;
         return result1 && result2;
     }
+
+    /**
+     * Þetta fall sér um að ná í mynd sem notandinn tók með myndavél eða valdi úr gallerí, kropppar
+     * myndina og birtir síðan.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

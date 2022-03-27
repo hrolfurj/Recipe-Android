@@ -13,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import java.util.List;
 
+/**
+ * Þetta er adapter-class fyrir RecycleView listann inní RecipeListActivity fyrir mock-object.
+ *
+ */
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
 
     List<Recipes> recipeList;

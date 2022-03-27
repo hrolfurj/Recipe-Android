@@ -14,6 +14,12 @@ import com.google.android.material.button.MaterialButton;
 public class LoginActivity extends AppCompatActivity {
 
     SharedPreferences sp;
+
+    /**
+     * Fall sem á að sjá um login og login samanburð til að skrá notanda inn
+     * Eins og er, bara harðkóðað fyrir "username - admin" og "password - admin".
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         TextView register = (TextView) findViewById(R.id.register_hyperlink_text);
 
         MaterialButton login_button = (MaterialButton) findViewById(R.id.login_button);
+
 
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
      public  void  goToRecipeList() {
          Intent intent = new Intent(LoginActivity.this, RecipeListActivity.class);
          startActivity(intent);

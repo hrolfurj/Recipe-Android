@@ -6,6 +6,10 @@ import android.os.Bundle;
 
 public class ViewRecipeActivity extends AppCompatActivity {
 
+    /**
+     * TODO: PLACEHOLDER, work in progress.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

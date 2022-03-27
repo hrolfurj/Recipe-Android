@@ -1,5 +1,10 @@
 package com.example.recipeforandroid;
 
+
+/**
+ * Bráðabirgðar-entities fyrir RecycleView listann í RecipeListActivity.
+ * TODO: Verður fjarlægt þegar gagnagrunnur verður tengdur og networkmaneger bætt við.
+ */
 public class Recipes {
 
     private int id;
@@ -15,6 +20,7 @@ public class Recipes {
         this.description = description;
         this.upload_image = upload_image;
     }
+
 
     @Override
     public String toString() {

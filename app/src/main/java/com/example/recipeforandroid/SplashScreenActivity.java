@@ -9,6 +9,10 @@ import android.view.WindowManager;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
+    /**
+     * Sér um splash-screen-magic.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 1000);
+        }, 1000); // 1 sekúndubið í splash-screen.
     }
 }
