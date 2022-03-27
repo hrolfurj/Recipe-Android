@@ -1,6 +1,6 @@
 "# RecipeForAndroid"
 
-## Lýsing á app
+## Lýsing á forriti
 
 Uppskriftabókin (“Your digital recipe book”) er snjallsímaforrit fyrir Android síma sem heldur
 utan um uppskriftir á einfaldan og aðgengilegan máta. Á bak við margar uppskriftir liggur
