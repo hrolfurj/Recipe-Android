@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
-    tools:context=".LoginActivity">
+    tools:context=".SignUpActivity">
 
     <TextView
-        android:id="@+id/log_in_text"
+        android:id="@+id/register_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
@@ -16,7 +16,7 @@
         android:layout_marginEnd="130dp"
         android:layout_marginBottom="130dp"
         android:gravity="center"
-        android:text="@string/login_textview"
+        android:text="@string/register_button"
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold" />
@@ -25,7 +25,7 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/log_in_text"
+        android:layout_below="@id/register_text"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -33,7 +33,7 @@
         android:background="#ffffff"
         android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
-        android:hint="@string/username_login"
+        android:hint="@string/username_register"
         android:padding="20dp"
         android:textColor="@color/black"
         android:textColorHint="#48000000"
@@ -52,37 +52,39 @@
         android:background="#ffffff"
         android:drawableLeft="@drawable/ic_baseline_info_24"
         android:drawablePadding="20dp"
-        android:hint="@string/password_login"
+        android:hint="@string/password_hint"
         android:inputType="textPassword"
         android:padding="20dp"
         android:textColor="@color/black"
         android:textColorHint="#48000000"
-        android:importantForAutofill="no"
-        tools:ignore="RtlHardcoded" />
+        tools:ignore="RtlHardcoded"
+        android:importantForAutofill="no" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_button"
+        android:id="@+id/register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/password"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="#47AB11"
-        android:text="@string/login_button" />
+        android:text="@string/register_button" />
 
     <TextView
-        android:id="@+id/register_hyperlink_text"
+        android:id="@+id/login_hyperlink_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_button"
+        android:layout_below="@id/register_button"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="@string/signup_textview"
+        android:text="@string/register_hyperlink_textview"
         android:textColor="@color/black" />
 
 </RelativeLayout>

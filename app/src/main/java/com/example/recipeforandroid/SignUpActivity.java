@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
-public class RegisterActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
 
     /**
@@ -21,7 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_sign_up);
         getSupportActionBar().hide();
 
         EditText username = (EditText) findViewById(R.id.username);
@@ -33,14 +33,14 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String username1 = username.getText().toString();
-                Toast.makeText(RegisterActivity.this, "Username is" +username1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this, "Username is" +username1, Toast.LENGTH_SHORT).show();
             }
         });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                 startActivity(intent);
             }
         });

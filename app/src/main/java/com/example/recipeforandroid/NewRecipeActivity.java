@@ -19,9 +19,9 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import java.io.InputStream;
 
 public class NewRecipeActivity extends AppCompatActivity {
-    Button saveButton;
-    Button uploadButton;
-    ImageView image;
+    private Button mSave_button;
+    private Button mUpload_button;
+    private ImageView mImage;
 
     /**
      * TODO: Ótengt við gagnagrunn, work in progress.
@@ -32,17 +32,17 @@ public class NewRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_recipe);
         getSupportActionBar().hide();
-        saveButton = findViewById (R. id.save_recipe_button);
-        uploadButton = findViewById(R.id.upload_image_button);
-        image = findViewById(R.id.new_recipe_image);
+        mSave_button = findViewById (R. id.save_recipe_button);
+        mUpload_button = findViewById(R.id.upload_image_button);
+        mImage = findViewById(R.id.new_recipe_image);
+        boolean pick = true;
 
         /**
          * Sér um að opna myndavél eða gallerí eftir því hvað notandinn velur.
          */
-        uploadButton.setOnClickListener(new View.OnClickListener() {
+        mUpload_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean pick = true;
                 if (pick == true){
                     if (!checkCameraPermission()){
                         requestCameraPermission();
@@ -58,7 +58,7 @@ public class NewRecipeActivity extends AppCompatActivity {
 
 
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        mSave_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewRecipeActivity.this, RecipeListActivity.class);
@@ -108,7 +108,7 @@ public class NewRecipeActivity extends AppCompatActivity {
                 try{
                     InputStream stream = getContentResolver().openInputStream(resultUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(stream);
-                    image.setImageBitmap(bitmap);
+                    mImage.setImageBitmap(bitmap);
                 }catch (Exception e){
                     e.printStackTrace();
                 }

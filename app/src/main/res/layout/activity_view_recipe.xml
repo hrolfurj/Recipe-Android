@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/title_view"
+        android:text="@string/title"
         android:textAlignment="viewStart"
         android:textColor="#4CAF50"
         android:textSize="30sp" />
@@ -28,7 +28,7 @@
         android:layout_below="@id/view_title"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
-        android:text="@string/tag_view"
+        android:text="@string/tag"
         android:textAlignment="textStart"
         android:textColor="#4CAF50"
         android:textSize="30sp" />
@@ -40,7 +40,7 @@
         android:layout_below="@id/view_tag"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
-        android:text="@string/description_view"
+        android:text="@string/add_description"
         android:textColor="#4CAF50"
         android:textSize="30sp" />
 
@@ -52,7 +52,7 @@
         android:layout_marginEnd="-368dp"
         android:backgroundTint="@color/black"
         android:ems="10"
-        android:hint="@string/title_hint_view"
+        android:hint="@string/title"
         android:inputType="textPersonName"
         android:importantForAutofill="no" />
 
@@ -63,7 +63,7 @@
         android:layout_below="@+id/view_tag"
         android:backgroundTint="@color/black"
         android:ems="10"
-        android:hint="@string/tag_hint_view"
+        android:hint="@string/tag"
         android:inputType="textPersonName"
         android:importantForAutofill="no" />
 

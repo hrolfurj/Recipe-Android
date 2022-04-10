@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
-public class LoginActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
-    SharedPreferences sp;
+    private SharedPreferences mSp;
 
     /**
      * Fall sem á að sjá um login og login samanburð til að skrá notanda inn
@@ -23,12 +23,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_sign_in);
         getSupportActionBar().hide();
-        sp = getSharedPreferences("login", MODE_PRIVATE);
+        mSp = getSharedPreferences("login", MODE_PRIVATE);
 
         // Ef notandi er logged in er farið beint í RecipeList
-        if(sp.getBoolean("logged", false)){
+        if(mSp.getBoolean("logged", false)){
             goToRecipeList();
         }
 
@@ -44,26 +44,26 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
                     //correct
-                    sp.edit().putBoolean("logged", true).apply();
-                    sp.edit().putString("user", username.getText().toString()).apply();
+                    mSp.edit().putBoolean("logged", true).apply();
+                    mSp.edit().putString("user", username.getText().toString()).apply();
                     goToRecipeList();
                 } else
                     //incorrect
-                    Toast.makeText(LoginActivity.this, R.string.login_failed_toast, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this, R.string.login_failed_toast, Toast.LENGTH_SHORT).show();
             }
         });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
     }
 
      public  void  goToRecipeList() {
-         Intent intent = new Intent(LoginActivity.this, RecipeListActivity.class);
+         Intent intent = new Intent(SignInActivity.this, RecipeListActivity.class);
          startActivity(intent);
      }
 }

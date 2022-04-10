@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class EditActivity extends AppCompatActivity {
 
-    Button save_Button;
+    private Button mSave_button;
 
     /**
      * TODO: PLACEHOLDER, work in progress
@@ -20,9 +20,9 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
         getSupportActionBar().hide();
-        save_Button = findViewById (R. id.save_button);
+        mSave_button = findViewById (R. id.save_button);
 
-        save_Button.setOnClickListener(new View.OnClickListener() {
+        mSave_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EditActivity.this, RecipeListActivity.class);
