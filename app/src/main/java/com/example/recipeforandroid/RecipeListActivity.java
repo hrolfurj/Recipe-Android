@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class RecipeListActivity extends AppCompatActivity {
@@ -149,11 +150,15 @@ public class RecipeListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_AZ:
             // sort a to z
+                Collections.sort(recipeList,Recipe.RecipeTitleAZComparator);
                 Toast.makeText(RecipeListActivity.this, "Sort A to Z", Toast.LENGTH_SHORT).show();
-            return true;
+                adapter.notifyDataSetChanged();
+                return true;
             case R.id.menu_ZA:
                 // sort z to a
+                Collections.sort(recipeList,Recipe.RecipeTitleZAComparator);
                 Toast.makeText(RecipeListActivity.this, "Sort Z to A", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged();
                 return true;
 
 
