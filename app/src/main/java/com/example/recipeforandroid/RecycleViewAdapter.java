@@ -4,27 +4,73 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Þetta er adapter-class fyrir RecycleView listann inní RecipeListActivity fyrir mock-object.
  *
  */
-public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
+public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> implements Filterable {
 
-    List<Recipe> recipeList;
+    private List<Recipe> recipeList;
+    List<Recipe> recipeListAll;
     Context context;
 
     public RecycleViewAdapter(List<Recipe> recipeList, Context context) {
         this.recipeList = recipeList;
+        recipeListAll = new ArrayList<>(recipeList);
         this.context = context;
     }
+
+    @Override
+    public Filter getFilter() {
+        return search_Filter;
+    }
+
+    private Filter search_Filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Recipe> filteredList = new ArrayList<>();
+            if(charSequence == null || charSequence.length() == 0) {
+                filteredList.addAll(recipeListAll);
+            }
+            else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for(Recipe recipe : recipeListAll) {
+                    if(recipe.getTitle().toLowerCase().contains(filterPattern) ||
+                            recipe.getTag().toLowerCase().contains(filterPattern) ||
+                            recipe.getDescription().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(recipe);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+            recipeList.clear();
+            recipeList.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+
+
+
+        }
+    };
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_recipePic;

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RecipeForAndroid</string>
+    <string name="app_name">Your Recipe Book</string>
     <string name="welcome_text">Welcome!</string>
     <string name="recipe">Recipe</string>
     <string name="login_failed_toast">SIGN IN FAILED!</string>
