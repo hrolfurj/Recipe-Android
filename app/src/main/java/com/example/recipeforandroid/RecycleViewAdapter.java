@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> implements Filterable {
 
-    List<Recipe> recipeList;
+    private List<Recipe> recipeList;
     List<Recipe> recipeListAll;
     Context context;
 
@@ -41,14 +41,16 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     private Filter search_Filter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
-            ArrayList<Recipe> filteredList = new ArrayList<>();
+            List<Recipe> filteredList = new ArrayList<>();
             if(charSequence == null || charSequence.length() == 0) {
                 filteredList.addAll(recipeListAll);
             }
             else {
                 String filterPattern = charSequence.toString().toLowerCase().trim();
                 for(Recipe recipe : recipeListAll) {
-                    if(recipe.getTitle().toUpperCase().contains(filterPattern)) {
+                    if(recipe.getTitle().toLowerCase().contains(filterPattern) ||
+                            recipe.getTag().toLowerCase().contains(filterPattern) ||
+                            recipe.getDescription().toLowerCase().contains(filterPattern)) {
                         filteredList.add(recipe);
                     }
                 }
@@ -62,7 +64,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
 
             recipeList.clear();
-            recipeList.addAll((ArrayList) filterResults.values);
+            recipeList.addAll((List) filterResults.values);
             notifyDataSetChanged();
 
 
