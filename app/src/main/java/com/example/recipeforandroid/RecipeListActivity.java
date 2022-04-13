@@ -19,8 +19,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.recipeforandroid.Network.NetworkCallback;
+import com.example.recipeforandroid.Network.NetworkManager;
+import com.example.recipeforandroid.Persistence.Entities.Recipe;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,7 +37,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
-    private ArrayList<Recipe> recipeList;
+    private List<Recipe> recipeList;
     private RecyclerView.LayoutManager layoutManager;
     private RecycleViewAdapter adapter;
 
@@ -54,6 +57,20 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
 
         Log.d(TAG, "onCreate: " + recipeList.toString());
+
+        NetworkManager networkManager = NetworkManager.getInstance(this);
+        networkManager.getRecipes(new NetworkCallback<List<Recipe>>() {
+            @Override
+            public void onSuccess(List<Recipe> result) {
+                recipeList = result;
+                Log.d(TAG, "First recipe in list: " + recipeList.get(0).getTitle());
+            }
+
+            @Override
+            public void onFailure(String errorString) {
+
+            }
+        });
 
         Button addRecipeButton = (Button) findViewById(R.id.add_recipe_button);
         Button logoutButton = (Button) findViewById(R.id.Logout_button);
@@ -176,7 +193,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         intent.putExtra("Title", recipeList.get(position).getTitle());
         intent.putExtra("Tag", recipeList.get(position).getTag());
         intent.putExtra("Description", recipeList.get(position).getDescription());
-        intent.putExtra("Image", recipeList.get(position).getUpload_image());
+        intent.putExtra("Image", recipeList.get(position).getUploadImage());
 
         startActivity(intent);
 
