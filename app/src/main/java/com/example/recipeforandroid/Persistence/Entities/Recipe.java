@@ -2,6 +2,7 @@ package com.example.recipeforandroid.Persistence.Entities;
 
 
 import com.google.gson.annotations.SerializedName;
+
 import java.util.Comparator;
 
 /**
