@@ -1,4 +1,4 @@
-package com.example.recipeforandroid;
+package com.example.recipeforandroid.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.recipeforandroid.R;
 import com.google.android.material.button.MaterialButton;
 
 public class SignInActivity extends AppCompatActivity {

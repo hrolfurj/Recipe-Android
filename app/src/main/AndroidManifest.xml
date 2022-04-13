@@ -14,27 +14,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecipeForAndroid">
         <activity
-            android:name=".RecipeListActivity"
+            android:name=".Activities.RecipeListActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".Activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".EditActivity"
+            android:name=".Activities.EditActivity"
             android:exported="false" />
         <activity
-            android:name=".NewRecipeActivity"
+            android:name=".Activities.NewRecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".ViewRecipeActivity"
+            android:name=".Activities.ViewRecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".Activities.SignInActivity"
             android:noHistory="true"
             android:exported="false"/>
 
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".Activities.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
