@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class RecipeListActivity extends AppCompatActivity {
+public class RecipeListActivity extends AppCompatActivity implements RecycleViewInterface{
 
     private static final String TAG = "Recipe Book";
     Menu menu;
@@ -91,7 +91,7 @@ public class RecipeListActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        adapter = new RecycleViewAdapter(recipeList, RecipeListActivity.this);
+        adapter = new RecycleViewAdapter(recipeList, RecipeListActivity.this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -166,5 +166,16 @@ public class RecipeListActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+        Intent intent = new Intent(RecipeListActivity.this, ViewRecipeActivity.class);
+
+        intent.putExtra("Title", recipeList.get(position).getTitle());
+
+        startActivity(intent);
+
     }
 }
