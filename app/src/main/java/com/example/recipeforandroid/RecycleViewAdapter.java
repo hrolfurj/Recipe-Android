@@ -22,15 +22,16 @@ import java.util.List;
  *
  */
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> implements Filterable {
-
+    private final RecycleViewInterface recyclerViewInterface;
     private List<Recipe> recipeList;
     List<Recipe> recipeListAll;
     Context context;
 
-    public RecycleViewAdapter(List<Recipe> recipeList, Context context) {
+    public RecycleViewAdapter(List<Recipe> recipeList, Context context, RecycleViewInterface recyclerViewInterface) {
         this.recipeList = recipeList;
         recipeListAll = new ArrayList<>(recipeList);
         this.context = context;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @Override
@@ -77,11 +78,26 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         TextView tv_recipeTitle;
         TextView tv_recipeTag;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, RecycleViewInterface recycleViewInterface) {
             super(itemView);
+
             iv_recipePic = itemView.findViewById(R.id.iv_recipePicture);
             tv_recipeTitle = itemView.findViewById(R.id.tv_recipe_name);
             tv_recipeTag = itemView.findViewById(R.id.tv_recipe_tag);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recyclerViewInterface != null) {
+                        int pos = getAdapterPosition();
+
+                        if(pos != RecyclerView.NO_POSITION) {
+                            recycleViewInterface.onItemClick(pos);
+                        }
+                    }
+
+                }
+            });
         }
     }
 
@@ -90,7 +106,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_line_recipe,parent,false);
-        MyViewHolder holder = new MyViewHolder(view);
+        MyViewHolder holder = new MyViewHolder(view, recyclerViewInterface);
         return holder;
     }
 
