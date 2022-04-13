@@ -1,4 +1,4 @@
-package com.example.recipeforandroid;
+package com.example.recipeforandroid.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.media.Image;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.recipeforandroid.R;
 
 public class ViewRecipeActivity extends AppCompatActivity {
 

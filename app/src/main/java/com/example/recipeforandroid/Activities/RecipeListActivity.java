@@ -1,4 +1,4 @@
-package com.example.recipeforandroid;
+package com.example.recipeforandroid.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
+import com.example.recipeforandroid.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
