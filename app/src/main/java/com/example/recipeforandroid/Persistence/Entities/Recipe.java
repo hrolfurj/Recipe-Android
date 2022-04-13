@@ -1,6 +1,7 @@
-package com.example.recipeforandroid;
+package com.example.recipeforandroid.Persistence.Entities;
 
 
+import com.google.gson.annotations.SerializedName;
 import java.util.Comparator;
 
 /**
@@ -9,18 +10,26 @@ import java.util.Comparator;
  */
 public class Recipe {
 
-    private int id;
-    private String title;
-    private String tag;
-    private String description;
-    private String upload_image;
+    @SerializedName("ID")
+    private int mId;
+    @SerializedName("userID")
+    private long mUserID;
+    @SerializedName("recipeTitle")
+    private String mTitle;
+    @SerializedName("recipeTag")
+    private String mTag;
+    @SerializedName("recipeText")
+    private String mDescription;
+    @SerializedName("recipeImage")
+    private String mUploadImage;
+
 
     public Recipe(int id, String title, String tag, String description, String upload_image) {
-        this.id =id;
-        this.title = title;
-        this.tag = tag;
-        this.description = description;
-        this.upload_image = upload_image;
+        this.mId =id;
+        this.mTitle = title;
+        this.mTag = tag;
+        this.mDescription = description;
+        this.mUploadImage = upload_image;
     }
 
     public static Comparator<Recipe> RecipeTitleAZComparator = new Comparator<Recipe>() {
@@ -38,55 +47,53 @@ public class Recipe {
     };
 
 
-
-
     @Override
     public String toString() {
         return "Recipes{" +
-                "id=" + id +
-                "title='" + title + '\'' +
-                ", tag='" + tag + '\'' +
-                ", description='" + description + '\'' +
-                ", upload_image='" + upload_image + '\'' +
+                "id=" + mId +
+                "title='" + mTitle + '\'' +
+                ", tag='" + mTag + '\'' +
+                ", description='" + mDescription + '\'' +
+                ", upload_image='" + mUploadImage + '\'' +
                 '}';
     }
     public int getId() {
-        return id;
+        return mId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.mId = id;
     }
 
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.mTitle = title;
     }
 
     public String getTag() {
-        return tag;
+        return mTag;
     }
 
     public void setTag(String tag) {
-        this.tag = tag;
+        this.mTag = tag;
     }
 
     public String getDescription() {
-        return description;
+        return mDescription;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.mDescription = description;
     }
 
-    public String getUpload_image() {
-        return upload_image;
+    public String getUploadImage() {
+        return mUploadImage;
     }
 
-    public void setUpload_image(String upload_image) {
-        this.upload_image = upload_image;
+    public void setUploadImage(String uploadImage) {
+        this.mUploadImage = uploadImage;
     }
 }
