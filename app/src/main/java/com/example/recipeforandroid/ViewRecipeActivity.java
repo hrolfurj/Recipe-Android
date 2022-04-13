@@ -2,7 +2,10 @@ package com.example.recipeforandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Image;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ViewRecipeActivity extends AppCompatActivity {
 
@@ -15,5 +18,20 @@ public class ViewRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_recipe);
         getSupportActionBar().hide();
+
+        String title = getIntent().getStringExtra("Title");
+        String tag= getIntent().getStringExtra("Tag");
+        String description = getIntent().getStringExtra("Description");
+        /*String image = getIntent().getStringExtra("Image");*/
+
+        TextView nameTextView1 = findViewById(R.id.input_title);
+        TextView nameTextView2 = findViewById(R.id.input_tag);
+        TextView nameTextView3 = findViewById(R.id.input_description);
+        /*ImageView imageView = findViewById(R.id.view_image);*/
+
+        nameTextView1.setText(title);
+        nameTextView2.setText(tag);
+        nameTextView3.setText(description);
+        /*imageView.setImageResource(Integer.parseInt(image)); */
     }
 }
