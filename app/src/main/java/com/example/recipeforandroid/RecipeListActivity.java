@@ -1,5 +1,6 @@
 package com.example.recipeforandroid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +26,8 @@ import java.util.List;
 public class RecipeListActivity extends AppCompatActivity {
 
     private static final String TAG = "Recipe Book";
+    Menu menu;
+
 
   /*  List<Recipe> recipeList = new ArrayList<Recipe>(); */
 
@@ -138,5 +142,24 @@ public class RecipeListActivity extends AppCompatActivity {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_AZ:
+            // sort a to z
+                Toast.makeText(RecipeListActivity.this, "Sort A to Z", Toast.LENGTH_SHORT).show();
+            return true;
+            case R.id.menu_ZA:
+                // sort z to a
+                Toast.makeText(RecipeListActivity.this, "Sort Z to A", Toast.LENGTH_SHORT).show();
+                return true;
+
+
+
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

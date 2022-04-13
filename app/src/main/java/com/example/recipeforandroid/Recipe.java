@@ -1,6 +1,8 @@
 package com.example.recipeforandroid;
 
 
+import java.util.Comparator;
+
 /**
  * Bráðabirgðar-entities fyrir RecycleView listann í RecipeListActivity.
  * TODO: Verður fjarlægt þegar gagnagrunnur verður tengdur og networkmaneger bætt við.
@@ -20,6 +22,22 @@ public class Recipe {
         this.description = description;
         this.upload_image = upload_image;
     }
+
+    public static Comparator<Recipe> RecipeTitleAZComparator = new Comparator<Recipe>() {
+        @Override
+        public int compare(Recipe r1, Recipe r2) {
+            return r1.getTitle().compareTo(r2.getTitle());
+        }
+    };
+
+    public static Comparator<Recipe> RecipeTitleZAComparator = new Comparator<Recipe>() {
+        @Override
+        public int compare(Recipe r1, Recipe r2) {
+            return r2.getTitle().compareTo(r1.getTitle());
+        }
+    };
+
+
 
 
     @Override
