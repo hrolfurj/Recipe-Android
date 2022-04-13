@@ -53,8 +53,8 @@
         android:backgroundTint="@color/black"
         android:ems="10"
         android:hint="@string/title"
-        android:inputType="textPersonName"
-        android:importantForAutofill="no" />
+        android:importantForAutofill="no"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/input_tag"
@@ -89,8 +89,8 @@
         android:layout_below="@+id/input_description"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
-        tools:srcCompat="@tools:sample/avatars"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/view_image_button"

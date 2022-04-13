@@ -174,6 +174,9 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         Intent intent = new Intent(RecipeListActivity.this, ViewRecipeActivity.class);
 
         intent.putExtra("Title", recipeList.get(position).getTitle());
+        intent.putExtra("Tag", recipeList.get(position).getTag());
+        intent.putExtra("Description", recipeList.get(position).getDescription());
+        intent.putExtra("Image", recipeList.get(position).getUpload_image());
 
         startActivity(intent);
 
