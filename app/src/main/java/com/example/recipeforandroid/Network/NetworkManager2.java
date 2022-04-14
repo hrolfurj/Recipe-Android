@@ -34,9 +34,7 @@ public class NetworkManager2 extends Application{
     private Context mContext;
     private static final String BASE_URL = "http://10.0.2.2:8080/";
     JSONObject userLogin = new JSONObject();
-    int numer = 0;
-    boolean validSignIn = false;
-    RequestFuture<JSONObject> requestFuture=RequestFuture.newFuture();
+    RequestQueue queue;
 
     public static final String TAG = NetworkManager.class
             .getSimpleName();
@@ -45,33 +43,8 @@ public class NetworkManager2 extends Application{
         mContext = context;
     }
 
-    public void testCon() {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
-        String url = "https://www.google.com";
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        System.out.println("onResponse");
-                        System.out.println(response.substring(0,500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("That didn't work!");
-            }
-        });
-
-// Add the request to the RequestQueue.
-        queue.add(stringRequest);
-    }
-
     public void login(String username, String password, final NetworkCallback callBack) {
-
-        RequestQueue queue = Volley.newRequestQueue(mContext);
+        queue = Volley.newRequestQueue(mContext);
 
         try {
             userLogin.put("username", username);
@@ -84,14 +57,26 @@ public class NetworkManager2 extends Application{
             @Override
             public void onResponse(JSONObject response) {
                 callBack.onSuccess(response);
-                callBack.onFailure("Big FAIL!!");
             }
-        }, new Response.ErrorListener() {
+        }, null);
+        queue.add(request);
+    }
+
+    public void signUp(String username, String password, final NetworkCallback callback) {
+        queue = Volley.newRequestQueue(mContext);
+
+        try {
+            userLogin.put("username", username);
+            userLogin.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, BASE_URL +"api/signUp", userLogin, new Response.Listener<JSONObject>() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
+            public void onResponse(JSONObject response) {
+                callback.onSuccess(response);
             }
-        });
+        }, null);
         queue.add(request);
     }
 }

@@ -30,7 +30,6 @@ public class SignInActivity extends AppCompatActivity {
 
     /**
      * Fall sem á að sjá um login og login samanburð til að skrá notanda inn
-     * Eins og er, bara harðkóðað fyrir "username - admin" og "password - admin".
      * @param savedInstanceState
      */
     @Override
@@ -51,31 +50,10 @@ public class SignInActivity extends AppCompatActivity {
 
         MaterialButton login_button = (MaterialButton) findViewById(R.id.login_button);
 
-
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /**RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                String url = "https://www.google.com";
 
-                // Request a string response from the provided URL.
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                // Display the first 500 characters of the response string.
-                                System.out.println("onResponse");
-                                System.out.println(response.substring(0,500));
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println("That didn't work!");
-                    }
-                });
-
-// Add the request to the RequestQueue.
-                queue.add(stringRequest);*/
                 NetworkManager2 netw = new NetworkManager2(getApplicationContext());
                 netw.login(username.getText().toString(), password.getText().toString(), new NetworkCallback() {
                     @Override
@@ -89,23 +67,10 @@ public class SignInActivity extends AppCompatActivity {
                     public void onFailure(String errorString) {
                         System.out.println(errorString);
                         Toast.makeText(SignInActivity.this, R.string.login_failed_toast, Toast.LENGTH_SHORT).show();
-
                     }
                 });
             }
         });
-                /**if(loggedIn) {
-                //if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
-                    //correct
-                    mSp.edit().putBoolean("logged", true).apply();
-                    mSp.edit().putString("user", username.getText().toString()).apply();
-                    goToRecipeList();
-                } else
-                    //incorrect
-                    System.out.println("incorrect username/passw");
-                    Toast.makeText(SignInActivity.this, R.string.login_failed_toast, Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
