@@ -53,12 +53,17 @@ public class NetworkManager2 extends Application{
             e.printStackTrace();
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, BASE_URL +"api/login", userLogin, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, BASE_URL + "api/login", userLogin, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 callBack.onSuccess(response);
             }
-        }, null);
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callBack.onFailure(error.toString());
+            }
+        });
         queue.add(request);
     }
 
@@ -71,12 +76,17 @@ public class NetworkManager2 extends Application{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, BASE_URL +"api/signUp", userLogin, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, BASE_URL + "api/signUp", userLogin, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 callback.onSuccess(response);
             }
-        }, null);
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onFailure(error.toString());
+            }
+        });
         queue.add(request);
     }
 }
