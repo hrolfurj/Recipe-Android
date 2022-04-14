@@ -129,7 +129,7 @@ public class NetworkManager extends Application {
         NetworkManager.getInstance().addToRequestQueue(request);
     }
 
-    public void recipeList(int id) {
+    public List<Recipe> recipeList(int id) {
         System.out.println("in recipeList");
 
         System.out.println("id:"+id);
@@ -150,6 +150,7 @@ public class NetworkManager extends Application {
         //System.out.println(request.toString());
         //request.setRequestQueue(mQueue);
         NetworkManager.getInstance().addToRequestQueue(request);
+        return null;
     }
 
     public void testCon(){
