@@ -63,8 +63,12 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         fillrecipeList();
         setUpRecyclerView();
 
+        SharedPreferences userSp = getSharedPreferences("login", MODE_PRIVATE);
 
-        Log.d(TAG, "onCreate: " + recipeList.toString());
+        String userSharedP = userSp.getString("user", "null");
+        System.out.println("Username: " + userSp.getString("user", "null"));
+
+        Log.d(TAG, "onCreate: " + "; userName: " + userSharedP);
 
         NetworkManager networkManager = NetworkManager.getInstance(this);
         networkManager.getRecipes(new NetworkCallback<List<Recipe>>() {

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.se.omapi.Session;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +42,9 @@ public class SignInActivity extends AppCompatActivity {
 
         // Ef notandi er logged in er farið beint í RecipeList
         if(mSp.getBoolean("logged", false)){
-            goToRecipeList();
+
+            TextView username = (TextView) findViewById(R.id.username);
+            goToRecipeList(username);
         }
 
         TextView username = (TextView) findViewById(R.id.username);
@@ -60,7 +63,9 @@ public class SignInActivity extends AppCompatActivity {
                     public void onSuccess(Object result) {
                         mSp.edit().putBoolean("logged", true).apply();
                         mSp.edit().putString("user", username.getText().toString()).apply();
-                        goToRecipeList();
+                        TextView username = (TextView) findViewById(R.id.username);
+                        goToRecipeList(username);
+                        // goToRecipeList();
                     }
 
                     @Override
@@ -81,8 +86,10 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-     public  void  goToRecipeList() {
+     public  void  goToRecipeList(TextView username) {
          Intent intent = new Intent(SignInActivity.this, RecipeListActivity.class);
+         String user = username.getText().toString();
+         intent.putExtra("userName", user);
          startActivity(intent);
      }
 }
