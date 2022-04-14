@@ -73,8 +73,14 @@ public class NetworkManager2 extends Application{
         }
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, BASE_URL +"api/signUp", userLogin, new Response.Listener<JSONObject>() {
             @Override
+<<<<<<< HEAD
             public void onResponse(JSONObject response) {
                 callback.onSuccess(response);
+=======
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                callBack.onFailure("Big FAIL!!");
+>>>>>>> 36bead8d8000ec37a6b51f5454fafd812910ad55
             }
         }, null);
         queue.add(request);
