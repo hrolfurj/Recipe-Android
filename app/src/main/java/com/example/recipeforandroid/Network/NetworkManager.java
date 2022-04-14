@@ -43,7 +43,7 @@ public class NetworkManager {
 
     public void getRecipes(NetworkCallback<List<Recipe>> callback) {
         StringRequest request = new StringRequest(
-                Request.Method.GET, BASE_URL + "recipes", new Response.Listener<String>() {
+                Request.Method.GET, BASE_URL + "api/recipes", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
