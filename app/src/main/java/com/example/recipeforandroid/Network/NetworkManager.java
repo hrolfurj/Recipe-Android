@@ -76,7 +76,7 @@ public class NetworkManager extends Application {
 
     public void getRecipes(NetworkCallback<List<Recipe>> callback) {
         StringRequest request = new StringRequest(
-                Request.Method.GET, BASE_URL + "userRecipe", new Response.Listener<String>() {
+                Request.Method.GET, BASE_URL + "api/recipes", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
@@ -93,6 +93,7 @@ public class NetworkManager extends Application {
         );
     }
 
+<<<<<<< HEAD
     public void login(String username, String password) {
         System.out.println("hh");
 
@@ -175,5 +176,26 @@ public class NetworkManager extends Application {
         queue.add(stringRequest);
 
     }
+=======
+
+
+    /*
+    public void postReview(JSONObject requestBody, long selectedHike, NetworkCallback<Hike> callback) {
+        mRequestHelper.post(BASEURL + "hikes/" + selectedHike + "/reviews" , requestBody, new NetworkCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Gson gson = new Gson();
+                Hike hike = gson.fromJson(result, Hike.class);
+                callback.onSuccess(hike);
+            }
+
+            @Override
+            public void onFailure(String error) {
+                callback.onFailure(error);
+            }
+        });
+    }
+     */
+>>>>>>> 5f05dce1d6ed50f0b9887923a5a1d5864aad3afa
 
 }

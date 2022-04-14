@@ -35,6 +35,16 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
+    public void removeItem(int position) {
+        recipeList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void restoreRecipe(Recipe recipe, int position) {
+        recipeList.add(position, recipe);
+        notifyItemInserted(position);
+    }
+
     @Override
     public Filter getFilter() {
         return search_Filter;

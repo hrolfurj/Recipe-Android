@@ -3,11 +3,15 @@ package com.example.recipeforandroid.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,10 +27,13 @@ import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class RecipeListActivity extends AppCompatActivity implements RecycleViewInterface{
 
@@ -36,7 +43,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
   /*  List<Recipe> recipeList = new ArrayList<Recipe>(); */
 
-    private RecyclerView recyclerView;
+    RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private List<Recipe> recipeList;
     private RecyclerView.LayoutManager layoutManager;
@@ -89,6 +96,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 Intent intent = new Intent(RecipeListActivity.this, NewRecipeActivity.class);
                 startActivity(intent);
             }
+
+
         });
 
 
@@ -111,6 +120,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         // RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         adapter = new RecycleViewAdapter(recipeList, RecipeListActivity.this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapter);
 
         /*
@@ -120,6 +130,55 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         */
 
     }
+    String deletedRecipe = null;
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            if(viewHolder instanceof RecycleViewAdapter.MyViewHolder);
+            String nameRecipeDelete = recipeList.get(viewHolder.getAdapterPosition()).getTitle();
+
+         /* recipeList.remove(viewHolder.getAdapterPosition());
+            adapter.notifyDataSetChanged(); */
+
+            final Recipe recipeDelete = recipeList.get(viewHolder.getAdapterPosition());
+            final int indexDelete = viewHolder.getAdapterPosition();
+
+            adapter.removeItem(indexDelete);
+            adapter.notifyItemRemoved(indexDelete);
+
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Removed", Snackbar.LENGTH_LONG);
+            snackbar.setAction("Undo", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // smá galli, recipe birtir sömu uppskrift 2x
+                    recipeList.add(indexDelete, recipeDelete);
+                   /* adapter.restoreRecipe(recipeDelete, indexDelete);
+                    recyclerView.scrollToPosition(indexDelete);*/
+                    adapter.notifyItemInserted(indexDelete);
+
+                }
+            });
+            snackbar.setTextColor(Color.BLACK);
+            snackbar.setActionTextColor(Color.BLACK);
+            snackbar.setBackgroundTint(getResources().getColor(R.color.recipe_green));
+            snackbar.show();
+        }
+
+        @Override
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addBackgroundColor(ContextCompat.getColor(RecipeListActivity.this, R.color.red))
+                    .addActionIcon(R.drawable.ic_baseline_delete_24)
+                    .create()
+                    .decorate();
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
+    };
 
     private void fillrecipeList() {
         recipeList = new ArrayList<>();
