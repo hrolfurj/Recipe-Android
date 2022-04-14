@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -24,6 +25,7 @@ import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,7 +39,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
   /*  List<Recipe> recipeList = new ArrayList<Recipe>(); */
 
-    private RecyclerView recyclerView;
+    RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private List<Recipe> recipeList;
     private RecyclerView.LayoutManager layoutManager;
@@ -124,7 +126,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         */
 
     }
-
+    String deletedRecipe = null;
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -133,10 +135,37 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            recipeList.remove(viewHolder.getAdapterPosition());
-            adapter.notifyDataSetChanged();
+            if(viewHolder instanceof RecycleViewAdapter.MyViewHolder);
+            String nameRecipeDelete = recipeList.get(viewHolder.getAdapterPosition()).getTitle();
 
+         /* recipeList.remove(viewHolder.getAdapterPosition());
+            adapter.notifyDataSetChanged(); */
+
+            final Recipe recipeDelete = recipeList.get(viewHolder.getAdapterPosition());
+            final int indexDelete = viewHolder.getAdapterPosition();
+
+            adapter.removeItem(indexDelete);
+            adapter.notifyItemRemoved(indexDelete);
+
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Removed", Snackbar.LENGTH_LONG);
+            snackbar.setAction("Undo", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    adapter.restoreRecipe(recipeDelete, indexDelete);
+                    if(indexDelete == 0 || indexDelete == recipeList.size() -1) {
+                        adapter.restoreRecipe(recipeDelete,indexDelete);
+                        recyclerView.scrollToPosition(indexDelete);
+                        adapter.notifyItemInserted(indexDelete);
+                    }
+
+                }
+            });
+
+            snackbar.setActionTextColor(Color.GREEN);
+            snackbar.show();
         }
+
+
     };
 
     private void fillrecipeList() {
