@@ -151,17 +151,17 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             snackbar.setAction("Undo", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    adapter.restoreRecipe(recipeDelete, indexDelete);
-                    if(indexDelete == 0 || indexDelete == recipeList.size() -1) {
-                        adapter.restoreRecipe(recipeDelete,indexDelete);
-                        recyclerView.scrollToPosition(indexDelete);
-                        adapter.notifyItemInserted(indexDelete);
-                    }
+                    // smá galli, recipe birtir sömu uppskrift 2x
+                    recipeList.add(indexDelete, recipeDelete);
+                   /* adapter.restoreRecipe(recipeDelete, indexDelete);
+                    recyclerView.scrollToPosition(indexDelete);*/
+                    adapter.notifyItemInserted(indexDelete);
 
                 }
             });
-
-            snackbar.setActionTextColor(Color.GREEN);
+            snackbar.setTextColor(Color.BLACK);
+            snackbar.setActionTextColor(Color.BLACK);
+            snackbar.setBackgroundTint(Color.GREEN);
             snackbar.show();
         }
 
