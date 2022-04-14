@@ -84,12 +84,12 @@ public class NetworkManager2 extends Application{
             @Override
             public void onResponse(JSONObject response) {
                 callBack.onSuccess(response);
-                callBack.onFailure("Big FAIL!!");
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
+                callBack.onFailure("Big FAIL!!");
             }
         });
         queue.add(request);
