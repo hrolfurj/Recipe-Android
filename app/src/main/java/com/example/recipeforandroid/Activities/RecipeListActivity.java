@@ -3,6 +3,7 @@ package com.example.recipeforandroid.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -89,6 +90,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 Intent intent = new Intent(RecipeListActivity.this, NewRecipeActivity.class);
                 startActivity(intent);
             }
+
+
         });
 
 
@@ -111,6 +114,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         // RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         adapter = new RecycleViewAdapter(recipeList, RecipeListActivity.this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapter);
 
         /*
@@ -120,6 +124,20 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         */
 
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            recipeList.remove(viewHolder.getAdapterPosition());
+            adapter.notifyDataSetChanged();
+
+        }
+    };
 
     private void fillrecipeList() {
         recipeList = new ArrayList<>();
