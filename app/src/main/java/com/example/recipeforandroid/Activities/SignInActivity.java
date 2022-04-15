@@ -23,6 +23,9 @@ import com.example.recipeforandroid.Network.NetworkManager2;
 import com.example.recipeforandroid.R;
 import com.google.android.material.button.MaterialButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SignInActivity extends AppCompatActivity {
 
     private SharedPreferences mSp;
@@ -40,7 +43,7 @@ public class SignInActivity extends AppCompatActivity {
         mSp = getSharedPreferences("login", MODE_PRIVATE);
 
         // Ef notandi er logged in er farið beint í RecipeList
-        if(mSp.getBoolean("logged", true)){
+        if(mSp.getBoolean("logged", false)){
             goToRecipeList();
         }
 
@@ -60,12 +63,18 @@ public class SignInActivity extends AppCompatActivity {
                     public void onSuccess(Object result) {
                         mSp.edit().putBoolean("logged", true).apply();
                         mSp.edit().putString("user", username.getText().toString()).apply();
+
+                        // TODO: Laga útfærslu
+                        int id = Integer.parseInt(String.valueOf(result.toString().charAt(6)));
+                        mSp.edit().putInt("userID", id).apply();
+
                         goToRecipeList();
                     }
 
                     @Override
                     public void onFailure(String errorString) {
-                        System.out.println(errorString);
+                        username.setText("");
+                        password.setText("");
                         Toast.makeText(SignInActivity.this, R.string.login_failed_toast, Toast.LENGTH_SHORT).show();
                     }
                 });
