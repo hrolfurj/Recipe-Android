@@ -40,7 +40,7 @@ public class SignInActivity extends AppCompatActivity {
         mSp = getSharedPreferences("login", MODE_PRIVATE);
 
         // Ef notandi er logged in er farið beint í RecipeList
-        if(mSp.getBoolean("logged", false)){
+        if(mSp.getBoolean("logged", true)){
             goToRecipeList();
         }
 
