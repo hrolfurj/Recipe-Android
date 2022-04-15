@@ -88,11 +88,12 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
             }
         });*/
-        int id = mSp.getInt("userID", 0);
+        long id = mSp.getLong("userID", 0);
         NetworkManager2 netw = new NetworkManager2(getApplicationContext());
         netw.getUserRecipes(id, new NetworkCallback() {
             @Override
             public void onSuccess(Object result) {
+                // TODO breyta Object result í ArrayList<Recipe> ?
                 System.out.println("GREAT SUCCESS!");
             }
             @Override

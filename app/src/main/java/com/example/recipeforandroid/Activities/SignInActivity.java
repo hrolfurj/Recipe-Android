@@ -22,6 +22,7 @@ import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Network.NetworkManager2;
 import com.example.recipeforandroid.R;
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,8 +66,20 @@ public class SignInActivity extends AppCompatActivity {
                         mSp.edit().putString("user", username.getText().toString()).apply();
 
                         // TODO: Laga útfærslu
-                        int id = Integer.parseInt(String.valueOf(result.toString().charAt(6)));
-                        mSp.edit().putInt("userID", id).apply();
+                        //int id = Integer.parseInt(String.valueOf(result.toString().charAt(6)));
+                        //mSp.edit().putInt("userID", id).apply();
+
+
+                        //JSONObject temp = new JSONObject();
+                        JSONObject temp = (JSONObject) result;
+                        try {
+                            Long idd = temp.getLong("id");
+                            mSp.edit().putLong("userID", idd).apply();
+                            System.out.println("SIGNINACTIVITY ID: " +idd);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
 
                         goToRecipeList();
                     }
