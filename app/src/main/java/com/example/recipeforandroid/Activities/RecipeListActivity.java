@@ -27,10 +27,15 @@ import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Network.NetworkManager2;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
+import com.example.recipeforandroid.Persistence.Entities.Recipe2;
+import com.example.recipeforandroid.Persistence.Entities.RecipeResponse;
 import com.example.recipeforandroid.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -50,8 +55,10 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private List<Recipe> recipeList;
+    private List<Recipe2> recipeList2;
     private RecyclerView.LayoutManager layoutManager;
     private RecycleViewAdapter adapter;
+    private RecycleViewAdapter2 adapter2;
     private SharedPreferences mSp;
 
     /**
@@ -73,8 +80,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
 
 
-        fillrecipeList();
-        setUpRecyclerView();
+        //fillrecipeList();
+        //setUpRecyclerView();
 
 
         /*
@@ -102,14 +109,16 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             @Override
             public void onSuccess(Object result) {
                 // TODO breyta Object result í ArrayList<Recipe> ?
+                System.out.println("Object result: " + result.toString());
                 System.out.println("GREAT SUCCESS!");
+                fillRecipeList2((JSONObject) result);
             }
             @Override
             public void onFailure(String errorString) {
                 System.out.println("FAIL!");
             }
         });
-        Log.d(TAG, "First recipe in list: " + recipeList.get(0).getTitle());
+        //Log.d(TAG, "First recipe in list: " + recipeList.get(0).getTitle());
 
         /*
         NetworkManager networkManager = NetworkManager.getInstance(this);
@@ -258,6 +267,53 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
          */
     }
 
+    private void fillRecipeList2(JSONObject recipeList) {
+        Gson gson = new Gson();
+        Recipe2 recipe = new Recipe2();
+        /**try {
+            recipeList.get("recipes");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }**/
+        //RecipeResponse temp = new RecipeResponse();
+        /**Type RecipeResponse = new TypeToken<List<Recipe2>>(){}.getType();
+        List<Recipe2> recipe2List = gson.fromJson(recipeList, RecipeResponse);**/
+
+        Recipe2[] arrayOfRecipes = new Recipe2[1];
+        try {
+            arrayOfRecipes = gson.fromJson(String.valueOf(recipeList.get("recipes")), Recipe2[].class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        recipeList2 = new ArrayList<Recipe2>();
+
+        for (int i = 0; i < arrayOfRecipes.length; i++) {
+            recipeList2.add(arrayOfRecipes[i]);
+        }
+        //recipeList2.add(arrayOfRecipes[0]);
+        //recipeList2.add(arrayOfRecipes[1]);
+        System.out.println("ggggggggggggggg");
+        setUpRecyclerView2(recipeList2);
+    }
+
+    private void setUpRecyclerView2(List<Recipe2> recipeList) {
+        RecyclerView recyclerView = findViewById(R.id.lv_recipeList);
+        recyclerView.setHasFixedSize(true);
+
+        // RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        adapter2 = new RecycleViewAdapter2(recipeList, RecipeListActivity.this, this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+        recyclerView.setAdapter(adapter2);
+
+        /*
+        adapter = new RecycleViewAdapter(this,lstAnime) ;
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+        */
+
+    }
+
 
     /**
      * Mock-objects.
@@ -316,12 +372,16 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     public void onItemClick(int position) {
 
         Intent intent = new Intent(RecipeListActivity.this, ViewRecipeActivity.class);
-
+/**
         intent.putExtra("Title", recipeList.get(position).getTitle());
         intent.putExtra("Tag", recipeList.get(position).getTag());
         intent.putExtra("Description", recipeList.get(position).getDescription());
         intent.putExtra("Image", recipeList.get(position).getUploadImage());
-
+**/
+        intent.putExtra("Title", recipeList2.get(position).getRecipeTitle());
+        intent.putExtra("Tag", recipeList2.get(position).getRecipeTag());
+        intent.putExtra("Description", recipeList2.get(position).getRecipeText());
+        intent.putExtra("Image", recipeList2.get(position).getRecipeImagePath());
         startActivity(intent);
 
     }

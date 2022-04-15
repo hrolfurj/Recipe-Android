@@ -99,7 +99,7 @@ public class NetworkManager2 extends Application{
 
                 // TODO: Athuga hvað kemur útúr þessu, laga
                 Recipe recipe = gson.fromJson(String.valueOf(response), Recipe.class);
-                callback.onSuccess(recipe);
+                callback.onSuccess(response);
             }
         }, new Response.ErrorListener() {
             @Override
