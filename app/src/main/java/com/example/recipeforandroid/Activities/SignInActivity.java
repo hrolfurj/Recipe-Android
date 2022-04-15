@@ -65,7 +65,8 @@ public class SignInActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(String errorString) {
-                        System.out.println(errorString);
+                        username.setText("");
+                        password.setText("");
                         Toast.makeText(SignInActivity.this, R.string.login_failed_toast, Toast.LENGTH_SHORT).show();
                     }
                 });
