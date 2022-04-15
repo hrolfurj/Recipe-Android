@@ -3,6 +3,7 @@ package com.example.recipeforandroid.Network;
 import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +36,7 @@ public class NetworkManager2 extends Application{
     private static final String BASE_URL = "http://10.0.2.2:8080/";
     JSONObject userLogin = new JSONObject();
     RequestQueue queue;
+    private SharedPreferences mSp;
 
     public static final String TAG = NetworkManager.class
             .getSimpleName();
@@ -45,17 +47,16 @@ public class NetworkManager2 extends Application{
 
     public void login(String username, String password, final NetworkCallback callBack) {
         queue = Volley.newRequestQueue(mContext);
-
         try {
             userLogin.put("username", username);
             userLogin.put("password", password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, BASE_URL + "api/login", userLogin, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+
                 callBack.onSuccess(response);
             }
         }, new Response.ErrorListener() {
@@ -69,7 +70,6 @@ public class NetworkManager2 extends Application{
 
     public void signUp(String username, String password, final NetworkCallback callback) {
         queue = Volley.newRequestQueue(mContext);
-
         try {
             userLogin.put("username", username);
             userLogin.put("password", password);
@@ -92,11 +92,15 @@ public class NetworkManager2 extends Application{
 
     public void getUserRecipes(int id, final NetworkCallback callback) {
         queue = Volley.newRequestQueue(mContext);
-
         JsonObjectRequest request = new JsonObjectRequest(BASE_URL +"api/" + id + "/recipeList", new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                callback.onSuccess((response));
+                System.out.println("ÆDÍIÐ ER: " +id);
+                Gson gson = new Gson();
+
+                // TODO: Athuga hvað kemur útúr þessu, laga
+                Recipe recipe = gson.fromJson(String.valueOf(response), Recipe.class);
+                callback.onSuccess(recipe);
             }
         }, new Response.ErrorListener() {
             @Override

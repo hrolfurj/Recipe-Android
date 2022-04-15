@@ -29,7 +29,10 @@ import com.example.recipeforandroid.Network.NetworkManager2;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,6 +52,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     private List<Recipe> recipeList;
     private RecyclerView.LayoutManager layoutManager;
     private RecycleViewAdapter adapter;
+    private SharedPreferences mSp;
 
     /**
      * Uppskriftirnar eru ekki tengdar við gagnagrunn, en eru notaðar sem mock-object eins og er.
@@ -60,6 +64,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mSp = getSharedPreferences("login", MODE_PRIVATE);
 
         fillrecipeList();
         setUpRecyclerView();
@@ -83,17 +88,16 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
             }
         });*/
-
+        int id = mSp.getInt("userID", 0);
         NetworkManager2 netw = new NetworkManager2(getApplicationContext());
-        netw.getUserRecipes(1, new NetworkCallback() {
+        netw.getUserRecipes(id, new NetworkCallback() {
             @Override
             public void onSuccess(Object result) {
                 System.out.println("GREAT SUCCESS!");
             }
-
             @Override
             public void onFailure(String errorString) {
-                System.out.println("GREAT FAILURE!");
+                System.out.println("FAIL!");
             }
         });
 
