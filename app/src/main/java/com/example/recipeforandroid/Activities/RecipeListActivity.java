@@ -66,15 +66,19 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         setContentView(R.layout.activity_main);
         mSp = getSharedPreferences("login", MODE_PRIVATE);
 
-        fillrecipeList();
-        setUpRecyclerView();
-
 
         SharedPreferences userSp = getSharedPreferences("login", MODE_PRIVATE);
         String userName = userSp.getString("user", "null");
         Log.d(TAG, "onCreate: " + "; userName: " + userName);
 
-        /**
+
+
+        fillrecipeList();
+        setUpRecyclerView();
+
+
+        /*
+        
         NetworkManager networkManager = NetworkManager.getInstance(this);
         networkManager.getRecipes(new NetworkCallback<List<Recipe>>() {
             @Override
@@ -87,8 +91,14 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             public void onFailure(String errorString) {
 
             }
+<<<<<<< HEAD
         });*/
         long id = mSp.getLong("userID", 0);
+=======
+        });
+        
+        int id = mSp.getInt("userID", 0);
+>>>>>>> ae65d9a878d8fc589e1224d70b5dbf7d35065f6c
         NetworkManager2 netw = new NetworkManager2(getApplicationContext());
         netw.getUserRecipes(id, new NetworkCallback() {
             @Override
@@ -101,6 +111,28 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 System.out.println("FAIL!");
             }
         });
+         */
+        Log.d(TAG, "First recipe in list: " + recipeList.get(0).getTitle());
+
+        /*
+        NetworkManager networkManager = NetworkManager.getInstance(this);
+        networkManager.userRecipeList(userName, new NetworkCallback<List<Recipe>>() {
+            @Override
+            public void onSuccess(List<Recipe> result) {
+                recipeList = result;
+                Log.d(TAG, "First recipe in list: " + recipeList.get(1).getTitle());
+
+            }
+
+            @Override
+            public void onFailure(String errorString) {
+                Log.d(TAG, "onFailure: " + errorString.toString());
+
+            }
+        });
+         */
+
+
 
         Button addRecipeButton = (Button) findViewById(R.id.add_recipe_button);
         Button logoutButton = (Button) findViewById(R.id.Logout_button);
@@ -211,6 +243,22 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         recipeList.add( new Recipe(4,"Plokkfiskur", "Fiskur", "Hveiti, vatn...", ""));
         recipeList.add( new Recipe(5,"Lasagna", "Pasta", "Hveiti, vatn...", ""));
 
+        /*
+        NetworkManager networkManager = new NetworkManager(getApplicationContext());
+        networkManager.userRecipeList(userName, new NetworkCallback<List<Recipe>>() {
+            @Override
+            public void onSuccess(List<Recipe> result) {
+                recipeList = result;
+
+            }
+
+            @Override
+            public void onFailure(String errorString) {
+
+            }
+        });
+
+         */
     }
 
 
