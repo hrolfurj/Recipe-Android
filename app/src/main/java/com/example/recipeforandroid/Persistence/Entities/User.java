@@ -18,6 +18,14 @@ public class User {
         this.mPassword = password;
     }
 
+    @Override
+    public String toString() {
+        return "Users{" +
+                "ID=" + mID +
+                "userName='" + mUsername + '\'' +
+                ", password='" + mPassword + '\'' +
+                "}";
+    }
 
     public long getID() {
         return mID;
