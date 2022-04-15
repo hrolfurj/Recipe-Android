@@ -3,6 +3,7 @@ package com.example.recipeforandroid.Network;
 import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.Uri;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,7 +32,7 @@ public class NetworkManager extends Application {
     private static NetworkManager mInstance;
     private static RequestQueue mQueue;
     private Context mContext;
-    private RequestQueue mRequestQueue;
+    private RequestQueue mRequestQueue = Volley.newRequestQueue(this);
 
     @Override
     public void onCreate() {
@@ -69,7 +70,7 @@ public class NetworkManager extends Application {
         return mInstance;
     }
 
-    private NetworkManager(Context context){
+    public NetworkManager(Context context){
         mContext = context;
     }
 
@@ -129,28 +130,40 @@ public class NetworkManager extends Application {
         NetworkManager.getInstance().addToRequestQueue(request);
     }
 
-    public List<Recipe> recipeList(int id) {
-        System.out.println("in recipeList");
+    public void userRecipeList(String userName, final NetworkCallback<List<Recipe>> callback) {
 
-        System.out.println("id:"+id);
+        String url = Uri.parse(BASE_URL)
+                .buildUpon()
+                .appendPath("api")
+                .appendPath(String.valueOf(userName))
+                .appendPath("recipeList")
+                .build().toString();
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, "https://jsonplaceholder.typicode.com/todos/1", userLogin, new Response.Listener<JSONObject>() {
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, userLogin, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Gson gson = new Gson();
+                Type listType = new TypeToken<List<Recipe>>(){}.getType();
+                List<Recipe> recipeList = gson.fromJson(String.valueOf(response), listType);
+                callback.onSuccess(recipeList);
+
                 VolleyLog.d(TAG, response.toString());
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                callback.onFailure(error.toString());
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         });
+        addToRequestQueue(request);
+        //mQueue.add(request);
         //requestQueue.add(request);
         //System.out.println(request.toString());
         //request.setRequestQueue(mQueue);
-        NetworkManager.getInstance().addToRequestQueue(request);
-        return null;
+        // NetworkManager.getInstance().addToRequestQueue(request);
     }
 
     public void testCon(){

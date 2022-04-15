@@ -51,12 +51,12 @@ public class Recipe {
     @Override
     public String toString() {
         return "Recipes{" +
-                "id=" + mId +
-                "title='" + mTitle + '\'' +
-                ", tag='" + mTag + '\'' +
-                ", description='" + mDescription + '\'' +
-                ", upload_image='" + mUploadImage + '\'' +
-                '}';
+                "ID=" + mId +
+                "recipeTitle='" + mTitle + '\'' +
+                ", recipeTag='" + mTag + '\'' +
+                ", recipeText='" + mDescription + '\'' +
+                ", recipeImage='" + mUploadImage + '\'' +
+                "}";
     }
     public int getId() {
         return mId;
