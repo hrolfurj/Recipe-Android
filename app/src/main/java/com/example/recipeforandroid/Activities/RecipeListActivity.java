@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
+import com.example.recipeforandroid.Network.NetworkManager2;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -68,7 +69,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         String userName = userSp.getString("user", "null");
         Log.d(TAG, "onCreate: " + "; userName: " + userName);
 
-
+        /**
         NetworkManager networkManager = NetworkManager.getInstance(this);
         networkManager.getRecipes(new NetworkCallback<List<Recipe>>() {
             @Override
@@ -80,6 +81,19 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             @Override
             public void onFailure(String errorString) {
 
+            }
+        });*/
+
+        NetworkManager2 netw = new NetworkManager2(getApplicationContext());
+        netw.getUserRecipes(1, new NetworkCallback() {
+            @Override
+            public void onSuccess(Object result) {
+                System.out.println("GREAT SUCCESS!");
+            }
+
+            @Override
+            public void onFailure(String errorString) {
+                System.out.println("GREAT FAILURE!");
             }
         });
 

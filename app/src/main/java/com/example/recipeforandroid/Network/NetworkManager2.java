@@ -89,4 +89,21 @@ public class NetworkManager2 extends Application{
         });
         queue.add(request);
     }
+
+    public void getUserRecipes(int id, final NetworkCallback callback) {
+        queue = Volley.newRequestQueue(mContext);
+
+        JsonObjectRequest request = new JsonObjectRequest(BASE_URL +"api/" + id + "/recipeList", new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callback.onSuccess((response));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onFailure((error.toString()));
+            }
+        });
+        queue.add(request);
+    }
 }
