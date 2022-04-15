@@ -91,14 +91,12 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             public void onFailure(String errorString) {
 
             }
-<<<<<<< HEAD
+
         });*/
         long id = mSp.getLong("userID", 0);
-=======
-        });
-        
-        int id = mSp.getInt("userID", 0);
->>>>>>> ae65d9a878d8fc589e1224d70b5dbf7d35065f6c
+
+
+
         NetworkManager2 netw = new NetworkManager2(getApplicationContext());
         netw.getUserRecipes(id, new NetworkCallback() {
             @Override
@@ -111,7 +109,6 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 System.out.println("FAIL!");
             }
         });
-         */
         Log.d(TAG, "First recipe in list: " + recipeList.get(0).getTitle());
 
         /*
