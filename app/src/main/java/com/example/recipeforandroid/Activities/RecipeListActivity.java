@@ -227,6 +227,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             snackbar.setTextColor(Color.BLACK);
             snackbar.setActionTextColor(Color.BLACK);
             snackbar.setBackgroundTint(getResources().getColor(R.color.recipe_green));
+            snackbar.setDuration(7000).show();
             snackbar.show();
         }
 
