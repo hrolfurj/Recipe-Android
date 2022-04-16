@@ -1,5 +1,7 @@
 package com.example.recipeforandroid.Persistence.Entities;
 
+import java.util.Comparator;
+
 public class Recipe2 {
 
     private long userID;
