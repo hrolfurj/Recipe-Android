@@ -1,13 +1,17 @@
 package com.example.recipeforandroid.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
@@ -20,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +36,8 @@ import com.example.recipeforandroid.Persistence.Entities.Recipe2;
 import com.example.recipeforandroid.Persistence.Entities.RecipeResponse;
 import com.example.recipeforandroid.R;
 import com.example.recipeforandroid.Services.RecipeService;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -51,6 +58,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     Menu menu;
 
 
+
+
   /*  List<Recipe> recipeList = new ArrayList<Recipe>(); */
 
     RecyclerView recyclerView;
@@ -61,6 +70,9 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     //private RecycleViewAdapter adapter;
     private RecycleViewAdapter2 adapter2;
     private SharedPreferences mSp;
+    MaterialToolbar mToolbar;
+    DrawerLayout mDrawerLayout;
+    FrameLayout mFrameLayout;
 
     /**
      * Uppskriftirnar eru ekki tengdar við gagnagrunn, en eru notaðar sem mock-object eins og er.
@@ -73,6 +85,16 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSp = getSharedPreferences("login", MODE_PRIVATE);
+
+        // mToolbar = findViewById(R.id.Toolbar);
+
+        // mFrameLayout = findViewById(R.id.drawer_layout);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_open, R.string.navigation_close);
+        mDrawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
 
 
         SharedPreferences userSp = getSharedPreferences("login", MODE_PRIVATE);

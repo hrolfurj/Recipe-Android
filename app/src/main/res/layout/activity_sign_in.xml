@@ -91,7 +91,7 @@
         android:layout_above="@+id/log_in_text"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-280dp"
-        android:background="@drawable/splash"
+        android:background="@drawable/splash_2"
         tools:ignore="ContentDescription">
 
     </ImageView>

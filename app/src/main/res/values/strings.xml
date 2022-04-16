@@ -19,4 +19,6 @@
     <string name="edit_recipe_view">Edit Recipe</string>
     <string name="username_register">Username</string>
     <string name="name_your_recipe">Name your recipe</string>
+    <string name="navigation_open">Open navigation drawer</string>
+    <string name="navigation_close">Close navigation drawer</string>
 </resources>

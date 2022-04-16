@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Activities.RecipeListActivity">
+    android:id="@+id/main_activity"
+    tools:context=".Activities.RecipeListActivity"
+    >
 
     <TextView
         android:id="@+id/welcome_text"
