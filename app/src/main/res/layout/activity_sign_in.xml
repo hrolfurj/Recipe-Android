@@ -22,11 +22,6 @@
 
 
 
-    <!--
-    android:inputType="text"
-
-    Þetta er contraint á input
-    -->
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
@@ -89,5 +84,16 @@
         android:linksClickable="true"
         android:text="@string/create_account_hyperlink_textview"
         android:textColor="@color/black" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/log_in_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-280dp"
+        android:background="@drawable/splash"
+        tools:ignore="ContentDescription">
+
+    </ImageView>
 
 </RelativeLayout>

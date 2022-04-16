@@ -33,6 +33,7 @@
         android:drawablePadding="20dp"
         android:hint="@string/username_register"
         android:importantForAutofill="no"
+        android:inputType="text"
         android:padding="20dp"
         android:textColor="@color/black"
         android:textColorHint="#48000000"
@@ -83,5 +84,16 @@
         android:linksClickable="true"
         android:text="@string/register_hyperlink_textview"
         android:textColor="@color/black" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/register_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-280dp"
+        android:background="@drawable/splash"
+        tools:ignore="ContentDescription">
+
+    </ImageView>
 
 </RelativeLayout>
