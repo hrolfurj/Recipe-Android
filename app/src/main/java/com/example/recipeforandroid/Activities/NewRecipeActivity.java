@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,8 +13,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.recipeforandroid.Network.NetworkCallback;
+import com.example.recipeforandroid.Network.NetworkManager2;
+import com.example.recipeforandroid.Persistence.Entities.Recipe2;
 import com.example.recipeforandroid.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -23,6 +29,10 @@ public class NewRecipeActivity extends AppCompatActivity {
     private Button mSave_button;
     private Button mUpload_button;
     private ImageView mImage;
+    private EditText mRecipeTitle;
+    private EditText mRecipeText;
+    private EditText mRecipeTag;
+    private SharedPreferences mSp;
 
     /**
      * TODO: Ótengt við gagnagrunn, work in progress.
@@ -36,7 +46,12 @@ public class NewRecipeActivity extends AppCompatActivity {
         mSave_button = findViewById (R. id.save_recipe_button);
         mUpload_button = findViewById(R.id.upload_image_button);
         mImage = findViewById(R.id.new_recipe_image);
+        mRecipeTitle = findViewById(R.id.input_Title);
+        mRecipeText = findViewById(R.id.input_description);
+        mRecipeTag = findViewById(R.id.input_Tag);
         boolean pick = true;
+
+        mSp = getSharedPreferences("login", MODE_PRIVATE);
 
         /**
          * Sér um að opna myndavél eða gallerí eftir því hvað notandinn velur.
@@ -62,8 +77,27 @@ public class NewRecipeActivity extends AppCompatActivity {
         mSave_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NewRecipeActivity.this, RecipeListActivity.class);
-                startActivity(intent);
+                Recipe2 recipe = new Recipe2();
+                recipe.setUserID(mSp.getLong("userID", 0));
+                recipe.setRecipeTitle(mRecipeTitle.getText().toString());
+                recipe.setRecipeText(mRecipeText.getText().toString());
+                recipe.setRecipeTag(mRecipeTag.getText().toString());
+
+                NetworkManager2 netw = new NetworkManager2(getApplicationContext());
+                netw.saveRecipe(recipe, new NetworkCallback() {
+                    @Override
+                    public void onSuccess(Object result) {
+                        Intent intent = new Intent(NewRecipeActivity.this, RecipeListActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(String errorString) {
+                        System.out.println(errorString);
+                    }
+                });
+
+
 
             }
         });

@@ -15,8 +15,11 @@ import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
+import com.example.recipeforandroid.Persistence.Entities.Recipe2;
 import com.example.recipeforandroid.Persistence.Entities.User;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
@@ -35,6 +38,7 @@ public class NetworkManager2 extends Application{
     private Context mContext;
     private static final String BASE_URL = "http://10.0.2.2:8080/";
     JSONObject userLogin = new JSONObject();
+
     RequestQueue queue;
     private SharedPreferences mSp;
 
@@ -109,4 +113,32 @@ public class NetworkManager2 extends Application{
         });
         queue.add(request);
     }
+
+    public void saveRecipe(Recipe2 recipe, final NetworkCallback callback) {
+        queue = Volley.newRequestQueue((mContext));
+        Gson gson = new Gson();
+        //JSONObject jsonRecipe = gson.toJson(recipe, Recipe2.class);
+        String temp = gson.toJson(recipe);
+        JSONObject jsonRecipe = new JSONObject();
+
+        try {
+            jsonRecipe.put("userID", recipe.getUserID());
+            jsonRecipe.put("recipeTitle", recipe.getRecipeTitle());
+            jsonRecipe.put("recipeText", recipe.getRecipeText());
+            jsonRecipe.put("recipeTag", recipe.getRecipeTag());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, BASE_URL + "api/saveRecipe", jsonRecipe, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callback.onSuccess(response);
+            }
+        }, null
+        );
+        queue.add(request);
+    }
+
 }
