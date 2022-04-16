@@ -2,14 +2,19 @@ package com.example.recipeforandroid.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.recipeforandroid.R;
 
 public class ViewRecipeActivity extends AppCompatActivity {
+
+    private Button mEdit_Button;
 
     /**
      * TODO: PLACEHOLDER, work in progress.
@@ -35,5 +40,15 @@ public class ViewRecipeActivity extends AppCompatActivity {
         nameTextView2.setText(tag);
         nameTextView3.setText(description);
         /*imageView.setImageResource(Integer.parseInt(image)); */
+
+        mEdit_Button = findViewById(R.id.edit_button);
+        mEdit_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViewRecipeActivity.this, EditActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 }
