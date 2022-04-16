@@ -1,4 +1,4 @@
-package com.example.recipeforandroid.Activities;
+/**package com.example.recipeforandroid.Activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -22,6 +22,7 @@ import java.util.List;
  * Þetta er adapter-class fyrir RecycleView listann inní RecipeListActivity fyrir mock-object.
  *
  */
+/**
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> implements Filterable {
     private final RecycleViewInterface recyclerViewInterface;
     private List<Recipe> recipeList;
@@ -134,3 +135,5 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
 }
+
+ */

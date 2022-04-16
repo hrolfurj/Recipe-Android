@@ -58,7 +58,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     private List<Recipe> recipeList;
     private List<Recipe2> recipeList2;
     private RecyclerView.LayoutManager layoutManager;
-    private RecycleViewAdapter adapter;
+    //private RecycleViewAdapter adapter;
     private RecycleViewAdapter2 adapter2;
     private SharedPreferences mSp;
 
@@ -200,17 +200,17 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            if(viewHolder instanceof RecycleViewAdapter.MyViewHolder);
-            String nameRecipeDelete = recipeList2.get(viewHolder.getAdapterPosition()).getRecipeTitle();
+            if(viewHolder instanceof RecycleViewAdapter2.MyViewHolder);
+            String nameRecipeDelete = recipeList2.get(viewHolder.getAbsoluteAdapterPosition()).getRecipeTitle();
 
          /* recipeList.remove(viewHolder.getAdapterPosition());
             adapter.notifyDataSetChanged(); */
 
-            final Recipe2 recipeDelete = recipeList2.get(viewHolder.getAdapterPosition());
-            final int indexDelete = viewHolder.getAdapterPosition();
+            final Recipe2 recipeDelete = recipeList2.get(viewHolder.getAbsoluteAdapterPosition());
+            final int indexDelete = viewHolder.getAbsoluteAdapterPosition();
 
             adapter2.removeItem(indexDelete);
-            adapter2.notifyItemRemoved(indexDelete);
+            //adapter2.notifyItemRemoved(indexDelete);
 
             Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Removed", Snackbar.LENGTH_LONG);
             snackbar.setAction("Undo", new View.OnClickListener() {
