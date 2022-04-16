@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/title"
+        android:text="@string/name_your_recipe"
         android:textAlignment="viewStart"
         android:textColor="#4CAF50"
         android:textSize="30sp" />

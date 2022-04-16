@@ -18,4 +18,5 @@
     <string name="todo_1">TODO</string>
     <string name="edit_recipe_view">Edit Recipe</string>
     <string name="username_register">Username</string>
+    <string name="name_your_recipe">Name your recipe</string>
 </resources>
