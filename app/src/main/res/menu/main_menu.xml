@@ -15,5 +15,12 @@
     <item
         android:id="@+id/menu_ZA"
         android:title="Z->A" />
+    <item
+        android:id="@+id/menu_NewOld"
+        android:title="New->Old" />
+    <item
+        android:id="@+id/menu_OldNew"
+        android:title="Old->New" />
+
 
 </menu>

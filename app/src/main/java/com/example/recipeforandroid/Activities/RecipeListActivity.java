@@ -237,6 +237,18 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 Toast.makeText(RecipeListActivity.this, "Sort Z to A", Toast.LENGTH_SHORT).show();
                 adapter2.notifyDataSetChanged();
                 return true;
+            case R.id.menu_NewOld:
+                // sort a to z
+                Collections.sort(recipeList2, RecipeService.RecipeNewOldComparator);
+                Toast.makeText(RecipeListActivity.this, "Sort A to Z", Toast.LENGTH_SHORT).show();
+                adapter2.notifyDataSetChanged();
+                return true;
+            case R.id.menu_OldNew:
+                // sort z to a
+                Collections.sort(recipeList2,RecipeService.RecipeOldNewComparator);
+                Toast.makeText(RecipeListActivity.this, "Sort Z to A", Toast.LENGTH_SHORT).show();
+                adapter2.notifyDataSetChanged();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
