@@ -4,16 +4,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +29,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.recipeforandroid.AboutUs;
+import com.example.recipeforandroid.Dashboard;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
@@ -52,6 +60,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     private RecycleViewAdapter adapter2;
     private SharedPreferences mSp;
 
+    DrawerLayout drawerLayout;
+
     /**
      * Uppskriftirnar eru ekki tengdar við gagnagrunn, en eru notaðar sem mock-object eins og er.
      * TODO: Eftir að bæta við "search", "favorites" og "sort".
@@ -64,6 +74,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         setContentView(R.layout.activity_main);
         mSp = getSharedPreferences("login", MODE_PRIVATE);
 
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         SharedPreferences userSp = getSharedPreferences("login", MODE_PRIVATE);
         String userName = userSp.getString("user", "null");
@@ -115,6 +126,91 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 startActivity(intent);
             }
         });
+    }
+
+    public void ClickMenu (View view){
+        //open drawer
+        openDrawer(drawerLayout);
+    }
+
+    public static void openDrawer(DrawerLayout drawerLayout) {
+        //open drawer layout
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    public void ClickLogo(View view){
+        //close drawer
+        closeDrawer(drawerLayout);
+    }
+
+    public static void closeDrawer(DrawerLayout drawerLayout) {
+        //close drawer layout
+        //check condition
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            //When drawer is open
+            //Close drawer
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+    public void ClickHome(View view){
+        //Recreate activity
+        recreate();
+    }
+
+    public void ClickDashboard(View view){
+        //Redirect activity to dashboard
+        redirectActivity(this, Dashboard.class);
+    }
+
+    public void ClickAboutUs(View view){
+        //Redicect activity to about us
+        redirectActivity(this, AboutUs.class);
+    }
+
+    public static void logout(Activity activity){
+        //Initialize alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        //Set title
+        builder.setTitle("Log out");
+        //
+        builder.setMessage("Are you sure you want to log out?");
+        //Positive yes button
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Finish activity
+                activity.finishAffinity();
+                //Exit app
+                System.exit(0);
+
+            }
+        });
+        //Negative no button
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Dismiss dialog
+                dialog.dismiss();
+            }
+        });
+        //show dialog
+        builder.show();
+
+    }
+
+    public static void redirectActivity(Activity activity, Class aClass) {
+        //Initialize intent
+        Intent intent = new Intent(activity,aClass);
+        //
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+    }
+
+    protected void onPause(){
+        super.onPause();
+        //close drawer
+        closeDrawer(drawerLayout);
     }
 
     String deletedRecipe = null;
