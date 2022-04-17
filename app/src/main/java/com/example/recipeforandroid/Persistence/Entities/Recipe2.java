@@ -9,7 +9,7 @@ public class Recipe2 {
     private String recipeText;
     private String recipeTag;
     private String recipeImage;
-    private long ID;
+    private long id;
     private String recipeImagePath;
 
     public Recipe2() {
@@ -23,16 +23,16 @@ public class Recipe2 {
         this.recipeText = recipeText;
         this.recipeTag = recipeTag;
         this.recipeImage = recipeImage;
-        this.ID = ID;
+        this.id = id;
         this.recipeImagePath = recipeImagePath;
     }
 
     public long getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setID(long id) {
+        this.id = id;
     }
 
     public long getUserID() {
@@ -76,11 +76,11 @@ public class Recipe2 {
     }
 
     public long getId() {
-        return ID;
+        return id;
     }
 
     public void setId(long ID) {
-        this.ID = ID;
+        this.id = id;
     }
 
     public String getRecipeImagePath() {

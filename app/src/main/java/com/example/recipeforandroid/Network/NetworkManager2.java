@@ -126,6 +126,7 @@ public class NetworkManager2 extends Application{
             jsonRecipe.put("recipeTitle", recipe.getRecipeTitle());
             jsonRecipe.put("recipeText", recipe.getRecipeText());
             jsonRecipe.put("recipeTag", recipe.getRecipeTag());
+            jsonRecipe.put("id", recipe.getID());
         } catch (JSONException e) {
             e.printStackTrace();
         }

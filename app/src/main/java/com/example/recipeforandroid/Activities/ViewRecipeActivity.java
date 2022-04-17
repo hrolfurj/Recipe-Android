@@ -27,8 +27,10 @@ public class ViewRecipeActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         String title = getIntent().getStringExtra("Title");
+        System.out.println("Title: " +title);
         String tag= getIntent().getStringExtra("Tag");
         String description = getIntent().getStringExtra("Description");
+        Long recipeID = getIntent().getLongExtra("RecipeID", 0);
         /*String image = getIntent().getStringExtra("Image");*/
 
         TextView nameTextView1 = findViewById(R.id.input_title);
@@ -45,7 +47,14 @@ public class ViewRecipeActivity extends AppCompatActivity {
         mEdit_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewRecipeActivity.this, EditActivity.class);
+                Intent intent = new Intent(ViewRecipeActivity.this, NewRecipeActivity.class);
+                intent.putExtra("Title", title);
+                intent.putExtra("Tag", tag);
+                intent.putExtra("Description", description);
+                //intent.putExtra("Image", image);
+                intent.putExtra("RecipeID", recipeID);
+                System.out.println("RecipeID: " +recipeID);
+                //Intent intent = new Intent(ViewRecipeActivity.this, EditActivity.class);
                 startActivity(intent);
 
             }

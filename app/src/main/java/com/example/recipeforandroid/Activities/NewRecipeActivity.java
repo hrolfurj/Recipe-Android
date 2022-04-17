@@ -71,6 +71,15 @@ public class NewRecipeActivity extends AppCompatActivity {
                 }
             }   
         });
+        Intent fromSender = getIntent();
+        String title = fromSender.getStringExtra("Title");
+        String tag= fromSender.getStringExtra("Tag");
+        String description = fromSender.getStringExtra("Description");
+        Long recipeID = fromSender.getLongExtra("RecipeID", 0);
+        System.out.println("RecipeID: " +recipeID);
+        mRecipeText.setText(description);
+        mRecipeTitle.setText(title);
+        mRecipeTag.setText(tag);
 
 
 
@@ -82,6 +91,8 @@ public class NewRecipeActivity extends AppCompatActivity {
                 recipe.setRecipeTitle(mRecipeTitle.getText().toString());
                 recipe.setRecipeText(mRecipeText.getText().toString());
                 recipe.setRecipeTag(mRecipeTag.getText().toString());
+                recipe.setID(recipeID);
+                System.out.println("RecipeID3: " +recipe.getID());
 
                 NetworkManager2 netw = new NetworkManager2(getApplicationContext());
                 netw.saveRecipe(recipe, new NetworkCallback() {
