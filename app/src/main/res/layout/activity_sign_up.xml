@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background2"
     tools:context=".Activities.SignUpActivity">
 
     <TextView
@@ -17,7 +16,7 @@
         android:layout_marginBottom="130dp"
         android:gravity="center"
         android:text="@string/register_button"
-        android:textColor="@color/black"
+        android:textColor="@color/recipe_green"
         android:textSize="40sp"
         android:textStyle="bold" />
 
@@ -30,15 +29,15 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#ffffff"
         android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
         android:hint="@string/username_register"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:padding="20dp"
         android:textColor="@color/black"
         android:textColorHint="#48000000"
-        tools:ignore="RtlHardcoded,TextFields"
-        android:importantForAutofill="no" />
+        tools:ignore="RtlHardcoded,TextFields" />
 
     <EditText
         android:id="@+id/password"
@@ -49,16 +48,15 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#ffffff"
         android:drawableLeft="@drawable/ic_baseline_info_24"
         android:drawablePadding="20dp"
         android:hint="@string/password_hint"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         android:padding="20dp"
         android:textColor="@color/black"
         android:textColorHint="#48000000"
-        tools:ignore="RtlHardcoded"
-        android:importantForAutofill="no" />
+        tools:ignore="RtlHardcoded" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/register_button"
@@ -86,5 +84,16 @@
         android:linksClickable="true"
         android:text="@string/register_hyperlink_textview"
         android:textColor="@color/black" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/register_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-280dp"
+        android:background="@drawable/splash"
+        tools:ignore="ContentDescription">
+
+    </ImageView>
 
 </RelativeLayout>

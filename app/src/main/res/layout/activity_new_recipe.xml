@@ -15,7 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/title"
+        android:text="@string/name_your_recipe"
         android:textAlignment="viewStart"
         android:textColor="#4CAF50"
         android:textSize="30sp" />
@@ -48,23 +48,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view_Title"
-        android:layout_marginEnd="-368dp"
-        android:backgroundTint="@color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/title"
         android:importantForAutofill="no"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textSize="15dp" />
 
     <EditText
         android:id="@+id/input_Tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view_Tag"
-        android:backgroundTint="@color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/tag"
         android:importantForAutofill="no"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textSize="15dp" />
 
     <EditText
         android:id="@+id/input_description"
@@ -72,7 +77,8 @@
         android:layout_height="100dp"
         android:layout_below="@+id/view_Description"
         android:layout_marginStart="-153dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/view_Description"
         android:backgroundTint="@color/white"
         android:ems="10"
