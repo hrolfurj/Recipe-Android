@@ -51,10 +51,7 @@ public class ViewRecipeActivity extends AppCompatActivity {
                 intent.putExtra("Title", title);
                 intent.putExtra("Tag", tag);
                 intent.putExtra("Description", description);
-                //intent.putExtra("Image", image);
                 intent.putExtra("RecipeID", recipeID);
-                System.out.println("RecipeID: " +recipeID);
-                //Intent intent = new Intent(ViewRecipeActivity.this, EditActivity.class);
                 startActivity(intent);
 
             }

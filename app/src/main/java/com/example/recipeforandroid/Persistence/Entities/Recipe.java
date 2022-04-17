@@ -1,100 +1,95 @@
 package com.example.recipeforandroid.Persistence.Entities;
 
-
-import com.google.gson.annotations.SerializedName;
-
 import java.util.Comparator;
 
-/**
- * Bráðabirgðar-entities fyrir RecycleView listann í RecipeListActivity.
- * TODO: Verður fjarlægt þegar gagnagrunnur verður tengdur og networkmaneger bætt við.
- */
 public class Recipe {
 
-    @SerializedName("ID")
-    private int mId;
-    @SerializedName("userID")
-    private long mUserID;
-    @SerializedName("recipeTitle")
-    private String mTitle;
-    @SerializedName("recipeTag")
-    private String mTag;
-    @SerializedName("recipeText")
-    private String mDescription;
-    @SerializedName("recipeImage")
-    private String mUploadImage;
+    private long userID;
+    private String recipeTitle;
+    private String recipeText;
+    private String recipeTag;
+    private String recipeImage;
+    private long id;
+    private String recipeImagePath;
 
+    public Recipe() {
 
-    public Recipe(int id, String title, String tag, String description, String upload_image) {
-        this.mId =id;
-        this.mTitle = title;
-        this.mTag = tag;
-        this.mDescription = description;
-        this.mUploadImage = upload_image;
     }
 
-    public static Comparator<Recipe> RecipeTitleAZComparator = new Comparator<Recipe>() {
-        @Override
-        public int compare(Recipe r1, Recipe r2) {
-            return r1.getTitle().compareTo(r2.getTitle());
-        }
-    };
+    public Recipe(long userID, String recipeTitle, String recipeText, String recipeTag, String recipeImage, long id, String recipeImagePath) {
 
-    public static Comparator<Recipe> RecipeTitleZAComparator = new Comparator<Recipe>() {
-        @Override
-        public int compare(Recipe r1, Recipe r2) {
-            return r2.getTitle().compareTo(r1.getTitle());
-        }
-    };
-
-
-    @Override
-    public String toString() {
-        return "Recipes{" +
-                "ID=" + mId +
-                "recipeTitle='" + mTitle + '\'' +
-                ", recipeTag='" + mTag + '\'' +
-                ", recipeText='" + mDescription + '\'' +
-                ", recipeImage='" + mUploadImage + '\'' +
-                "}";
-    }
-    public int getId() {
-        return mId;
+        this.userID = userID;
+        this.recipeTitle = recipeTitle;
+        this.recipeText = recipeText;
+        this.recipeTag = recipeTag;
+        this.recipeImage = recipeImage;
+        this.id = id;
+        this.recipeImagePath = recipeImagePath;
     }
 
-    public void setId(int id) {
-        this.mId = id;
+    public long getID() {
+        return id;
     }
 
-    public String getTitle() {
-        return mTitle;
+    public void setID(long id) {
+        this.id = id;
     }
 
-    public void setTitle(String title) {
-        this.mTitle = title;
+    public long getUserID() {
+        return userID;
     }
 
-    public String getTag() {
-        return mTag;
+    public void setUserID(long userID) {
+        this.userID = userID;
     }
 
-    public void setTag(String tag) {
-        this.mTag = tag;
+    public String getRecipeTitle() {
+        return recipeTitle;
     }
 
-    public String getDescription() {
-        return mDescription;
+    public void setRecipeTitle(String recipeTitle) {
+        this.recipeTitle = recipeTitle;
     }
 
-    public void setDescription(String description) {
-        this.mDescription = description;
+    public String getRecipeText() {
+        return recipeText;
     }
 
-    public String getUploadImage() {
-        return mUploadImage;
+    public void setRecipeText(String recipeText) {
+        this.recipeText = recipeText;
     }
 
-    public void setUploadImage(String uploadImage) {
-        this.mUploadImage = uploadImage;
+    public String getRecipeTag() {
+        return recipeTag;
     }
+
+    public void setRecipeTag(String recipeTag) {
+        this.recipeTag = recipeTag;
+    }
+
+    public String getRecipeImage() {
+        return recipeImage;
+    }
+
+    public void setRecipeImage(String recipeImage) {
+        this.recipeImage = recipeImage;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long ID) {
+        this.id = id;
+    }
+
+    public String getRecipeImagePath() {
+        return recipeImagePath;
+    }
+
+    public void setRecipeImagePath(String recipeImagePath) {
+        this.recipeImagePath = recipeImagePath;
+    }
+
+
 }

@@ -15,11 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.recipeforandroid.Network.NetworkCallback;
-import com.example.recipeforandroid.Network.NetworkManager2;
-import com.example.recipeforandroid.Persistence.Entities.Recipe2;
+import com.example.recipeforandroid.Network.NetworkManager;
+import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -81,12 +80,10 @@ public class NewRecipeActivity extends AppCompatActivity {
         mRecipeTitle.setText(title);
         mRecipeTag.setText(tag);
 
-
-
         mSave_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Recipe2 recipe = new Recipe2();
+                Recipe recipe = new Recipe();
                 recipe.setUserID(mSp.getLong("userID", 0));
                 recipe.setRecipeTitle(mRecipeTitle.getText().toString());
                 recipe.setRecipeText(mRecipeText.getText().toString());
@@ -94,7 +91,7 @@ public class NewRecipeActivity extends AppCompatActivity {
                 recipe.setID(recipeID);
                 System.out.println("RecipeID3: " +recipe.getID());
 
-                NetworkManager2 netw = new NetworkManager2(getApplicationContext());
+                NetworkManager netw = new NetworkManager(getApplicationContext());
                 netw.saveRecipe(recipe, new NetworkCallback() {
                     @Override
                     public void onSuccess(Object result) {
@@ -107,9 +104,6 @@ public class NewRecipeActivity extends AppCompatActivity {
                         System.out.println(errorString);
                     }
                 });
-
-
-
             }
         });
     }

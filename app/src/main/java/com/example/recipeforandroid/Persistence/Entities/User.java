@@ -12,7 +12,6 @@ public class User {
     @SerializedName("password")
     private String mPassword;
 
-
     public User(String username, String password) {
         this.mUsername = username;
         this.mPassword = password;

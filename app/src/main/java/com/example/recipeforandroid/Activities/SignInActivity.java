@@ -2,7 +2,6 @@ package com.example.recipeforandroid.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,18 +10,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
-import com.example.recipeforandroid.Network.NetworkManager2;
 import com.example.recipeforandroid.R;
 import com.google.android.material.button.MaterialButton;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,19 +49,13 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                NetworkManager2 netw = new NetworkManager2(getApplicationContext());
+                NetworkManager netw = new NetworkManager(getApplicationContext());
                 netw.login(username.getText().toString(), password.getText().toString(), new NetworkCallback() {
                     @Override
                     public void onSuccess(Object result) {
                         mSp.edit().putBoolean("logged", true).apply();
                         mSp.edit().putString("user", username.getText().toString()).apply();
 
-                        // TODO: Laga útfærslu
-                        //int id = Integer.parseInt(String.valueOf(result.toString().charAt(6)));
-                        //mSp.edit().putInt("userID", id).apply();
-
-
-                        //JSONObject temp = new JSONObject();
                         JSONObject temp = (JSONObject) result;
                         try {
                             Long idd = temp.getLong("id");
@@ -79,8 +64,6 @@ public class SignInActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
                         goToRecipeList();
                     }
 

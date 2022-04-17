@@ -6,17 +6,17 @@ import java.util.List;
 
 public class RecipeResponse {
 
-    private List<Recipe2> recipes;
+    private List<Recipe> recipes;
 
-    public RecipeResponse(List<Recipe2> recipes) {
+    public RecipeResponse(List<Recipe> recipes) {
         this.recipes = recipes;
     }
 
-    public List<Recipe2> getRecipes() {
+    public List<Recipe> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(List<Recipe2> recipes) {
+    public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
 }

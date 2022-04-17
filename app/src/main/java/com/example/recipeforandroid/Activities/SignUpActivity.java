@@ -7,15 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.recipeforandroid.Network.NetworkCallback;
-import com.example.recipeforandroid.Network.NetworkManager2;
+import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.R;
 import com.google.android.material.button.MaterialButton;
 
 public class SignUpActivity extends AppCompatActivity {
-
 
     /**
      * TODO: PLACEHOLDER, work in progress.
@@ -36,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
         register_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                NetworkManager2 netw = new NetworkManager2(getApplicationContext());
+                NetworkManager netw = new NetworkManager(getApplicationContext());
                 netw.signUp(username.getText().toString(), password.getText().toString(), new NetworkCallback() {
                     @Override
                     public void onSuccess(Object result) {

@@ -1,4 +1,4 @@
-/**package com.example.recipeforandroid.Activities;
+package com.example.recipeforandroid.Activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -22,7 +22,6 @@ import java.util.List;
  * Þetta er adapter-class fyrir RecycleView listann inní RecipeListActivity fyrir mock-object.
  *
  */
-/**
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> implements Filterable {
     private final RecycleViewInterface recyclerViewInterface;
     private List<Recipe> recipeList;
@@ -61,9 +60,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
             else {
                 String filterPattern = charSequence.toString().toLowerCase().trim();
                 for(Recipe recipe : recipeListAll) {
-                    if(recipe.getTitle().toLowerCase().contains(filterPattern) ||
-                            recipe.getTag().toLowerCase().contains(filterPattern) ||
-                            recipe.getDescription().toLowerCase().contains(filterPattern)) {
+                    if(recipe.getRecipeTitle().toLowerCase().contains(filterPattern) ||
+                            recipe.getRecipeTag().toLowerCase().contains(filterPattern) ||
+                            recipe.getRecipeText().toLowerCase().contains(filterPattern)) {
                         filteredList.add(recipe);
                     }
                 }
@@ -75,13 +74,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-
             recipeList.clear();
             recipeList.addAll((List) filterResults.values);
             notifyDataSetChanged();
-
-
-
         }
     };
 
@@ -101,18 +96,16 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                 @Override
                 public void onClick(View view) {
                     if(recyclerViewInterface != null) {
-                        int pos = getAdapterPosition();
+                        int pos = getAbsoluteAdapterPosition();
 
                         if(pos != RecyclerView.NO_POSITION) {
                             recycleViewInterface.onItemClick(pos);
                         }
                     }
-
                 }
             });
         }
     }
-
 
     @NonNull
     @Override
@@ -124,9 +117,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv_recipeTitle.setText(recipeList.get(position).getTitle());
-        holder.tv_recipeTag.setText(recipeList.get(position).getTag());
-        Glide.with(this.context).load(recipeList.get(position).getUploadImage()).into(holder.iv_recipePic);
+        holder.tv_recipeTitle.setText(recipeList.get(position).getRecipeTitle());
+        holder.tv_recipeTag.setText(recipeList.get(position).getRecipeTag());
+        Glide.with(this.context).load(recipeList.get(position).getRecipeImagePath()).into(holder.iv_recipePic);
     }
 
     @Override
@@ -135,5 +128,3 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
 }
-
- */
