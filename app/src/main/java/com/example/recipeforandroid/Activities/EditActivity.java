@@ -1,3 +1,4 @@
+/**
 package com.example.recipeforandroid.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +18,7 @@ public class EditActivity extends AppCompatActivity {
     /**
      * TODO: PLACEHOLDER, work in progress
      * @param savedInstanceState
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,3 +38,4 @@ public class EditActivity extends AppCompatActivity {
 
     }
 }
+*/

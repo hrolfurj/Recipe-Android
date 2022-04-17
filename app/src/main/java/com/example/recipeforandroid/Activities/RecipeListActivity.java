@@ -177,6 +177,11 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecipeListActivity.this, NewRecipeActivity.class);
+                intent.putExtra("Title", "");
+                intent.putExtra("Tag", "");
+                intent.putExtra("Description", "");
+                intent.putExtra("Image", "");
+                intent.putExtra("RecipeID", 0);
                 startActivity(intent);
             }
 
@@ -419,9 +424,12 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         intent.putExtra("Image", recipeList.get(position).getUploadImage());
 **/
         intent.putExtra("Title", recipeList2.get(position).getRecipeTitle());
+        //System.out.println("recipeList2 getTitle: " +recipeList2.g);
         intent.putExtra("Tag", recipeList2.get(position).getRecipeTag());
         intent.putExtra("Description", recipeList2.get(position).getRecipeText());
         intent.putExtra("Image", recipeList2.get(position).getRecipeImagePath());
+        intent.putExtra("RecipeID", recipeList2.get(position).getID());
+        System.out.println("recipeList2 getID: " +recipeList2.get(position).getID());
         startActivity(intent);
 
     }
