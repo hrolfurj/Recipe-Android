@@ -93,7 +93,7 @@ public class NetworkManager extends Application{
     }
 
     public void saveRecipe(Recipe recipe, final NetworkCallback callback) {
-        queue = Volley.newRequestQueue((mContext));
+        queue = Volley.newRequestQueue(mContext);
         Gson gson = new Gson();
         //JSONObject jsonRecipe = gson.toJson(recipe, Recipe2.class);
         String temp = gson.toJson(recipe);
@@ -120,4 +120,20 @@ public class NetworkManager extends Application{
         queue.add(request);
     }
 
+    public void deleteRecipe (Recipe recipe, final NetworkCallback callback) {
+        queue = Volley.newRequestQueue(mContext);
+        Long id = recipe.getID();
+        JsonObjectRequest request = new JsonObjectRequest(BASE_URL +"api/" + id + "/deleteRecipe", new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callback.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onFailure((error.toString()));
+            }
+        });
+        queue.add(request);
+    }
 }

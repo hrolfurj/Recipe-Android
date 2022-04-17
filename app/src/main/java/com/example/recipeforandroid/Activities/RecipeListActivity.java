@@ -131,6 +131,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
             final Recipe recipeDelete = recipeList2.get(viewHolder.getAbsoluteAdapterPosition());
             final int indexDelete = viewHolder.getAbsoluteAdapterPosition();
+            deleteRecipeFromList(recipeDelete);
 
             adapter2.removeItem(indexDelete);
 
@@ -143,6 +144,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                    /* adapter.restoreRecipe(recipeDelete, indexDelete);
                     recyclerView.scrollToPosition(indexDelete);*/
                     adapter2.notifyItemInserted(indexDelete);
+                    restoreRecipe(recipeDelete);
                 }
             });
             snackbar.setTextColor(Color.BLACK);
@@ -262,5 +264,34 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         intent.putExtra("Image", recipeList2.get(position).getRecipeImagePath());
         intent.putExtra("RecipeID", recipeList2.get(position).getID());
         startActivity(intent);
+    }
+    public void deleteRecipeFromList (Recipe recipe) {
+        NetworkManager netw = new NetworkManager(getApplicationContext());
+        netw.deleteRecipe(recipe, new NetworkCallback() {
+            @Override
+            public void onSuccess(Object result) {
+                System.out.println("Uppskrift eytt");
+            }
+
+            @Override
+            public void onFailure(String errorString) {
+                System.out.println(errorString);
+            }
+        });
+    }
+
+    public void restoreRecipe (Recipe recipe) {
+        NetworkManager netw = new NetworkManager(getApplicationContext());
+        netw.saveRecipe(recipe, new NetworkCallback() {
+            @Override
+            public void onSuccess(Object result) {
+                System.out.println("Uppskrift bætt aftur í lista");
+            }
+
+            @Override
+            public void onFailure(String errorString) {
+                System.out.println(errorString);
+            }
+        });
     }
 }
