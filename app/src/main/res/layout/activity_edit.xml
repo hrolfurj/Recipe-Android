@@ -113,9 +113,9 @@
         android:id="@+id/save_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/change_image_button"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#47AB11"
         android:text="@string/save_recipe_button" />
 

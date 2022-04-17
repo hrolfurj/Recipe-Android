@@ -30,19 +30,20 @@
         android:id="@+id/lv.recipeList"
         android:layout_width="388dp"
         android:layout_height="480dp"
+        android:layout_above="@+id/add_recipe_button"
         android:layout_below="@+id/welcome_text"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="1dp" />
 
     <Button
         android:id="@+id/add_recipe_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lv.recipeList"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#47AB11"
         android:text="@string/add_recipe_button" />
 

@@ -28,18 +28,18 @@ public class ViewRecipeActivity extends AppCompatActivity {
 
         String title = getIntent().getStringExtra("Title");
         System.out.println("Title: " +title);
-        String tag= getIntent().getStringExtra("Tag");
+        //String tag= getIntent().getStringExtra("Tag");
         String description = getIntent().getStringExtra("Description");
         Long recipeID = getIntent().getLongExtra("RecipeID", 0);
         /*String image = getIntent().getStringExtra("Image");*/
 
         TextView nameTextView1 = findViewById(R.id.input_title);
-        TextView nameTextView2 = findViewById(R.id.input_tag);
+        //TextView nameTextView2 = findViewById(R.id.input_tag);
         TextView nameTextView3 = findViewById(R.id.input_description);
         /*ImageView imageView = findViewById(R.id.view_image);*/
 
         nameTextView1.setText(title);
-        nameTextView2.setText(tag);
+       // nameTextView2.setText(tag);
         nameTextView3.setText(description);
         /*imageView.setImageResource(Integer.parseInt(image)); */
 
@@ -49,7 +49,7 @@ public class ViewRecipeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ViewRecipeActivity.this, NewRecipeActivity.class);
                 intent.putExtra("Title", title);
-                intent.putExtra("Tag", tag);
+                //intent.putExtra("Tag", tag);
                 intent.putExtra("Description", description);
                 intent.putExtra("RecipeID", recipeID);
                 startActivity(intent);
