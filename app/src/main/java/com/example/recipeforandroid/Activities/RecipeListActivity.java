@@ -89,11 +89,11 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         // mToolbar = findViewById(R.id.Toolbar);
 
         // mFrameLayout = findViewById(R.id.drawer_layout);
-        mDrawerLayout = findViewById(R.id.drawer_layout);
+        //mDrawerLayout = findViewById(R.id.drawer_layout);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_open, R.string.navigation_close);
-        mDrawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.navigation_open, R.string.navigation_close);
+        //mDrawerLayout.addDrawerListener(toggle);
+        //toggle.syncState();
 
 
 
