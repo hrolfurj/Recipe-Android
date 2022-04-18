@@ -117,7 +117,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         });
     }
 
-    String deletedRecipe = null;
+    //String deletedRecipe = null;
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -261,7 +261,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         intent.putExtra("Title", recipeList2.get(position).getRecipeTitle());
         intent.putExtra("Tag", recipeList2.get(position).getRecipeTag());
         intent.putExtra("Description", recipeList2.get(position).getRecipeText());
-        intent.putExtra("Image", recipeList2.get(position).getRecipeImagePath());
+        //intent.putExtra("Image", recipeList2.get(position).getRecipeImagePath());
+        intent.putExtra("Image", recipeList2.get(position).getRecipeImage());
         intent.putExtra("RecipeID", recipeList2.get(position).getID());
         startActivity(intent);
     }
