@@ -182,22 +182,10 @@ public class NewRecipeActivity extends AppCompatActivity {
         netw.uploadImage(hjr, new NetworkCallback() {
             @Override
             public void onSuccess(Object result) {
-                Gson gson = new Gson();
                 String temp = result.toString();
-                /**JSONObject tt = (JSONObject) result;
-                try {
-
-                    System.out.println("display_url: " + tt.getString("display_url"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
 
                 //TODO: Laga útfærslu
-                int bil = 437;
-                String thumbnail = temp.substring(95+bil,140+bil);
-                //System.out.println("thumbnail: " +thumbnail);
-                imageUrl = thumbnail;
-                //imageUrl = temp.substring(95,140);
+                imageUrl = temp.substring(95,140);
 
 
 
