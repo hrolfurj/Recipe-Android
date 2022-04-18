@@ -99,6 +99,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
         Button addRecipeButton = (Button) findViewById(R.id.add_recipe_button);
         Button logoutButton = (Button) findViewById(R.id.Logout_button);
+
         SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
 
         TextView welcome = (TextView) findViewById(R.id.welcome_text);
@@ -168,7 +169,14 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         redirectActivity(this, AboutUs.class);
     }
 
+    public void ClickLogout(View view){
+        //Close app
+        RecipeListActivity.logout(this);
+    }
+
+
     public static void logout(Activity activity){
+
         //Initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         //Set title
@@ -186,6 +194,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
             }
         });
+
         //Negative no button
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
