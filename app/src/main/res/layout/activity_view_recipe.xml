@@ -9,45 +9,12 @@
     tools:context=".Activities.ViewRecipeActivity"
     android:id="@+id/viewRecipe">
 
-    <TextView
-        android:id="@+id/view_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/title"
-        android:textAlignment="viewStart"
-        android:textColor="#4CAF50"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/view_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view_title"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        android:text="@string/tag"
-        android:textAlignment="textStart"
-        android:textColor="#4CAF50"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/view_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view_tag"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        android:text="@string/add_description"
-        android:textColor="#4CAF50"
-        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view_title"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/black"
@@ -55,38 +22,25 @@
         android:hint="@string/title"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/input_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view_tag"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/black"
-        android:ems="10"
-        android:hint="@string/tag"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:textSize="15dp" />
+        android:textSize="36sp"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/input_description"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="100dp"
-        android:layout_below="@+id/view_description"
+        android:layout_below="@+id/input_title"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="-153dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_toEndOf="@+id/view_description"
+        android:layout_marginTop="80dp"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:lines="15"
         android:maxLines="100"
-        android:textSize="15dp" />
+        android:textSize="18dp" />
 
     <ImageView
         android:id="@+id/view_image"
@@ -99,26 +53,12 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/view_image_button"
-        android:layout_width="44dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:backgroundTint="@color/cardview_light_background"
-        android:drawableLeft="@drawable/ic_baseline_photo_camera_24"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        tools:ignore="RtlHardcoded" />
-
-    <Button
         android:id="@+id/edit_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view_image_button"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#47AB11"
         android:text="@string/edit_recipe_view" />
 </RelativeLayout>
