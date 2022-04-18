@@ -33,7 +33,7 @@ public class RecipeService {
     public static Comparator<Recipe> RecipeNewOldComparator = new Comparator<Recipe>() {
         @Override
         public int compare(Recipe r1, Recipe r2) {
-            return Long.compare(r1.getID(), r2.getID());
+            return Long.compare(r2.getID(), r1.getID());
         }
     };
 
@@ -41,7 +41,7 @@ public class RecipeService {
         @Override
         public int compare(Recipe r1, Recipe r2) {
             //return r2.getRecipeTitle().c
-            return Long.compare(r2.getID(), r1.getID());
+            return Long.compare(r1.getID(), r2.getID());
         }
     };
     public static String encodeTobase64(Bitmap image) {

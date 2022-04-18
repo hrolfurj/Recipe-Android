@@ -122,6 +122,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         holder.tv_recipeTag.setText(recipeList.get(position).getRecipeTag());
         String imageUrl = recipeList.get(position).getRecipeImage();
 
+
         new RecipeService.DownloadImageTask((ImageView) holder.iv_recipePic)
                 .execute(imageUrl);
         Glide.with(this.context).load(recipeList.get(position).getRecipeImagePath()).into(holder.iv_recipePic);
