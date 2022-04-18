@@ -3,15 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/nav_color">
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_margin="16dp"
         android:onClick="ClickLogo"
-        android:src="@drawable/splash_2"/>
+        android:src="@drawable/splash"/>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:textColor="#636363"/>
+        android:textColor="#636363" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,8 @@
             android:layout_weight="1"
             android:text="Home"
             android:padding="12dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -56,7 +57,8 @@
             android:layout_weight="1"
             android:text="Dashboard"
             android:padding="12dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -79,7 +81,8 @@
             android:layout_weight="1"
             android:text="About Us"
             android:padding="12dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -102,7 +105,8 @@
             android:layout_weight="1"
             android:text="Log out"
             android:padding="12dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"/>
         
         <ImageView
             android:layout_width="wrap_content"

@@ -39,10 +39,10 @@
             android:id="@+id/Logout_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/main_toolbar"
             android:layout_alignEnd="@+id/welcome_text"
             android:layout_alignParentEnd="true"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/main_toolbar"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="5dp"
@@ -50,16 +50,16 @@
             android:text="@string/logout_button" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lv.recipeList"
-        android:layout_width="388dp"
-        android:layout_height="480dp"
-        android:layout_above="@+id/add_recipe_button"
-        android:layout_below="@+id/welcome_text"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="1dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lv.recipeList"
+            android:layout_width="388dp"
+            android:layout_height="480dp"
+            android:layout_above="@+id/add_recipe_button"
+            android:layout_below="@+id/welcome_text"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="1dp" />
 
 
         <Button
