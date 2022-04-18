@@ -51,10 +51,12 @@ public class AboutUs extends AppCompatActivity {
         RecipeListActivity.logout(this);
     }
 
+
     @Override
     protected void onPause(){
         super.onPause();
         //close drawer
         RecipeListActivity.closeDrawer(drawerLayout);
     }
+
 }
