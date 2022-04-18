@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
-import com.example.recipeforandroid.Services.RecipeService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,10 +119,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tv_recipeTitle.setText(recipeList.get(position).getRecipeTitle());
         holder.tv_recipeTag.setText(recipeList.get(position).getRecipeTag());
-        String imageUrl = recipeList.get(position).getRecipeImage();
-
-        new RecipeService.DownloadImageTask((ImageView) holder.iv_recipePic)
-                .execute(imageUrl);
         Glide.with(this.context).load(recipeList.get(position).getRecipeImagePath()).into(holder.iv_recipePic);
     }
 

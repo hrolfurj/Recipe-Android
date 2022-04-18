@@ -20,18 +20,9 @@ import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
-import com.example.recipeforandroid.Services.RecipeService;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonReader;
 import com.theartofdev.edmodo.cropper.CropImage;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.PrintStream;
 
 public class NewRecipeActivity extends AppCompatActivity {
     private Button mSave_button;
@@ -41,9 +32,6 @@ public class NewRecipeActivity extends AppCompatActivity {
     private EditText mRecipeText;
     private EditText mRecipeTag;
     private SharedPreferences mSp;
-    private String byte64Upload;
-    private String hjr;
-    private String imageUrl;
 
     /**
      * TODO: Ótengt við gagnagrunn, work in progress.
@@ -86,15 +74,11 @@ public class NewRecipeActivity extends AppCompatActivity {
         String title = fromSender.getStringExtra("Title");
         String tag= fromSender.getStringExtra("Tag");
         String description = fromSender.getStringExtra("Description");
-        String image = fromSender.getStringExtra("Image");
         Long recipeID = fromSender.getLongExtra("RecipeID", 0);
         System.out.println("RecipeID: " +recipeID);
         mRecipeText.setText(description);
         mRecipeTitle.setText(title);
         mRecipeTag.setText(tag);
-
-        new RecipeService.DownloadImageTask((ImageView) mImage)
-                .execute(image);
 
         mSave_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +89,6 @@ public class NewRecipeActivity extends AppCompatActivity {
                 recipe.setRecipeText(mRecipeText.getText().toString());
                 recipe.setRecipeTag(mRecipeTag.getText().toString());
                 recipe.setID(recipeID);
-                recipe.setRecipeImage(imageUrl);
                 System.out.println("RecipeID3: " +recipe.getID());
 
                 NetworkManager netw = new NetworkManager(getApplicationContext());
@@ -121,7 +104,6 @@ public class NewRecipeActivity extends AppCompatActivity {
                         System.out.println(errorString);
                     }
                 });
-
             }
         });
     }
@@ -166,9 +148,6 @@ public class NewRecipeActivity extends AppCompatActivity {
                 try{
                     InputStream stream = getContentResolver().openInputStream(resultUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(stream);
-                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                    hjr = RecipeService.encodeTobase64(bitmap);
-                    byte64Upload = "image:" +hjr;
                     mImage.setImageBitmap(bitmap);
                 }catch (Exception e){
                     e.printStackTrace();
@@ -177,25 +156,5 @@ public class NewRecipeActivity extends AppCompatActivity {
                 Exception error = result.getError();
             }
         }
-
-        NetworkManager netw = new NetworkManager(getApplicationContext());
-        netw.uploadImage(hjr, new NetworkCallback() {
-            @Override
-            public void onSuccess(Object result) {
-                String temp = result.toString();
-
-                //TODO: Laga útfærslu
-                imageUrl = temp.substring(95,140);
-
-
-
-            }
-
-            @Override
-            public void onFailure(String errorString) {
-                System.out.println("errorString: " +errorString);
-
-            }
-        });
     }
 }
