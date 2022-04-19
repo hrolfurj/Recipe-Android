@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -51,6 +52,8 @@ public class ViewRecipeActivity extends AppCompatActivity {
         nameTextView1.setText(title);
        // nameTextView2.setText(tag);
         nameTextView3.setText(description);
+
+        nameTextView3.setMovementMethod(new ScrollingMovementMethod());
 
         new RecipeService.DownloadImageTask((ImageView) findViewById(R.id.view_image))
                 .execute(image);

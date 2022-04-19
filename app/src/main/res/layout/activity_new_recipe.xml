@@ -53,6 +53,7 @@
         android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/title"
+        android:maxLength="25"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textSize="15dp" />
@@ -67,6 +68,7 @@
         android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/tag"
+        android:maxLength="25"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textSize="15dp" />

@@ -107,7 +107,7 @@
             android:padding="12dp"
             android:layout_marginStart="16dp"
             android:textStyle="bold" />
-        
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -128,10 +128,11 @@
         android:id="@+id/Logout_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="31dp"
         android:layout_marginStart="65dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/recipe_green"
         android:textColor="@color/white"
         android:text="Switch account" />
@@ -146,16 +147,38 @@
         android:gravity="center_vertical">
 
         <Button
-            android:id="@+id/delete_account"
+            android:id="@+id/change_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#667FDA"
+            android:textColor="@color/white"
+            android:text="Change password" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/delete_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="31dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="@color/red"
             android:textColor="@color/white"
-            android:text="Delete Account" />
+            android:text="@string/delete_account" />
 
 
     </LinearLayout>
