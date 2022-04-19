@@ -143,7 +143,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                     }
                     @Override
                     public void onFailure(String errorString) {
-                        Toast.makeText(RecipeListActivity.this, "User deleted failed..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RecipeListActivity.this, "User failed to delete..", Toast.LENGTH_SHORT).show();
                     }
                 });
 
