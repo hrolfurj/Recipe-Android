@@ -20,9 +20,13 @@ import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
+import com.example.recipeforandroid.Services.ImageHost;
 import com.example.recipeforandroid.Services.RecipeService;
+import com.example.recipeforandroid.Services.UploadedImageInfo;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -105,7 +109,11 @@ public class NewRecipeActivity extends AppCompatActivity {
                 recipe.setRecipeText(mRecipeText.getText().toString());
                 recipe.setRecipeTag(mRecipeTag.getText().toString());
                 recipe.setID(recipeID);
-                recipe.setRecipeImage(imageUrl);
+                if (imageUrl != null) {
+                    recipe.setRecipeImage(imageUrl);
+                }
+                else recipe.setRecipeImage(image);
+
                 System.out.println("RecipeID3: " +recipe.getID());
 
                 NetworkManager netw = new NetworkManager(getApplicationContext());
@@ -178,17 +186,19 @@ public class NewRecipeActivity extends AppCompatActivity {
             }
         }
 
+
         NetworkManager netw = new NetworkManager(getApplicationContext());
         netw.uploadImage(hjr, new NetworkCallback() {
             @Override
             public void onSuccess(Object result) {
-                String temp = result.toString();
-
                 //TODO: Laga útfærslu
-                imageUrl = temp.substring(95,140);
+                //String temp = result.toString();
+                //int bil = 436;
+                //String thumbnail = temp.substring(95+bil,140+bil);
+                //imageUrl = thumbnail;
 
-
-
+                ImageHost imageHost = new Gson().fromJson(result.toString(), ImageHost.class);
+                imageUrl = imageHost.getData().getThumb().getUrl();
             }
 
             @Override
