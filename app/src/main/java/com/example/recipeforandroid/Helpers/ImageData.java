@@ -1,4 +1,4 @@
-package com.example.recipeforandroid.Services;
+package com.example.recipeforandroid.Helpers;
 
 public class ImageData {
     String id;

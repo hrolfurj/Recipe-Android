@@ -20,22 +20,13 @@ import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
-import com.example.recipeforandroid.Services.ImageHost;
+import com.example.recipeforandroid.Helpers.ImageHost;
 import com.example.recipeforandroid.Services.RecipeService;
-import com.example.recipeforandroid.Services.UploadedImageInfo;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import com.theartofdev.edmodo.cropper.CropImage;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.PrintStream;
 
 public class NewRecipeActivity extends AppCompatActivity {
     private Button mSave_button;

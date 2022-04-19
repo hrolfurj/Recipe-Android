@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Comparator;
 
 public class RecipeService {
@@ -81,6 +84,6 @@ public class RecipeService {
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }
-    }
-
+    } // Author: Kyle Clegg https://stackoverflow.com/questions/5776851/load-image-from-url
 }
+

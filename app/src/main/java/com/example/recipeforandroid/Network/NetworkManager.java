@@ -11,6 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.recipeforandroid.Helpers.IbbHelper;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.google.gson.Gson;
 
@@ -166,8 +167,10 @@ public class NetworkManager extends Application{
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("expiration", "86400");
-                params.put("key", "0f82514109c0c76e08b51dd84755d946");
+                //params.put("expiration", "86400");
+                params.put("expiration", IbbHelper.getEXPIRATION());
+                //params.put("key", "0f82514109c0c76e08b51dd84755d946");
+                params.put("key", IbbHelper.getKEY());
                 params.put("image", byte64Image);
                 return params;
             }
