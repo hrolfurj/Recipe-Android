@@ -22,7 +22,7 @@
             android:name=".AboutUs"
             android:exported="false" />
         <activity
-            android:name=".Dashboard"
+            android:name=".Settings"
             android:exported="false" />
         <activity
             android:name=".Activities.RecipeListActivity"

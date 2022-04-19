@@ -8,14 +8,14 @@ import android.view.View;
 
 import com.example.recipeforandroid.Activities.RecipeListActivity;
 
-public class Dashboard extends AppCompatActivity {
+public class Settings extends AppCompatActivity {
     //initialize variable
     DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_settings);
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -49,7 +49,7 @@ public class Dashboard extends AppCompatActivity {
 
     public void ClickLogout(View view){
         //Close app
-        RecipeListActivity.logout(this);
+        RecipeListActivity.exit(this);
     }
 
     @Override

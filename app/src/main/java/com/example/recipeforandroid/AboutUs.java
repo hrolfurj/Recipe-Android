@@ -37,7 +37,7 @@ public class AboutUs extends AppCompatActivity {
 
     public void ClickDashboard(View view){
         //Redirect activity to dashboard
-        RecipeListActivity.redirectActivity(this,Dashboard.class);
+        RecipeListActivity.redirectActivity(this, Settings.class);
     }
 
     public void ClickAboutUs(View view){
@@ -48,7 +48,7 @@ public class AboutUs extends AppCompatActivity {
 
     public void ClickLogout(View view){
         //Close app
-        RecipeListActivity.logout(this);
+        RecipeListActivity.exit(this);
     }
 
 

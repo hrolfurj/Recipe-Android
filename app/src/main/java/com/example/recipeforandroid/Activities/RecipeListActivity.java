@@ -19,7 +19,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,7 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recipeforandroid.AboutUs;
-import com.example.recipeforandroid.Dashboard;
+import com.example.recipeforandroid.Settings;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
@@ -161,7 +160,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
     public void ClickDashboard(View view){
         //Redirect activity to dashboard
-        redirectActivity(this, Dashboard.class);
+        redirectActivity(this, Settings.class);
     }
 
     public void ClickAboutUs(View view){
@@ -171,18 +170,18 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
     public void ClickLogout(View view){
         //Close app
-        RecipeListActivity.logout(this);
+        RecipeListActivity.exit(this);
     }
 
 
-    public static void logout(Activity activity){
+    public static void exit(Activity activity){
 
         //Initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         //Set title
-        builder.setTitle("Log out");
+        builder.setTitle("Exit");
         //
-        builder.setMessage("Are you sure you want to log out?");
+        builder.setMessage("Are you sure you want to exit the app " + "?");
         //Positive yes button
         builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
