@@ -136,6 +136,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 netw.deleteUser(id, new NetworkCallback() {
                     @Override
                     public void onSuccess(Object result) {
+                        sp.edit().putBoolean("logged", false).apply();
                         Intent intent = new Intent(RecipeListActivity.this, SignInActivity.class);
                         startActivity(intent);
                         Toast.makeText(RecipeListActivity.this, "User deleted", Toast.LENGTH_SHORT).show();
