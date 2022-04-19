@@ -5,8 +5,6 @@ public class ImageHost {
     boolean success;
     int status;
 
-    ImageData imageData;
-
     public ImageData getData() {
         return data;
     }
@@ -17,9 +15,5 @@ public class ImageHost {
 
     public int getStatus() {
         return status;
-    }
-
-    public ImageData getImageData() {
-        return imageData;
     }
 }
