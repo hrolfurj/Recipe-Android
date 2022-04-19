@@ -129,7 +129,33 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 startActivity(intent);
             }
         });
+
+        Button deleteUserButton = (Button) findViewById(R.id.delete_account);
+        deleteUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                long id = mSp.getLong("userID", 0);
+                NetworkManager netw = new NetworkManager(getApplicationContext());
+                netw.deleteUser(id, new NetworkCallback() {
+                    @Override
+                    public void onSuccess(Object result) {
+                        sp.edit().putBoolean("logged", false).apply();
+                        Intent intent = new Intent(RecipeListActivity.this, SignInActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(RecipeListActivity.this, "User deleted", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onFailure(String errorString) {
+                        Toast.makeText(RecipeListActivity.this, "User failed to delete..", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
+            }
+        });
     }
+
 
     public void ClickMenu (View view){
         //open drawer

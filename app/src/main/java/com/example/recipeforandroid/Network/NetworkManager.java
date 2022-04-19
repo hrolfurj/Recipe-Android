@@ -13,6 +13,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.recipeforandroid.Helpers.IbbHelper;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
+import com.example.recipeforandroid.Persistence.Entities.User;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -144,6 +145,22 @@ public class NetworkManager extends Application{
             @Override
             public void onErrorResponse(VolleyError error) {
                 callback.onFailure((error.toString()));
+            }
+        });
+        queue.add(request);
+    }
+
+    public void deleteUser (long id, final NetworkCallback callback) {
+        queue = Volley.newRequestQueue(mContext);
+        JsonObjectRequest request = new JsonObjectRequest(BASE_URL + "api/" + id + "/deleteUser", new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callback.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onFailure(error.toString());
             }
         });
         queue.add(request);
