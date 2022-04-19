@@ -20,6 +20,10 @@
     <string name="username_register">Username</string>
     <string name="name_your_recipe">Name your recipe</string>
     <string name="about_us">About Us</string>
+<<<<<<< HEAD
     <string name="log_out">Log out</string>
     <string name="max_length">20</string>>
+=======
+    <string name="Exit">Exit</string>
+>>>>>>> 0fbc0c917ebcbc3fb7c33a22dcf0d8f392811934
 </resources>
