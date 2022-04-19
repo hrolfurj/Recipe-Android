@@ -82,7 +82,7 @@ public class NewRecipeActivity extends AppCompatActivity {
         String tag= fromSender.getStringExtra("Tag");
         String description = fromSender.getStringExtra("Description");
         String image = fromSender.getStringExtra("Image");
-        Long recipeID = fromSender.getLongExtra("RecipeID", 0);
+        long recipeID = fromSender.getLongExtra("RecipeID", 0);
         System.out.println("RecipeID: " +recipeID);
         mRecipeText.setText(description);
         mRecipeTitle.setText(title);

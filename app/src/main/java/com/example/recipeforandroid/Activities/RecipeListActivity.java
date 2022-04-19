@@ -44,6 +44,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
@@ -72,6 +74,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSp = getSharedPreferences("login", MODE_PRIVATE);
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
@@ -232,10 +235,16 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             if(viewHolder instanceof RecycleViewAdapter.MyViewHolder);
             String nameRecipeDelete = recipeList2.get(viewHolder.getAbsoluteAdapterPosition()).getRecipeTitle();
-
             final Recipe recipeDelete = recipeList2.get(viewHolder.getAbsoluteAdapterPosition());
             final int indexDelete = viewHolder.getAbsoluteAdapterPosition();
-            deleteRecipeFromList(recipeDelete);
+            //deleteRecipeFromList(recipeDelete);
+            Timer time = new Timer();
+            time.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    deleteRecipeFromList(recipeDelete);
+                }
+            }, 8000);
 
             adapter2.removeItem(indexDelete);
 
@@ -243,12 +252,15 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             snackbar.setAction("Undo", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    time.cancel();
+
                     // smá galli, recipe birtir sömu uppskrift 2x
                     recipeList2.add(indexDelete, recipeDelete);
                    /* adapter.restoreRecipe(recipeDelete, indexDelete);
                     recyclerView.scrollToPosition(indexDelete);*/
+                    //adapter2.notifyItemInserted(indexDelete);
+                    //restoreRecipe(recipeDelete);
                     adapter2.notifyItemInserted(indexDelete);
-                    restoreRecipe(recipeDelete);
                 }
             });
             snackbar.setTextColor(Color.BLACK);
