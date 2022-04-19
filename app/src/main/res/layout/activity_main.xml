@@ -35,20 +35,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlSymmetry" />
 
-        <Button
-            android:id="@+id/Logout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/main_toolbar"
-            android:layout_alignEnd="@+id/welcome_text"
-            android:layout_alignParentEnd="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="5dp"
-            android:backgroundTint="#47AB11"
-            android:text="@string/logout_button" />
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lv.recipeList"
