@@ -4,10 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
@@ -23,6 +28,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.recipeforandroid.AboutUs;
+import com.example.recipeforandroid.Settings;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
@@ -37,6 +44,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
@@ -52,6 +61,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     private RecycleViewAdapter adapter2;
     private SharedPreferences mSp;
 
+    DrawerLayout drawerLayout;
+
     /**
      * Uppskriftirnar eru ekki tengdar við gagnagrunn, en eru notaðar sem mock-object eins og er.
      * TODO: Eftir að bæta við "search", "favorites" og "sort".
@@ -64,6 +75,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         setContentView(R.layout.activity_main);
         mSp = getSharedPreferences("login", MODE_PRIVATE);
 
+
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         SharedPreferences userSp = getSharedPreferences("login", MODE_PRIVATE);
         String userName = userSp.getString("user", "null");
@@ -88,6 +101,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
         Button addRecipeButton = (Button) findViewById(R.id.add_recipe_button);
         Button logoutButton = (Button) findViewById(R.id.Logout_button);
+
         SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
 
         TextView welcome = (TextView) findViewById(R.id.welcome_text);
@@ -115,6 +129,125 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 startActivity(intent);
             }
         });
+
+        Button deleteUserButton = (Button) findViewById(R.id.delete_account);
+        deleteUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                long id = mSp.getLong("userID", 0);
+                NetworkManager netw = new NetworkManager(getApplicationContext());
+                netw.deleteUser(id, new NetworkCallback() {
+                    @Override
+                    public void onSuccess(Object result) {
+                        sp.edit().putBoolean("logged", false).apply();
+                        Intent intent = new Intent(RecipeListActivity.this, SignInActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(RecipeListActivity.this, "User deleted", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onFailure(String errorString) {
+                        Toast.makeText(RecipeListActivity.this, "User failed to delete..", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
+            }
+        });
+    }
+
+
+    public void ClickMenu (View view){
+        //open drawer
+        openDrawer(drawerLayout);
+    }
+
+    public static void openDrawer(DrawerLayout drawerLayout) {
+        //open drawer layout
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    public void ClickLogo(View view){
+        //close drawer
+        closeDrawer(drawerLayout);
+    }
+
+    public static void closeDrawer(DrawerLayout drawerLayout) {
+        //close drawer layout
+        //check condition
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            //When drawer is open
+            //Close drawer
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+    public void ClickHome(View view){
+        //Recreate activity
+        recreate();
+    }
+
+    public void ClickDashboard(View view){
+        //Redirect activity to dashboard
+        redirectActivity(this, Settings.class);
+    }
+
+    public void ClickAboutUs(View view){
+        //Redicect activity to about us
+        redirectActivity(this, AboutUs.class);
+    }
+
+    public void ClickLogout(View view){
+        //Close app
+        RecipeListActivity.exit(this);
+    }
+
+
+    public static void exit(Activity activity){
+
+        //Initialize alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        //Set title
+        builder.setTitle("Exit");
+        //
+        builder.setMessage("Are you sure you want to exit the app " + "?");
+        //Positive yes button
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Finish activity
+                activity.finishAffinity();
+                //Exit app
+                System.exit(0);
+
+            }
+        });
+
+        //Negative no button
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Dismiss dialog
+                dialog.dismiss();
+            }
+        });
+        //show dialog
+        builder.show();
+
+    }
+
+    public static void redirectActivity(Activity activity, Class aClass) {
+        //Initialize intent
+        Intent intent = new Intent(activity,aClass);
+        //
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+    }
+
+    protected void onPause(){
+        super.onPause();
+        //close drawer
+        closeDrawer(drawerLayout);
     }
 
     String deletedRecipe = null;
@@ -128,9 +261,16 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             if(viewHolder instanceof RecycleViewAdapter.MyViewHolder);
             String nameRecipeDelete = recipeList2.get(viewHolder.getAbsoluteAdapterPosition()).getRecipeTitle();
-
             final Recipe recipeDelete = recipeList2.get(viewHolder.getAbsoluteAdapterPosition());
             final int indexDelete = viewHolder.getAbsoluteAdapterPosition();
+            //deleteRecipeFromList(recipeDelete);
+            Timer time = new Timer();
+            time.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    deleteRecipeFromList(recipeDelete);
+                }
+            }, 8000);
 
             adapter2.removeItem(indexDelete);
 
@@ -138,10 +278,14 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             snackbar.setAction("Undo", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    time.cancel();
+
                     // smá galli, recipe birtir sömu uppskrift 2x
                     recipeList2.add(indexDelete, recipeDelete);
                    /* adapter.restoreRecipe(recipeDelete, indexDelete);
                     recyclerView.scrollToPosition(indexDelete);*/
+                    //adapter2.notifyItemInserted(indexDelete);
+                    //restoreRecipe(recipeDelete);
                     adapter2.notifyItemInserted(indexDelete);
                 }
             });
@@ -259,8 +403,37 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         intent.putExtra("Title", recipeList2.get(position).getRecipeTitle());
         intent.putExtra("Tag", recipeList2.get(position).getRecipeTag());
         intent.putExtra("Description", recipeList2.get(position).getRecipeText());
-        intent.putExtra("Image", recipeList2.get(position).getRecipeImagePath());
+        intent.putExtra("Image", recipeList2.get(position).getRecipeImage());
         intent.putExtra("RecipeID", recipeList2.get(position).getID());
         startActivity(intent);
+    }
+    public void deleteRecipeFromList (Recipe recipe) {
+        NetworkManager netw = new NetworkManager(getApplicationContext());
+        netw.deleteRecipe(recipe, new NetworkCallback() {
+            @Override
+            public void onSuccess(Object result) {
+                System.out.println("Uppskrift eytt");
+            }
+
+            @Override
+            public void onFailure(String errorString) {
+                System.out.println(errorString);
+            }
+        });
+    }
+
+    public void restoreRecipe (Recipe recipe) {
+        NetworkManager netw = new NetworkManager(getApplicationContext());
+        netw.saveRecipe(recipe, new NetworkCallback() {
+            @Override
+            public void onSuccess(Object result) {
+                System.out.println("Uppskrift bætt aftur í lista");
+            }
+
+            @Override
+            public void onFailure(String errorString) {
+                System.out.println(errorString);
+            }
+        });
     }
 }

@@ -13,6 +13,9 @@ import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.R;
 import com.google.android.material.button.MaterialButton;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity {
 
     /**
@@ -35,7 +38,17 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 NetworkManager netw = new NetworkManager(getApplicationContext());
-                netw.signUp(username.getText().toString(), password.getText().toString(), new NetworkCallback() {
+                Pattern p = Pattern.compile("^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$");
+                Matcher m = p.matcher(username.getText().toString());
+                Matcher n = p.matcher(password.getText().toString());
+                boolean b = m.matches() && n.matches();
+                String verifiedUsername = "";
+                String verifiedPassword = "";
+                if (b == true) {
+                    verifiedUsername = username.getText().toString();
+                    verifiedPassword = password.getText().toString();
+                }
+                netw.signUp(verifiedUsername, verifiedPassword, new NetworkCallback() {
                     @Override
                     public void onSuccess(Object result) {
                         goToSignIn();

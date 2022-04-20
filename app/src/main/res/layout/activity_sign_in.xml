@@ -39,6 +39,7 @@
         android:padding="20dp"
         android:textColor="@color/black"
         android:textColorHint="#48000000"
+        android:maxLength="@string/max_length"
         tools:ignore="RtlHardcoded,TextFields" />
 
     <EditText
@@ -58,6 +59,7 @@
         android:padding="20dp"
         android:textColor="@color/black"
         android:textColorHint="#48000000"
+        android:maxLength="@string/max_length"
         tools:ignore="RtlHardcoded" />
 
     <com.google.android.material.button.MaterialButton

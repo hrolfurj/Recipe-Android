@@ -53,6 +53,7 @@
         android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/title"
+        android:maxLength="25"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textSize="15dp" />
@@ -67,6 +68,7 @@
         android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/tag"
+        android:maxLength="25"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textSize="15dp" />
@@ -114,9 +116,9 @@
         android:id="@+id/save_recipe_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/upload_image_button"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#47AB11"
         android:text="@string/save_recipe_button" />
 

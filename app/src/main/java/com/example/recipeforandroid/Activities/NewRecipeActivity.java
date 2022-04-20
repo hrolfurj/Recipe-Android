@@ -20,8 +20,12 @@ import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
+import com.example.recipeforandroid.Helpers.ImageHost;
+import com.example.recipeforandroid.Services.RecipeService;
+import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 public class NewRecipeActivity extends AppCompatActivity {
@@ -32,6 +36,9 @@ public class NewRecipeActivity extends AppCompatActivity {
     private EditText mRecipeText;
     private EditText mRecipeTag;
     private SharedPreferences mSp;
+    private String byte64Upload;
+    private String hjr;
+    private String imageUrl;
 
     /**
      * TODO: Ótengt við gagnagrunn, work in progress.
@@ -74,11 +81,15 @@ public class NewRecipeActivity extends AppCompatActivity {
         String title = fromSender.getStringExtra("Title");
         String tag= fromSender.getStringExtra("Tag");
         String description = fromSender.getStringExtra("Description");
-        Long recipeID = fromSender.getLongExtra("RecipeID", 0);
+        String image = fromSender.getStringExtra("Image");
+        long recipeID = fromSender.getLongExtra("RecipeID", 0);
         System.out.println("RecipeID: " +recipeID);
         mRecipeText.setText(description);
         mRecipeTitle.setText(title);
         mRecipeTag.setText(tag);
+
+        new RecipeService.DownloadImageTask((ImageView) mImage)
+                .execute(image);
 
         mSave_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +100,11 @@ public class NewRecipeActivity extends AppCompatActivity {
                 recipe.setRecipeText(mRecipeText.getText().toString());
                 recipe.setRecipeTag(mRecipeTag.getText().toString());
                 recipe.setID(recipeID);
+                if (imageUrl != null) {
+                    recipe.setRecipeImage(imageUrl);
+                }
+                else recipe.setRecipeImage(image);
+
                 System.out.println("RecipeID3: " +recipe.getID());
 
                 NetworkManager netw = new NetworkManager(getApplicationContext());
@@ -104,6 +120,7 @@ public class NewRecipeActivity extends AppCompatActivity {
                         System.out.println(errorString);
                     }
                 });
+
             }
         });
     }
@@ -148,6 +165,9 @@ public class NewRecipeActivity extends AppCompatActivity {
                 try{
                     InputStream stream = getContentResolver().openInputStream(resultUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(stream);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    hjr = RecipeService.encodeTobase64(bitmap);
+                    byte64Upload = "image:" +hjr;
                     mImage.setImageBitmap(bitmap);
                 }catch (Exception e){
                     e.printStackTrace();
@@ -156,5 +176,27 @@ public class NewRecipeActivity extends AppCompatActivity {
                 Exception error = result.getError();
             }
         }
+
+
+        NetworkManager netw = new NetworkManager(getApplicationContext());
+        netw.uploadImage(hjr, new NetworkCallback() {
+            @Override
+            public void onSuccess(Object result) {
+                //TODO: Laga útfærslu
+                //String temp = result.toString();
+                //int bil = 436;
+                //String thumbnail = temp.substring(95+bil,140+bil);
+                //imageUrl = thumbnail;
+
+                ImageHost imageHost = new Gson().fromJson(result.toString(), ImageHost.class);
+                imageUrl = imageHost.getData().getThumb().getUrl();
+            }
+
+            @Override
+            public void onFailure(String errorString) {
+                System.out.println("errorString: " +errorString);
+
+            }
+        });
     }
 }

@@ -19,4 +19,9 @@
     <string name="edit_recipe_view">Edit Recipe</string>
     <string name="username_register">Username</string>
     <string name="name_your_recipe">Name your recipe</string>
+    <string name="about_us">About Us</string>
+    <string name="max_length">20</string>>
+    <string name="Exit">Exit</string>
+    <string name="settings">Settings</string>
+    <string name="delete_account">Delete Account</string>
 </resources>

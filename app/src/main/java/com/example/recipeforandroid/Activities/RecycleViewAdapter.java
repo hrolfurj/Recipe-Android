@@ -1,6 +1,8 @@
 package com.example.recipeforandroid.Activities;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
+import com.example.recipeforandroid.Services.RecipeService;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,7 +125,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tv_recipeTitle.setText(recipeList.get(position).getRecipeTitle());
         holder.tv_recipeTag.setText(recipeList.get(position).getRecipeTag());
-        Glide.with(this.context).load(recipeList.get(position).getRecipeImagePath()).into(holder.iv_recipePic);
+        /**
+        new RecipeService.DownloadImageTask((ImageView) holder.iv_recipePic)
+                .execute(imageUrl);*/
+        Glide.with(this.context).load(recipeList.get(position).getRecipeImage()).into(holder.iv_recipePic);
     }
 
     @Override
