@@ -45,18 +45,15 @@ public class ViewRecipeActivity extends AppCompatActivity {
         String image = getIntent().getStringExtra("Image");
 
         TextView nameTextView1 = findViewById(R.id.input_title);
-        //TextView nameTextView2 = findViewById(R.id.input_tag);
         TextView nameTextView3 = findViewById(R.id.input_description);
         //ImageView imageView = findViewById(R.id.view_image);
 
         nameTextView1.setText(title);
-       // nameTextView2.setText(tag);
         nameTextView3.setText(description);
 
         nameTextView3.setMovementMethod(new ScrollingMovementMethod());
 
-        new RecipeService.DownloadImageTask((ImageView) findViewById(R.id.view_image))
-                .execute(image);
+        new RecipeService.DownloadImageTask((ImageView) findViewById(R.id.view_image)).execute(image);
 
 
 
