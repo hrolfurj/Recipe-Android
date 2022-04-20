@@ -3,6 +3,10 @@
     <string name="welcome_text">Welcome!</string>
     <string name="recipe">Recipe</string>
     <string name="login_failed_toast">SIGN IN FAILED!</string>
+    <string name="passwords_no_match_toast">Passwords don\'t match</string>
+    <string name="password_illegal_toast">Illegal passwords</string>
+    <string name="password_change_fail_toast">Password change failed"</string>
+    <string name="password_wrong_toast">Wrong password"</string>
     <string name="login_button">Sign in</string>
     <string name="logout_button">Sign out</string>
     <string name="register_button">Sign up</string>

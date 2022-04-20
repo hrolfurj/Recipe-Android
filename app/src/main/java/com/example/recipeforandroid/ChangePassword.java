@@ -17,6 +17,9 @@ import com.example.recipeforandroid.Activities.SignInActivity;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ChangePassword extends AppCompatActivity {
     //Initialize variable
     DrawerLayout drawerLayout;
@@ -28,7 +31,7 @@ public class ChangePassword extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
 
         Button mChangePasswordButton = (Button) findViewById(R.id.change_password_button);
-        TextView mConfirmOldPassword = (TextView) findViewById(R.id.old_password);
+        TextView mOldPassword = (TextView) findViewById(R.id.old_password);
         TextView mNewPassword = (TextView) findViewById(R.id.new_password);
         TextView mConfirmNewPassword = (TextView) findViewById(R.id.confirm_new_password);
 
@@ -44,11 +47,15 @@ public class ChangePassword extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 NetworkManager netw = new NetworkManager(getApplicationContext());
-                netw.isLoggedIn(userName, mConfirmOldPassword.getText().toString(), new NetworkCallback() {
+                Pattern p = Pattern.compile("^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$");
+                Matcher m = p.matcher(mNewPassword.getText().toString());
+                Matcher n = p.matcher(mConfirmNewPassword.getText().toString());
+                boolean legalPasswords = m.matches() && n.matches();
+                netw.isLoggedIn(userName, mOldPassword.getText().toString(), new NetworkCallback() {
                     @Override
                     public void onSuccess(Object result) {
-                        if (mNewPassword.getText().toString().compareTo(mConfirmNewPassword.getText().toString()) == 0) {
-                            netw.changePassword(userName, mNewPassword.getText().toString(), new NetworkCallback() {
+                        if (mNewPassword.getText().toString().compareTo(mConfirmNewPassword.getText().toString()) == 0 && legalPasswords == true) {
+                            netw.changePassword(userName, mConfirmNewPassword.getText().toString(), new NetworkCallback() {
                                 @Override
                                 public void onSuccess(Object result) {
                                     Intent intent = new Intent(ChangePassword.this, RecipeListActivity.class);
@@ -57,21 +64,31 @@ public class ChangePassword extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(String errorString) {
+                                    mNewPassword.setText("");
+                                    mConfirmNewPassword.setText("");
+                                    Toast.makeText(ChangePassword.this, R.string.password_change_fail_toast, Toast.LENGTH_SHORT).show();
                                     System.out.println("ChangePasswordActivity - Something went wrong");
                                 }
                             });
+                        }
+                        else {
+                            mNewPassword.setText("");
+                            mConfirmNewPassword.setText("");
+                            if (legalPasswords) {
+                                Toast.makeText(ChangePassword.this, R.string.passwords_no_match_toast, Toast.LENGTH_SHORT).show();
+                            }
+                            else Toast.makeText(ChangePassword.this, R.string.password_illegal_toast, Toast.LENGTH_SHORT).show();
                         }
 
                     }
                     @Override
                     public void onFailure(String errorString) {
+                        mOldPassword.setText("");
+                        Toast.makeText(ChangePassword.this, R.string.password_wrong_toast, Toast.LENGTH_SHORT).show();
                         System.out.println("Something went wrong");
 
                     }
                 });
-
-
-
             }
         });
     }
