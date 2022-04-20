@@ -19,10 +19,16 @@
         android:theme="@style/Theme.RecipeForAndroid"
         tools:ignore="ExtraText">
         <activity
+            android:name=".Activities.DeleteUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".AboutUs"
             android:exported="false" />
         <activity
             android:name=".Settings"
+            android:exported="false" />
+        <activity
+            android:name=".DeleteUser"
             android:exported="false" />
         <activity
             android:name=".Activities.RecipeListActivity"

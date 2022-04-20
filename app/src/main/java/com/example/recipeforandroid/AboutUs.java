@@ -46,6 +46,10 @@ public class AboutUs extends AppCompatActivity {
 
     }
 
+    public void ClickDeleteAccount (View view) {
+        RecipeListActivity.redirectActivity(this, DeleteUser.class);
+    }
+
     public void ClickLogout(View view){
         //Close app
         RecipeListActivity.exit(this);

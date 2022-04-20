@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recipeforandroid.AboutUs;
+import com.example.recipeforandroid.DeleteUser;
 import com.example.recipeforandroid.Settings;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
@@ -101,6 +102,9 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
         Button addRecipeButton = (Button) findViewById(R.id.add_recipe_button);
         Button logoutButton = (Button) findViewById(R.id.Logout_button);
+        Button mDeleteUserButton = (Button) findViewById(R.id.delete_account);
+        Button mConfirmDeleteUserButton = (Button) findViewById(R.id.delete_user_button);
+        TextView mConfirmPassword = (TextView) findViewById(R.id.confirm_password);
 
         SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
 
@@ -130,7 +134,9 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             }
         });
 
-        Button deleteUserButton = (Button) findViewById(R.id.delete_account);
+
+        //Button deleteUserButton = (Button) findViewById(R.id.delete_account);
+        /**
         deleteUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,7 +159,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
 
             }
-        });
+        });*/
     }
 
 
@@ -201,6 +207,11 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         //Close app
         RecipeListActivity.exit(this);
     }
+
+    public void ClickDeleteAccount (View view) {
+        redirectActivity(this, DeleteUser.class);
+    }
+
 
 
     public static void exit(Activity activity){

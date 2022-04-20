@@ -196,4 +196,26 @@ public class NetworkManager extends Application{
 
         queue.add(stringRequest);
     }
+    public void isLoggedIn(String username, String password, final NetworkCallback callback) {
+        queue = Volley.newRequestQueue(mContext);
+        try {
+            userLogin.put("username", username);
+            userLogin.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, BASE_URL + "api/isLoggedIn", userLogin, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                callback.onSuccess(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onFailure(error.toString());
+            }
+        });
+        queue.add(request);
+    }
+
 }
