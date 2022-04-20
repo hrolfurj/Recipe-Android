@@ -17,7 +17,7 @@ import com.example.recipeforandroid.Activities.SignInActivity;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 
-public class DeleteUser extends AppCompatActivity {
+public class ChangePassword extends AppCompatActivity {
     //Initialize variable
     DrawerLayout drawerLayout;
     private SharedPreferences sp;
@@ -25,10 +25,12 @@ public class DeleteUser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_user);
+        setContentView(R.layout.activity_change_password);
 
-        Button mConfirmDeleteUserButton = (Button) findViewById(R.id.delete_user_button);
-        TextView mConfirmPassword = (TextView) findViewById(R.id.confirm_password);
+        Button mChangePasswordButton = (Button) findViewById(R.id.change_password_button);
+        TextView mConfirmOldPassword = (TextView) findViewById(R.id.old_password);
+        TextView mNewPassword = (TextView) findViewById(R.id.new_password);
+        TextView mConfirmNewPassword = (TextView) findViewById(R.id.confirm_new_password);
 
         sp = getSharedPreferences("login", MODE_PRIVATE);
         String userName = sp.getString("user", "null");
@@ -38,30 +40,27 @@ public class DeleteUser extends AppCompatActivity {
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        mConfirmDeleteUserButton.setOnClickListener(new View.OnClickListener() {
+        mChangePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String temp = mConfirmPassword.getText().toString();
                 NetworkManager netw = new NetworkManager(getApplicationContext());
-                netw.isLoggedIn(userName, mConfirmPassword.getText().toString(), new NetworkCallback() {
+                netw.isLoggedIn(userName, mConfirmOldPassword.getText().toString(), new NetworkCallback() {
                     @Override
                     public void onSuccess(Object result) {
-                        sp.edit().putBoolean("logged", false).apply();
-                        netw.deleteUser(userID, new NetworkCallback() {
-                            @Override
-                            public void onSuccess(Object result) {
-                                Intent intent = new Intent(DeleteUser.this, SignInActivity.class);
-                                startActivity(intent);
-                                Toast.makeText(DeleteUser.this, "User deleted", Toast.LENGTH_SHORT).show();
+                        if (mNewPassword.getText().toString().compareTo(mConfirmNewPassword.getText().toString()) == 0) {
+                            netw.changePassword(userName, mNewPassword.getText().toString(), new NetworkCallback() {
+                                @Override
+                                public void onSuccess(Object result) {
+                                    Intent intent = new Intent(ChangePassword.this, RecipeListActivity.class);
+                                    startActivity(intent);
+                                }
 
-                            }
-
-                            @Override
-                            public void onFailure(String errorString) {
-                                Toast.makeText(DeleteUser.this, "User failed to delete..", Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
+                                @Override
+                                public void onFailure(String errorString) {
+                                    System.out.println("ChangePasswordActivity - Something went wrong");
+                                }
+                            });
+                        }
 
                     }
                     @Override
@@ -102,11 +101,11 @@ public class DeleteUser extends AppCompatActivity {
     }
 
     public void ClickDeleteAccount (View view) {
-        recreate();
+        RecipeListActivity.redirectActivity(this, DeleteUser.class);
     }
 
     public void ClickChangePassword (View view) {
-        RecipeListActivity.redirectActivity(this, ChangePassword.class);
+        recreate();
     }
 
     public void ClickLogout(View view){

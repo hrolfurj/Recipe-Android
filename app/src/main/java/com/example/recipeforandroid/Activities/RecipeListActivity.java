@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.recipeforandroid.AboutUs;
+import com.example.recipeforandroid.ChangePassword;
 import com.example.recipeforandroid.DeleteUser;
 import com.example.recipeforandroid.Settings;
 import com.example.recipeforandroid.Network.NetworkCallback;
@@ -210,6 +211,10 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
     public void ClickDeleteAccount (View view) {
         redirectActivity(this, DeleteUser.class);
+    }
+
+    public void ClickChangePassword (View view) {
+        RecipeListActivity.redirectActivity(this, ChangePassword.class);
     }
 
 

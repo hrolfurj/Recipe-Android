@@ -50,6 +50,10 @@ public class AboutUs extends AppCompatActivity {
         RecipeListActivity.redirectActivity(this, DeleteUser.class);
     }
 
+    public void ClickChangePassword (View view) {
+        RecipeListActivity.redirectActivity(this, ChangePassword.class);
+    }
+
     public void ClickLogout(View view){
         //Close app
         RecipeListActivity.exit(this);
