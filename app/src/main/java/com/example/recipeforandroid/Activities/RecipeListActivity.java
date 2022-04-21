@@ -400,13 +400,13 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             case R.id.menu_NewOld:
                 // sort new to old
                 Collections.sort(recipeList2, RecipeService.RecipeNewOldComparator);
-                Toast.makeText(RecipeListActivity.this, "Sort new to old", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecipeListActivity.this, "Sort New to Old", Toast.LENGTH_SHORT).show();
                 adapter2.notifyDataSetChanged();
                 return true;
             case R.id.menu_OldNew:
                 // sort old to new
                 Collections.sort(recipeList2,RecipeService.RecipeOldNewComparator);
-                Toast.makeText(RecipeListActivity.this, "Sort old to new", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecipeListActivity.this, "Sort Old to New", Toast.LENGTH_SHORT).show();
                 adapter2.notifyDataSetChanged();
                 return true;
         }
