@@ -95,7 +95,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 // TODO breyta Object result í ArrayList<Recipe> ?
                 System.out.println("Object result: " + result.toString());
                 System.out.println("GREAT SUCCESS!");
-                fillRecipeList2((JSONObject) result);
+                fillRecipeList((JSONObject) result);
             }
             @Override
             public void onFailure(String errorString) {
@@ -325,7 +325,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         }
     };
 
-    private void fillRecipeList2(JSONObject recipeList) {
+    private void fillRecipeList(JSONObject recipeList) {
         Gson gson = new Gson();
         Recipe recipe = new Recipe();
         /**try {
@@ -348,10 +348,10 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         for (int i = 0; i < arrayOfRecipes.length; i++) {
             recipeList2.add(arrayOfRecipes[i]);
         }
-        setUpRecyclerView2(recipeList2);
+        setUpRecyclerView(recipeList2);
     }
 
-    private void setUpRecyclerView2(List<Recipe> recipeList) {
+    private void setUpRecyclerView(List<Recipe> recipeList) {
         RecyclerView recyclerView = findViewById(R.id.lv_recipeList);
         recyclerView.setHasFixedSize(true);
         adapter2 = new RecycleViewAdapter(recipeList, RecipeListActivity.this, this);
