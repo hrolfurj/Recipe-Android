@@ -135,7 +135,7 @@
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/recipe_green"
         android:textColor="@color/white"
-        android:text="Switch account" />
+        android:text="@string/logout_button" />
 
 
     </LinearLayout>

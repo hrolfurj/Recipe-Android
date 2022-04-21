@@ -40,9 +40,6 @@
             android:name=".Activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.EditActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activities.NewRecipeActivity"
             android:exported="false" />
         <activity

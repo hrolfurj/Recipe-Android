@@ -17,7 +17,7 @@
             android:id="@+id/delete_user_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/delete_user_title"
+            android:text="@string/delete_user"
             android:textAlignment="center"
             android:textSize="50sp"
             android:textStyle="bold" />
@@ -48,7 +48,7 @@
             android:layout_gravity="center"
             android:backgroundTint="@color/red"
             android:textColor="@color/white"
-            android:text="@string/delete_user_button" />
+            android:text="@string/delete_user" />
 
 
     </LinearLayout>
