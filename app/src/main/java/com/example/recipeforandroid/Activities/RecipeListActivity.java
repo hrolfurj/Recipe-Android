@@ -130,6 +130,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             public void onClick(View view) {
                 Intent intent = new Intent(RecipeListActivity.this, SignInActivity.class);
                 sp.edit().putBoolean("logged", false).apply();
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
