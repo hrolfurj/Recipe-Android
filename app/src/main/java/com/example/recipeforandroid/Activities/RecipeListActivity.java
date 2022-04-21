@@ -56,13 +56,10 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 public class RecipeListActivity extends AppCompatActivity implements RecycleViewInterface {
 
     private static final String TAG = "Recipe Book";
-    Menu menu;
 
-    RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private List<Recipe> recipeList2;
-    private RecyclerView.LayoutManager layoutManager;
-    private RecycleViewAdapter adapter2;
+    private List<Recipe> recipeList;
+
+    private RecycleViewAdapter adapter;
     private SharedPreferences mSp;
 
     DrawerLayout drawerLayout;
@@ -278,8 +275,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             if(viewHolder instanceof RecycleViewAdapter.MyViewHolder);
-            String nameRecipeDelete = recipeList2.get(viewHolder.getAbsoluteAdapterPosition()).getRecipeTitle();
-            final Recipe recipeDelete = recipeList2.get(viewHolder.getAbsoluteAdapterPosition());
+            String nameRecipeDelete = recipeList.get(viewHolder.getAbsoluteAdapterPosition()).getRecipeTitle();
+            final Recipe recipeDelete = recipeList.get(viewHolder.getAbsoluteAdapterPosition());
             final int indexDelete = viewHolder.getAbsoluteAdapterPosition();
             //deleteRecipeFromList(recipeDelete);
             Timer time = new Timer();
@@ -290,7 +287,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 }
             }, 8000);
 
-            adapter2.removeItem(indexDelete);
+            adapter.removeItem(indexDelete);
 
             Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Removed", Snackbar.LENGTH_LONG);
             snackbar.setAction("Undo", new View.OnClickListener() {
@@ -299,12 +296,12 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                     time.cancel();
 
                     // smá galli, recipe birtir sömu uppskrift 2x
-                    recipeList2.add(indexDelete, recipeDelete);
+                    recipeList.add(indexDelete, recipeDelete);
                    /* adapter.restoreRecipe(recipeDelete, indexDelete);
                     recyclerView.scrollToPosition(indexDelete);*/
                     //adapter2.notifyItemInserted(indexDelete);
                     //restoreRecipe(recipeDelete);
-                    adapter2.notifyItemInserted(indexDelete);
+                    adapter.notifyItemInserted(indexDelete);
                 }
             });
             snackbar.setTextColor(Color.BLACK);
@@ -343,21 +340,21 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        recipeList2 = new ArrayList<Recipe>();
+        this.recipeList = new ArrayList<Recipe>();
 
         for (int i = 0; i < arrayOfRecipes.length; i++) {
-            recipeList2.add(arrayOfRecipes[i]);
+            this.recipeList.add(arrayOfRecipes[i]);
         }
-        setUpRecyclerView(recipeList2);
+        setUpRecyclerView(this.recipeList);
     }
 
     private void setUpRecyclerView(List<Recipe> recipeList) {
         RecyclerView recyclerView = findViewById(R.id.lv_recipeList);
         recyclerView.setHasFixedSize(true);
-        adapter2 = new RecycleViewAdapter(recipeList, RecipeListActivity.this, this);
+        adapter = new RecycleViewAdapter(recipeList, RecipeListActivity.this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
-        recyclerView.setAdapter(adapter2);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -375,8 +372,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (adapter2 != null){
-                    adapter2.getFilter().filter(newText);
+                if (adapter != null){
+                    adapter.getFilter().filter(newText);
                 }
                 return false;
             }
@@ -389,27 +386,27 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         switch (item.getItemId()) {
             case R.id.menu_AZ:
                 // sort a to z
-                Collections.sort(recipeList2, RecipeService.RecipeTitleAZComparator);
+                Collections.sort(recipeList, RecipeService.RecipeTitleAZComparator);
                 Toast.makeText(RecipeListActivity.this, "Sort A to Z", Toast.LENGTH_SHORT).show();
-                adapter2.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_ZA:
                 // sort z to a
-                Collections.sort(recipeList2,RecipeService.RecipeTitleZAComparator);
+                Collections.sort(recipeList,RecipeService.RecipeTitleZAComparator);
                 Toast.makeText(RecipeListActivity.this, "Sort Z to A", Toast.LENGTH_SHORT).show();
-                adapter2.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_NewOld:
                 // sort new to old
-                Collections.sort(recipeList2, RecipeService.RecipeNewOldComparator);
+                Collections.sort(recipeList, RecipeService.RecipeNewOldComparator);
                 Toast.makeText(RecipeListActivity.this, "Sort New to Old", Toast.LENGTH_SHORT).show();
-                adapter2.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_OldNew:
                 // sort old to new
-                Collections.sort(recipeList2,RecipeService.RecipeOldNewComparator);
+                Collections.sort(recipeList,RecipeService.RecipeOldNewComparator);
                 Toast.makeText(RecipeListActivity.this, "Sort Old to New", Toast.LENGTH_SHORT).show();
-                adapter2.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -418,11 +415,11 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(RecipeListActivity.this, ViewRecipeActivity.class);
-        intent.putExtra("Title", recipeList2.get(position).getRecipeTitle());
-        intent.putExtra("Tag", recipeList2.get(position).getRecipeTag());
-        intent.putExtra("Description", recipeList2.get(position).getRecipeText());
-        intent.putExtra("Image", recipeList2.get(position).getRecipeImage());
-        intent.putExtra("RecipeID", recipeList2.get(position).getID());
+        intent.putExtra("Title", recipeList.get(position).getRecipeTitle());
+        intent.putExtra("Tag", recipeList.get(position).getRecipeTag());
+        intent.putExtra("Description", recipeList.get(position).getRecipeText());
+        intent.putExtra("Image", recipeList.get(position).getRecipeImage());
+        intent.putExtra("RecipeID", recipeList.get(position).getID());
         startActivity(intent);
     }
     public void deleteRecipeFromList (Recipe recipe) {
