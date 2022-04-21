@@ -8,34 +8,54 @@
     android:id="@+id/drawer_layout"
     tools:context=".Activities.DrawerMenu.Settings">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
 
         <TextView
+            android:id="@+id/delete_user_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Settings"
+            android:textAlignment="center"
             android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:textStyle="bold" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/change_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/delete_user_title"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="85dp"
+            android:backgroundTint="#667FDA"
+            android:gravity="center"
+            android:onClick="ClickChangePassword"
+            android:text="Change password"
+            android:textColor="@color/white" />
 
-    <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@android:color/white">
+        <Button
+            android:id="@+id/delete_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/red"
+            android:onClick="ClickDeleteAccount"
+            android:text="@string/delete_account"
+            android:textColor="@color/white" />
 
-        <include
-            layout="@layout/main_nav_drawer"/>
 
 
     </RelativeLayout>
-
 
 </androidx.drawerlayout.widget.DrawerLayout>
 
