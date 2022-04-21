@@ -32,6 +32,8 @@ import com.example.recipeforandroid.Activities.DrawerMenu.AboutUs;
 import com.example.recipeforandroid.Activities.DrawerMenu.ChangePassword;
 import com.example.recipeforandroid.Activities.DrawerMenu.DeleteUser;
 import com.example.recipeforandroid.Activities.DrawerMenu.Settings;
+import com.example.recipeforandroid.Activities.RecyclerAdapter.RecycleViewAdapter;
+import com.example.recipeforandroid.Activities.RecyclerAdapter.RecycleViewInterface;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
@@ -51,7 +53,7 @@ import java.util.TimerTask;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
-public class RecipeListActivity extends AppCompatActivity implements RecycleViewInterface{
+public class RecipeListActivity extends AppCompatActivity implements RecycleViewInterface {
 
     private static final String TAG = "Recipe Book";
     Menu menu;

@@ -1,4 +1,4 @@
-package com.example.recipeforandroid.Activities;
+package com.example.recipeforandroid.Activities.RecyclerAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

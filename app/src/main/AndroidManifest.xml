@@ -19,9 +19,6 @@
         android:theme="@style/Theme.RecipeForAndroid"
         tools:ignore="ExtraText">
         <activity
-            android:name=".Activities.DeleteUserActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activities.DrawerMenu.AboutUs"
             android:exported="false" />
         <activity
