@@ -1,8 +1,6 @@
 package com.example.recipeforandroid.Activities;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
 import com.example.recipeforandroid.R;
-import com.example.recipeforandroid.Services.RecipeService;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,7 +110,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_line_recipe,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_line_recipe_fragment,parent,false);
         MyViewHolder holder = new MyViewHolder(view, recyclerViewInterface);
         return holder;
     }

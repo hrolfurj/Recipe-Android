@@ -22,16 +22,16 @@
             android:name=".Activities.DeleteUserActivity"
             android:exported="false" />
         <activity
-            android:name=".AboutUs"
+            android:name=".Activities.DrawerMenu.AboutUs"
             android:exported="false" />
         <activity
-            android:name=".Settings"
+            android:name=".Activities.DrawerMenu.Settings"
             android:exported="false" />
         <activity
-            android:name=".DeleteUser"
+            android:name=".Activities.DrawerMenu.DeleteUser"
             android:exported="false" />
         <activity
-            android:name=".ChangePassword"
+            android:name=".Activities.DrawerMenu.ChangePassword"
             android:exported="false" />
         <activity
             android:name=".Activities.RecipeListActivity"

@@ -1,4 +1,4 @@
-package com.example.recipeforandroid;
+package com.example.recipeforandroid.Activities.DrawerMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +15,7 @@ import com.example.recipeforandroid.Activities.RecipeListActivity;
 import com.example.recipeforandroid.Activities.SignInActivity;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
+import com.example.recipeforandroid.R;
 
 public class DeleteUser extends AppCompatActivity {
     //Initialize variable

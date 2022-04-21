@@ -28,10 +28,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.recipeforandroid.AboutUs;
-import com.example.recipeforandroid.ChangePassword;
-import com.example.recipeforandroid.DeleteUser;
-import com.example.recipeforandroid.Settings;
+import com.example.recipeforandroid.Activities.DrawerMenu.AboutUs;
+import com.example.recipeforandroid.Activities.DrawerMenu.ChangePassword;
+import com.example.recipeforandroid.Activities.DrawerMenu.DeleteUser;
+import com.example.recipeforandroid.Activities.DrawerMenu.Settings;
 import com.example.recipeforandroid.Network.NetworkCallback;
 import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
@@ -398,15 +398,15 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 adapter2.notifyDataSetChanged();
                 return true;
             case R.id.menu_NewOld:
-                // sort a to z
+                // sort new to old
                 Collections.sort(recipeList2, RecipeService.RecipeNewOldComparator);
-                Toast.makeText(RecipeListActivity.this, "Sort A to Z", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecipeListActivity.this, "Sort new to old", Toast.LENGTH_SHORT).show();
                 adapter2.notifyDataSetChanged();
                 return true;
             case R.id.menu_OldNew:
-                // sort z to a
+                // sort old to new
                 Collections.sort(recipeList2,RecipeService.RecipeOldNewComparator);
-                Toast.makeText(RecipeListActivity.this, "Sort Z to A", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RecipeListActivity.this, "Sort old to new", Toast.LENGTH_SHORT).show();
                 adapter2.notifyDataSetChanged();
                 return true;
         }
