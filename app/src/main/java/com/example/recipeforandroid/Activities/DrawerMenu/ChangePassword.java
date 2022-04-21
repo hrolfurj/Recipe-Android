@@ -59,6 +59,8 @@ public class ChangePassword extends AppCompatActivity {
                                 public void onSuccess(Object result) {
                                     Intent intent = new Intent(ChangePassword.this, RecipeListActivity.class);
                                     startActivity(intent);
+                                    Toast.makeText(ChangePassword.this, "Changed password successful", Toast.LENGTH_SHORT).show();
+
                                 }
 
                                 @Override
