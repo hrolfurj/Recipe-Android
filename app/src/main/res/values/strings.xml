@@ -4,7 +4,9 @@
     <string name="recipe">Recipe</string>
     <string name="login_failed_toast">SIGN IN FAILED!</string>
     <string name="passwords_no_match_toast">Passwords don\'t match</string>
-    <string name="password_illegal_toast">Illegal passwords</string>
+    <string name="username_password_illegal_toast">Illegal username and password</string>
+    <string name="username_illegal_toast">Illegal username</string>
+    <string name="password_illegal_toast">Illegal password</string>
     <string name="password_change_fail_toast">Password change failed"</string>
     <string name="password_wrong_toast">Wrong password"</string>
     <string name="login_button">Sign in</string>

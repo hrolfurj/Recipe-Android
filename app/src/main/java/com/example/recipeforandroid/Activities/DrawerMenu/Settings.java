@@ -2,10 +2,8 @@ package com.example.recipeforandroid.Activities.DrawerMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.os.Bundle;
 import android.view.View;
-
 import com.example.recipeforandroid.Activities.RecipeListActivity;
 import com.example.recipeforandroid.R;
 
@@ -20,7 +18,6 @@ public class Settings extends AppCompatActivity {
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
-
     }
 
     public void ClickMenu(View view){

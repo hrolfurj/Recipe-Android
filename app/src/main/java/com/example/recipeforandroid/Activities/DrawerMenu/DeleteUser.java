@@ -2,7 +2,6 @@ package com.example.recipeforandroid.Activities.DrawerMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.recipeforandroid.Activities.RecipeListActivity;
 import com.example.recipeforandroid.Activities.SignInActivity;
 import com.example.recipeforandroid.Network.NetworkCallback;
@@ -18,7 +16,6 @@ import com.example.recipeforandroid.Network.NetworkManager;
 import com.example.recipeforandroid.R;
 
 public class DeleteUser extends AppCompatActivity {
-    //Initialize variable
     DrawerLayout drawerLayout;
     private SharedPreferences sp;
 
@@ -34,8 +31,6 @@ public class DeleteUser extends AppCompatActivity {
         String userName = sp.getString("user", "null");
         long userID = sp.getLong("userID", 0);
 
-
-        //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
 
         mConfirmDeleteUserButton.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +48,6 @@ public class DeleteUser extends AppCompatActivity {
                                 Intent intent = new Intent(DeleteUser.this, SignInActivity.class);
                                 startActivity(intent);
                                 Toast.makeText(DeleteUser.this, "User deleted", Toast.LENGTH_SHORT).show();
-
                             }
 
                             @Override
@@ -113,8 +107,6 @@ public class DeleteUser extends AppCompatActivity {
         //Close app
         RecipeListActivity.exit(this);
     }
-
-
 
     @Override
     protected void onPause(){
