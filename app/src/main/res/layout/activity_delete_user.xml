@@ -50,10 +50,7 @@
             android:textColor="@color/white"
             android:text="@string/delete_user" />
 
-
     </LinearLayout>
-
-
 
     <RelativeLayout
         android:layout_width="300dp"
@@ -61,19 +58,9 @@
         android:layout_gravity="start"
         android:background="@android:color/white">
 
-        <Button
-            android:id="@+id/edit_button"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="#47AB11"
-            android:text="@string/edit_recipe_view" />
-
         <include
             layout="@layout/main_nav_drawer"/>
 
-
     </RelativeLayout>
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

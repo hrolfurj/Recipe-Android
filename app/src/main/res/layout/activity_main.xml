@@ -13,8 +13,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-
         <TextView
         android:id="@+id/welcome_text"
         android:layout_width="wrap_content"
@@ -35,7 +33,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlSymmetry" />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lv.recipeList"
             android:layout_width="388dp"
@@ -47,7 +44,6 @@
             android:layout_marginStart="0dp"
             android:layout_marginBottom="1dp" />
 
-
         <Button
             android:id="@+id/add_recipe_button"
             android:layout_width="300dp"
@@ -57,8 +53,7 @@
             android:layout_marginBottom="8dp"
             android:backgroundTint="#47AB11"
             android:text="@string/add_recipe_button" />
-
-
+        
     </RelativeLayout>
 
     <RelativeLayout
