@@ -68,6 +68,7 @@ public class RecipeService extends AppCompatActivity{
         return imageEncoded;
     }
 
+    // https://stackoverflow.com/questions/5776851/load-image-from-url
     public static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
