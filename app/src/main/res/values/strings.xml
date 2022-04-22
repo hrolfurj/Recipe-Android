@@ -37,4 +37,11 @@
     <string name="change_password_button">Change</string>
     <string name="delete_user">Delete User</string>
     <string name="recipe_list_textview">Recipe List</string>
+    <string name="hrolfur">Hrólfur Júlíusson (hrolfur@hi.is)</string>
+    <string name="isabella">Ísabella Montazeri (ism4@hi.is)</string>
+    <string name="johann">Jóhann Karl Hirst (jkh13@hi.is)</string>
+    <string name="ramon">Ramon de la Rosa (rdl2@hi.is)</string>
+    <string name="skiptibord">Skiptiborð: 581-2345</string>
+    <string name="opnunartimi">Opnunartími: kl. 08:00-16:00</string>
+    <string name="team_1">Team 1</string>
 </resources>

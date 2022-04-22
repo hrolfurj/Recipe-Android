@@ -13,12 +13,15 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/delete_user_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/about_us"
+            android:textAlignment="center"
             android:textSize="50sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:textStyle="bold" />
+
+
 
     </LinearLayout>
 
@@ -28,10 +31,70 @@
         android:layout_gravity="start"
         android:background="@android:color/white">
 
-        <include
-            layout="@layout/main_nav_drawer"/>
+
+        <include layout="@layout/main_nav_drawer" />
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/team_1"
+        android:textSize="40sp"
+        android:layout_marginTop="80dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hrolfur"
+        android:textSize="20sp"
+        android:layout_marginTop="150dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/isabella"
+        android:textSize="20sp"
+        android:layout_marginTop="200dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/johann"
+        android:textSize="20sp"
+        android:layout_marginTop="250dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/ramon"
+        android:textSize="20sp"
+        android:layout_marginTop="300dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/skiptibord"
+        android:textSize="40sp"
+        android:layout_marginTop="400dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/opnunartimi"
+        android:textSize="20sp"
+        android:layout_marginTop="470dp"
+        android:textAlignment="center"/>
+
+
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
 
