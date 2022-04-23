@@ -57,8 +57,8 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 public class RecipeListActivity extends AppCompatActivity implements RecycleViewInterface {
 
     private static final String TAG = "RecipeListActivity";
-    private static final int DELETE_DELAY = 8000;
-    private  static final Integer UNDO_DELAY = 7000;
+    private static final int DELETE_DELAY = 5100;
+    private  static final Integer UNDO_DELAY = 5000;
     private static final String SORT_AZ = "Sort A to Z";
     private static final String SORT_ZA = "Sort Z to A";
     private static final String SORT_NEW_OLD = "Sort New to Old";

@@ -2,8 +2,6 @@ package com.example.recipeforandroid.Network;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -13,33 +11,24 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.recipeforandroid.Helpers.IbbHelper;
 import com.example.recipeforandroid.Persistence.Entities.Recipe;
-import com.example.recipeforandroid.Persistence.Entities.User;
-import com.google.gson.Gson;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class NetworkManager extends Application{
 
-    private Context mContext;
+    private Context context;
     private static final String BASE_URL = "http://10.0.2.2:8080/";
     JSONObject userLogin = new JSONObject();
-
     RequestQueue queue;
-    private SharedPreferences mSp;
-
-    public static final String TAG = NetworkManager.class
-            .getSimpleName();
 
     public NetworkManager(Context context) {
-        mContext = context;
+        this.context = context;
     }
 
     public void login(String username, String password, final NetworkCallback callBack) {
-        queue = Volley.newRequestQueue(mContext);
+        queue = Volley.newRequestQueue(context);
         try {
             userLogin.put("username", username);
             userLogin.put("password", password);
@@ -61,7 +50,7 @@ public class NetworkManager extends Application{
     }
 
     public void signUp(String username, String password, final NetworkCallback callback) {
-        queue = Volley.newRequestQueue(mContext);
+        queue = Volley.newRequestQueue(context);
         try {
             userLogin.put("username", username);
             userLogin.put("password", password);
@@ -83,7 +72,7 @@ public class NetworkManager extends Application{
     }
 
     public void getUserRecipes(long id, final NetworkCallback callback) {
-        queue = Volley.newRequestQueue(mContext);
+        queue = Volley.newRequestQueue(context);
         JsonObjectRequest request = new JsonObjectRequest(BASE_URL +"api/" + id + "/recipeList", new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -99,10 +88,7 @@ public class NetworkManager extends Application{
     }
 
     public void saveRecipe(Recipe recipe, final NetworkCallback callback) {
-        queue = Volley.newRequestQueue(mContext);
-        Gson gson = new Gson();
-        //JSONObject jsonRecipe = gson.toJson(recipe, Recipe2.class);
-        String temp = gson.toJson(recipe);
+        queue = Volley.newRequestQueue(context);
         JSONObject jsonRecipe = new JSONObject();
 
         try {
@@ -134,7 +120,7 @@ public class NetworkManager extends Application{
     }
 
     public void deleteRecipe (Recipe recipe, final NetworkCallback callback) {
-        queue = Volley.newRequestQueue(mContext);
+        queue = Volley.newRequestQueue(context);
         Long id = recipe.getID();
         JsonObjectRequest request = new JsonObjectRequest(BASE_URL +"api/" + id + "/deleteRecipe", new Response.Listener<JSONObject>() {
             @Override
@@ -151,7 +137,7 @@ public class NetworkManager extends Application{
     }
 
     public void deleteUser (long id, final NetworkCallback callback) {
-        queue = Volley.newRequestQueue(mContext);
+        queue = Volley.newRequestQueue(context);
         JsonObjectRequest request = new JsonObjectRequest(BASE_URL + "api/" + id + "/deleteUser", new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -167,7 +153,7 @@ public class NetworkManager extends Application{
     }
 
     public void uploadImage (String byte64Image, final NetworkCallback callback) {
-        queue = Volley.newRequestQueue(mContext);
+        queue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://api.imgbb.com/1/upload",
                 new Response.Listener<String>() {
                     @Override
@@ -183,10 +169,8 @@ public class NetworkManager extends Application{
                 }){
             @Override
             protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
-                //params.put("expiration", "86400");
+                Map<String,String> params = new HashMap<>();
                 params.put("expiration", IbbHelper.getEXPIRATION());
-                //params.put("key", "0f82514109c0c76e08b51dd84755d946");
                 params.put("key", IbbHelper.getKEY());
                 params.put("image", byte64Image);
                 return params;
@@ -197,7 +181,7 @@ public class NetworkManager extends Application{
         queue.add(stringRequest);
     }
     public void isLoggedIn(String username, String password, final NetworkCallback callback) {
-        queue = Volley.newRequestQueue(mContext);
+        queue = Volley.newRequestQueue(context);
         try {
             userLogin.put("username", username);
             userLogin.put("password", password);
@@ -219,7 +203,7 @@ public class NetworkManager extends Application{
     }
 
     public void changePassword(String username, String password, final NetworkCallback callback) {
-        queue = Volley.newRequestQueue(mContext);
+        queue = Volley.newRequestQueue(context);
         try {
             userLogin.put("username", username);
             userLogin.put("password", password);
