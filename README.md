@@ -1,4 +1,4 @@
-"# RecipeForAndroid"
+# RecipeForAndroid
 
 ## Lýsing á forriti
 
