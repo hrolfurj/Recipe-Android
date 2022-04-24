@@ -16,7 +16,7 @@ import org.json.JSONObject;
 
 public class SignInActivity extends AppCompatActivity {
 
-    private SharedPreferences sp;
+    private SharedPreferences mSP;
 
     /**
      * Fall sem á að sjá um login og login samanburð til að skrá notanda inn
@@ -27,10 +27,10 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         getSupportActionBar().hide();
-        sp = getSharedPreferences("login", MODE_PRIVATE);
+        mSP = getSharedPreferences("login", MODE_PRIVATE);
 
         // Ef notandi er logged in er farið beint í RecipeList
-        if(sp.getBoolean("logged", false)){
+        if(mSP.getBoolean("logged", false)){
             goToRecipeList();
         }
 
@@ -48,13 +48,13 @@ public class SignInActivity extends AppCompatActivity {
                 netw.login(username.getText().toString(), password.getText().toString(), new NetworkCallback() {
                     @Override
                     public void onSuccess(Object result) {
-                        sp.edit().putBoolean("logged", true).apply();
-                        sp.edit().putString("user", username.getText().toString()).apply();
+                        mSP.edit().putBoolean("logged", true).apply();
+                        mSP.edit().putString("user", username.getText().toString()).apply();
 
                         JSONObject temp = (JSONObject) result;
                         try {
                             Long idd = temp.getLong("id");
-                            sp.edit().putLong("userID", idd).apply();
+                            mSP.edit().putLong("userID", idd).apply();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

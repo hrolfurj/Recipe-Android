@@ -27,9 +27,9 @@ public class NewRecipeActivity extends AppCompatActivity {
     private EditText mRecipeTitle;
     private EditText mRecipeText;
     private EditText mRecipeTag;
-    private SharedPreferences mSp;
-    private String base64Image;
-    private String imageUrl;
+    private SharedPreferences mSP;
+    private String mBase64Image;
+    private String mImageUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class NewRecipeActivity extends AppCompatActivity {
         mRecipeTag = findViewById(R.id.input_Tag);
         boolean pick = true;
 
-        mSp = getSharedPreferences("login", MODE_PRIVATE);
+        mSP = getSharedPreferences("login", MODE_PRIVATE);
 
         /**
          * Sér um að opna myndavél eða gallerí eftir því hvað notandinn velur.
@@ -77,13 +77,13 @@ public class NewRecipeActivity extends AppCompatActivity {
 
         save_button.setOnClickListener(view -> {
             Recipe recipe = new Recipe();
-            recipe.setUserID(mSp.getLong("userID", 0));
+            recipe.setUserID(mSP.getLong("userID", 0));
             recipe.setRecipeTitle(mRecipeTitle.getText().toString());
             recipe.setRecipeText(mRecipeText.getText().toString());
             recipe.setRecipeTag(mRecipeTag.getText().toString());
             recipe.setID(recipeID);
-            if (imageUrl != null) {
-                recipe.setRecipeImage(imageUrl);
+            if (mImageUrl != null) {
+                recipe.setRecipeImage(mImageUrl);
             }
             else recipe.setRecipeImage(image);
 
@@ -124,7 +124,7 @@ public class NewRecipeActivity extends AppCompatActivity {
                 try{
                     InputStream stream = getContentResolver().openInputStream(resultUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(stream);
-                    base64Image = RecipeService.encodeTobase64(bitmap);
+                    mBase64Image = RecipeService.encodeTobase64(bitmap);
                     mImage.setImageBitmap(bitmap);
                 }catch (Exception e){
                     e.printStackTrace();
@@ -135,11 +135,11 @@ public class NewRecipeActivity extends AppCompatActivity {
         }
 
         NetworkManager netw = new NetworkManager(getApplicationContext());
-        netw.uploadImage(base64Image, new NetworkCallback() {
+        netw.uploadImage(mBase64Image, new NetworkCallback() {
             @Override
             public void onSuccess(Object result) {
                 ImageHost imageHost = new Gson().fromJson(result.toString(), ImageHost.class);
-                imageUrl = imageHost.getData().getThumb().getUrl();
+                mImageUrl = imageHost.getData().getThumb().getUrl();
             }
 
             @Override

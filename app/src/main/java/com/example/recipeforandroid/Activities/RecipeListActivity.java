@@ -58,15 +58,11 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
     private static final String TAG = "RecipeListActivity";
     private static final int DELETE_DELAY = 5100;
-    private  static final Integer UNDO_DELAY = 5000;
-    private static final String SORT_AZ = "Sort A to Z";
-    private static final String SORT_ZA = "Sort Z to A";
-    private static final String SORT_NEW_OLD = "Sort New to Old";
-    private static final String SORT_OLD_NEW = "Sort Old to New";
+    private static final Integer UNDO_DELAY = 5000;
     private static final String WELCOME_TEXT = "Welcome ";
-    private List<Recipe> recipeList;
-    private RecycleViewAdapter adapter;
-    private SharedPreferences sp;
+    private List<Recipe> mRecipeList;
+    private RecycleViewAdapter mAdapter;
+    private SharedPreferences mSP;
 
     DrawerLayout drawerLayout;
 
@@ -80,11 +76,11 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sp = getSharedPreferences("login", MODE_PRIVATE);
+        mSP = getSharedPreferences("login", MODE_PRIVATE);
         Button addRecipeButton = (Button) findViewById(R.id.add_recipe_button);
         Button logoutButton = (Button) findViewById(R.id.Logout_button);
         drawerLayout = findViewById(R.id.drawer_layout);
-        long id = sp.getLong("userID", 0);
+        long id = mSP.getLong("userID", 0);
 
         NetworkManager netw = new NetworkManager(getApplicationContext());
         netw.getUserRecipes(id, new NetworkCallback() {
@@ -99,7 +95,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         });
 
         TextView welcome = (TextView) findViewById(R.id.welcome_text);
-        welcome.setText(WELCOME_TEXT +sp.getString("user", "null") + "!");
+        welcome.setText(WELCOME_TEXT + mSP.getString("user", "null") + "!");
 
         addRecipeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +114,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RecipeListActivity.this, SignInActivity.class);
-                sp.edit().putBoolean("logged", false).apply();
+                mSP.edit().putBoolean("logged", false).apply();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
@@ -210,7 +206,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             if(viewHolder instanceof RecycleViewAdapter.MyViewHolder);
-            final Recipe recipeDelete = recipeList.get(viewHolder.getAbsoluteAdapterPosition());
+            final Recipe recipeDelete = mRecipeList.get(viewHolder.getAbsoluteAdapterPosition());
             final int indexDelete = viewHolder.getAbsoluteAdapterPosition();
             Timer time = new Timer();
             time.schedule(new TimerTask() {
@@ -220,15 +216,15 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
                 }
             }, DELETE_DELAY);
 
-            adapter.removeItem(indexDelete);
+            mAdapter.removeItem(indexDelete);
 
             Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Removed", Snackbar.LENGTH_LONG);
             snackbar.setAction("Undo", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     time.cancel();
-                    recipeList.add(indexDelete, recipeDelete);
-                    adapter.notifyItemInserted(indexDelete);
+                    mRecipeList.add(indexDelete, recipeDelete);
+                    mAdapter.notifyItemInserted(indexDelete);
                 }
             });
             snackbar.setTextColor(Color.BLACK);
@@ -257,21 +253,21 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        this.recipeList = new ArrayList<>();
+        this.mRecipeList = new ArrayList<>();
 
         for (int i = 0; i < arrayOfRecipes.length; i++) {
-            this.recipeList.add(arrayOfRecipes[i]);
+            this.mRecipeList.add(arrayOfRecipes[i]);
         }
-        setUpRecyclerView(this.recipeList);
+        setUpRecyclerView(this.mRecipeList);
     }
 
     private void setUpRecyclerView(List<Recipe> recipeList) {
         RecyclerView recyclerView = findViewById(R.id.lv_recipeList);
         recyclerView.setHasFixedSize(true);
-        adapter = new RecycleViewAdapter(recipeList, RecipeListActivity.this, this);
+        mAdapter = new RecycleViewAdapter(recipeList, RecipeListActivity.this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -289,8 +285,8 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (adapter != null){
-                    adapter.getFilter().filter(newText);
+                if (mAdapter != null){
+                    mAdapter.getFilter().filter(newText);
                 }
                 return false;
             }
@@ -302,24 +298,24 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_AZ:
-                Collections.sort(recipeList, RecipeService.RecipeTitleAZComparator);
-                Toast.makeText(RecipeListActivity.this, SORT_AZ, Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged();
+                Collections.sort(mRecipeList, RecipeService.RecipeTitleAZComparator);
+                Toast.makeText(RecipeListActivity.this, R.string.sort_az, Toast.LENGTH_SHORT).show();
+                mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_ZA:
-                Collections.sort(recipeList,RecipeService.RecipeTitleZAComparator);
-                Toast.makeText(RecipeListActivity.this, SORT_ZA, Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged();
+                Collections.sort(mRecipeList,RecipeService.RecipeTitleZAComparator);
+                Toast.makeText(RecipeListActivity.this, R.string.sort_za, Toast.LENGTH_SHORT).show();
+                mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_NewOld:
-                Collections.sort(recipeList, RecipeService.RecipeNewOldComparator);
-                Toast.makeText(RecipeListActivity.this, SORT_NEW_OLD, Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged();
+                Collections.sort(mRecipeList, RecipeService.RecipeNewOldComparator);
+                Toast.makeText(RecipeListActivity.this, R.string.sort_new_old, Toast.LENGTH_SHORT).show();
+                mAdapter.notifyDataSetChanged();
                 return true;
             case R.id.menu_OldNew:
-                Collections.sort(recipeList,RecipeService.RecipeOldNewComparator);
-                Toast.makeText(RecipeListActivity.this, SORT_OLD_NEW, Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged();
+                Collections.sort(mRecipeList,RecipeService.RecipeOldNewComparator);
+                Toast.makeText(RecipeListActivity.this, R.string.sort_old_new, Toast.LENGTH_SHORT).show();
+                mAdapter.notifyDataSetChanged();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -328,11 +324,11 @@ public class RecipeListActivity extends AppCompatActivity implements RecycleView
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(RecipeListActivity.this, ViewRecipeActivity.class);
-        intent.putExtra("Title", recipeList.get(position).getRecipeTitle());
-        intent.putExtra("Tag", recipeList.get(position).getRecipeTag());
-        intent.putExtra("Description", recipeList.get(position).getRecipeText());
-        intent.putExtra("Image", recipeList.get(position).getRecipeImage());
-        intent.putExtra("RecipeID", recipeList.get(position).getID());
+        intent.putExtra("Title", mRecipeList.get(position).getRecipeTitle());
+        intent.putExtra("Tag", mRecipeList.get(position).getRecipeTag());
+        intent.putExtra("Description", mRecipeList.get(position).getRecipeText());
+        intent.putExtra("Image", mRecipeList.get(position).getRecipeImage());
+        intent.putExtra("RecipeID", mRecipeList.get(position).getID());
         startActivity(intent);
     }
 }
